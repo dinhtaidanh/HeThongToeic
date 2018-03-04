@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiNguPhapController">
+   <children>
+      <TextFlow fx:id="cauHoi" layoutX="12.0" layoutY="14.0" prefHeight="68.0" prefWidth="543.0" />
+      <Button fx:id="btnSau" layoutX="533.0" layoutY="229.0" mnemonicParsing="false" onAction="#onNextQuestion" text="Sau" />
+      <Button fx:id="btnTruoc" layoutX="12.0" layoutY="229.0" mnemonicParsing="false" onAction="#onPreviousQuestion" text="Trước" />
+      <Button fx:id="btnTinhDiem" layoutX="268.0" layoutY="296.0" mnemonicParsing="false" onAction="#onTinhDiemNguPhap" text="Tính điểm" />
+      <VBox layoutX="7.0" layoutY="100.0" prefHeight="68.0" prefWidth="565.0">
+         <children>
+            <RadioButton fx:id="rdA" mnemonicParsing="false" text="A. " />
+            <RadioButton fx:id="rdB" mnemonicParsing="false" text="B. " />
+            <RadioButton fx:id="rdC" mnemonicParsing="false" text="C. " />
+            <RadioButton fx:id="rdD" mnemonicParsing="false" text="D. " />
+         </children>
+      </VBox>
+   </children>
+</Pane>

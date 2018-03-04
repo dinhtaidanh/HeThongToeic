@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="247.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThemCauHoiController">
+   <children>
+      <Button fx:id="btnThemNguPhap" mnemonicParsing="false" onAction="#onThemNguPhap" text="Thêm câu hỏi ngữ pháp">
+         <VBox.margin>
+            <Insets top="25.0" />
+         </VBox.margin>
+      </Button>
+      <Button fx:id="btnThemDienKhuyet" mnemonicParsing="false" onAction="#onThemDienKhuyet" text="Thêm câu hỏi điền khuyết">
+         <VBox.margin>
+            <Insets top="25.0" />
+         </VBox.margin>
+      </Button>
+      <Button fx:id="btnThemNghePhoto" mnemonicParsing="false" onAction="#onThemNghePhoto" text="Thêm câu hỏi nghe photo">
+         <VBox.margin>
+            <Insets top="25.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+</VBox>

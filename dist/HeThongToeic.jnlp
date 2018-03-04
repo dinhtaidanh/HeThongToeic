@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="HeThongToeic.jnlp">
+  <information>
+    <title>HeThongToeic</title>
+    <vendor>Danh</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="HeThongToeic.jar" size="25318" download="eager" />
+    <jar href="lib\mysql-connector-java-8.0.9-rc.jar" size="2018353" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="HeThongToeic" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="Controller.Main"  name="HeThongToeic" />
+  <update check="always"/>
+</jnlp>

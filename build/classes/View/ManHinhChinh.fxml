@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="338.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ManHinhChinhController">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <VBox alignment="CENTER" layoutX="67.0" layoutY="100.0" prefHeight="224.0" prefWidth="308.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnThemCauHoi" alignment="CENTER" mnemonicParsing="false" onAction="#onThemCauHoi" prefHeight="25.0" prefWidth="177.0" text="Thêm câu hỏi" />
+            <Button fx:id="btnNghe" alignment="CENTER" mnemonicParsing="false" onAction="#onLuyenNghePhoto" prefHeight="25.0" prefWidth="179.0" text="Luyện nghe photo" />
+            <Button fx:id="btnNguPhap" mnemonicParsing="false" onAction="#onLuyenNguPhap" prefHeight="25.0" prefWidth="179.0" text="Luyện trắc nghiệm ngữ pháp" textAlignment="CENTER" />
+            <Button fx:id="btnDienKhuyet" mnemonicParsing="false" onAction="#onLuyenDienKhuyet" prefHeight="25.0" prefWidth="178.0" text="Luyện điền khuyết" textAlignment="CENTER" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="104.0" prefWidth="414.0">
+         <children>
+            <Label layoutX="49.0" layoutY="34.0" prefHeight="37.0" prefWidth="317.0" text="HỆ THỐNG LUYỆN THI TOEIC" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>

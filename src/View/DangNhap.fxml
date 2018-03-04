@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="216.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
+    <children>
+        <Button fx:id="btdangnhap" layoutX="161.0" layoutY="161.0" onAction="#handleButtonAction" text="Đăng nhập">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <Label alignment="CENTER" layoutX="133.0" layoutY="25.0" prefHeight="37.0" prefWidth="139.0" text="ĐĂNG NHẬP" textFill="#1a00ff" wrapText="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="34.0" layoutY="79.0" prefHeight="25.0" prefWidth="116.0" text="Tên đăng nhập :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="34.0" layoutY="116.0" prefHeight="25.0" prefWidth="106.0" text="Mật khẩu :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txttendangnhap" layoutX="161.0" layoutY="79.0" prefHeight="25.0" prefWidth="205.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="txtmatkhau" layoutX="161.0" layoutY="116.0" prefHeight="31.0" prefWidth="205.0" />
+    </children>
+</AnchorPane>
