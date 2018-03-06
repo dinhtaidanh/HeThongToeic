@@ -14,8 +14,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.web.HTMLEditor;
 
 /**
  * FXML Controller class
@@ -28,9 +28,7 @@ public class ThemNguPhapController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO    
-    }
-    @FXML
-    private TextArea txtCauHoiNguPhap;
+    }   
     @FXML
     private TextField txtDapAnNguPhapA;
     @FXML
@@ -42,13 +40,15 @@ public class ThemNguPhapController implements Initializable {
     @FXML
     private TextField txtDapAnNguPhapDung;
     @FXML
+    private HTMLEditor  htmlEditor;
+    @FXML
     private void onThemCauHoiNguPhap(ActionEvent event)throws ClassNotFoundException,
           SQLException{
         // Lấy ra kết nối tới cơ sở dữ liệu.
         
         Connection connection = ConnectionUtils.getMyConnection();
         Statement statement = connection.createStatement();
-        String CauHoi = "'"+txtCauHoiNguPhap.getText()+"'";
+        String CauHoi = "'"+htmlEditor.getHtmlText()+"'";
         String DapAn1 = "'"+txtDapAnNguPhapA.getText()+"'";
         String DapAn2 = "'"+txtDapAnNguPhapB.getText()+"'";
         String DapAn3 = "'"+txtDapAnNguPhapC.getText()+"'";
