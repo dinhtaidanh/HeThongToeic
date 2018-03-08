@@ -19,8 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 /**
  * FXML Controller class
@@ -29,7 +29,7 @@ import javafx.scene.text.TextFlow;
  */
 public class ThiNguPhapController implements Initializable  {
     @FXML
-    private Label lblCauHoi = new Label();
+    private Label lblCauSo = new Label();
     @FXML
     private ToggleGroup radioGroup = new ToggleGroup();
     @FXML
@@ -41,9 +41,8 @@ public class ThiNguPhapController implements Initializable  {
     @FXML
     private RadioButton rdD = new RadioButton();
     @FXML
-    private TextFlow cauHoi = new TextFlow();
+    private WebView cauHoi = new WebView();
     private static int cauHienTai = 0;
-    //private ArrayList<Cau> dsCauHoi = new ArrayList<Cau>();
     private ListCauHoi dsCauHoi = new ListCauHoi("nguphap",0,10);
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
@@ -71,31 +70,18 @@ public class ThiNguPhapController implements Initializable  {
         // TODO
     }   
     private void fillData(){
-        cauHoi.getChildren().clear();
-        String[] words = dsCauHoi.getDsCau().get(cauHienTai).getCauHoi().split(" ");
-        String s = dsCauHoi.getDsCau().get(cauHienTai).getDapAn1() + " "
-                + dsCauHoi.getDsCau().get(cauHienTai).getDapAn2() + " "
-                + dsCauHoi.getDsCau().get(cauHienTai).getDapAn3() + " "
-                + dsCauHoi.getDsCau().get(cauHienTai).getDapAn4();
-        String[] arr = s.split(" ");
-        for(String i : words){
-            Text t = new Text(i);
-            if(checkStringArr(i, arr))
-                t.setUnderline(true);
-            Text space = new Text(" ");  
-            cauHoi.getChildren().add(t);
-            cauHoi.getChildren().add(space);
-        }
-        lblCauHoi.setText(cauHienTai + 1 + ". " 
-               + dsCauHoi.getDsCau().get(cauHienTai).getCauHoi());
-            rdA.setText("A. " + dsCauHoi.getDsCau().get(cauHienTai).getDapAn1());
-            rdB.setText("B. " + dsCauHoi.getDsCau().get(cauHienTai).getDapAn2());
-            rdC.setText("C. " + dsCauHoi.getDsCau().get(cauHienTai).getDapAn3());
-            rdD.setText("D. " + dsCauHoi.getDsCau().get(cauHienTai).getDapAn4());  
-            rdA.setSelected(false);
-            rdB.setSelected(false);
-            rdC.setSelected(false);
-            rdD.setSelected(false);
+        
+        lblCauSo.setText("Câu hỏi "+String.valueOf(cauHienTai+1));
+        WebEngine webEngine = cauHoi.getEngine();
+        webEngine.loadContent(dsCauHoi.getDsCau().get(cauHienTai).getCauHoi(), "text/html");
+        rdA.setText("A. " + dsCauHoi.getDsCau().get(cauHienTai).getDapAn1());
+        rdB.setText("B. " + dsCauHoi.getDsCau().get(cauHienTai).getDapAn2());
+        rdC.setText("C. " + dsCauHoi.getDsCau().get(cauHienTai).getDapAn3());
+        rdD.setText("D. " + dsCauHoi.getDsCau().get(cauHienTai).getDapAn4());  
+        rdA.setSelected(false);
+        rdB.setSelected(false);
+        rdC.setSelected(false);
+        rdD.setSelected(false);
     }
     private boolean checkStringArr(String word, String[] arr){
         for(String i : arr){
