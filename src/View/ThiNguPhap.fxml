@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -8,19 +9,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiNguPhapController">
+<Pane fx:id="pane" prefHeight="386.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiNguPhapController">
    <children>
-      <TextFlow fx:id="cauHoi" layoutX="12.0" layoutY="14.0" prefHeight="68.0" prefWidth="543.0" />
-      <Button fx:id="btnSau" layoutX="533.0" layoutY="229.0" mnemonicParsing="false" onAction="#onNextQuestion" text="Sau" />
-      <Button fx:id="btnTruoc" layoutX="12.0" layoutY="229.0" mnemonicParsing="false" onAction="#onPreviousQuestion" text="Trước" />
-      <Button fx:id="btnTinhDiem" layoutX="268.0" layoutY="296.0" mnemonicParsing="false" onAction="#onTinhDiemNguPhap" text="Tính điểm" />
-      <VBox layoutX="7.0" layoutY="100.0" prefHeight="68.0" prefWidth="565.0">
-         <children>
-            <RadioButton fx:id="rdA" mnemonicParsing="false" text="A. " />
-            <RadioButton fx:id="rdB" mnemonicParsing="false" text="B. " />
-            <RadioButton fx:id="rdC" mnemonicParsing="false" text="C. " />
-            <RadioButton fx:id="rdD" mnemonicParsing="false" text="D. " />
-         </children>
-      </VBox>
+      <WebView fx:id="cauHoi" layoutX="15.0" layoutY="67.0" prefHeight="85.0" prefWidth="528.0" />
+      <Button fx:id="btnSau" layoutX="453.0" layoutY="296.0" mnemonicParsing="false" onAction="#onNextQuestion" text="Câu tiếp theo" />
+      <Button fx:id="btnTruoc" layoutX="14.0" layoutY="296.0" mnemonicParsing="false" onAction="#onPreviousQuestion" text="Câu trước" />
+      <Button fx:id="btnTinhDiem" layoutX="243.0" layoutY="347.0" mnemonicParsing="false" onAction="#onTinhDiemNguPhap" text="Tính điểm" />
+      <RadioButton fx:id="rdA" layoutX="17.0" layoutY="159.0" mnemonicParsing="false" text="A. " />
+      <RadioButton fx:id="rdB" layoutX="16.0" layoutY="191.0" mnemonicParsing="false" text="B. " />
+      <RadioButton fx:id="rdC" layoutX="16.0" layoutY="219.0" mnemonicParsing="false" text="C. " />
+      <RadioButton fx:id="rdD" layoutX="16.0" layoutY="249.0" mnemonicParsing="false" text="D. " />
+      <Label fx:id="lblCauSo" layoutX="17.0" layoutY="41.0" text="Câu số ">
+         <font>
+            <Font name="Times New Roman Bold" size="13.0" />
+         </font>
+      </Label>
+      <Text layoutX="34.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn lỗi sai từ các đáp án A, B, C và D">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Text>
    </children>
 </Pane>
