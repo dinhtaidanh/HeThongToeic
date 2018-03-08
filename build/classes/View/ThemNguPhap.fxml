@@ -10,49 +10,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThemNguPhapController">
+<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThemNguPhapController">
    <children>
-      <Button fx:id="btnThemCauHoiNguPhap" layoutX="223.0" layoutY="516.0" mnemonicParsing="false" onAction="#onThemCauHoiNguPhap" prefHeight="25.0" prefWidth="128.0" text="Thêm" />
-      <HTMLEditor fx:id="htmlEditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="82.0" layoutY="49.0" prefHeight="126.0" prefWidth="613.0" />
-      <Label layoutX="24.0" layoutY="61.0" text="Câu hỏi:">
+      <Button fx:id="btnThemCauHoiNguPhap" layoutX="332.0" layoutY="467.0" mnemonicParsing="false" onAction="#onThemCauHoiNguPhap" prefHeight="25.0" prefWidth="128.0" text="Thêm" />
+      <HTMLEditor fx:id="htmlEditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="129.0" layoutY="61.0" prefHeight="142.0" prefWidth="613.0" />
+      <Label layoutX="54.0" layoutY="61.0" text="Câu hỏi:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="233.0" layoutY="16.0" text="THÊM CÂU HỎI NGỮ PHÁP">
+      <Label layoutX="234.0" layoutY="14.0" text="THÊM CÂU HỎI NGỮ PHÁP">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Label layoutX="48.0" layoutY="413.0" text="Đáp án đúng:">
+      <Label layoutX="43.0" layoutY="401.0" text="Đáp án đúng:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDapAnNguPhapDung" layoutX="164.0" layoutY="413.0" prefHeight="25.0" prefWidth="394.0" />
-      <Label layoutX="48.0" layoutY="364.0" text="Đáp án D:">
+      <Label layoutX="41.0" layoutY="357.0" text="Đáp án D:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDapAnNguPhapD" layoutX="138.0" layoutY="364.0" prefHeight="25.0" prefWidth="474.0" />
-      <Label layoutX="53.0" layoutY="321.0" text="Đáp án A:">
+      <TextField fx:id="txtDapAnNguPhapD" layoutX="129.0" layoutY="357.0" prefHeight="25.0" prefWidth="613.0" />
+      <Label layoutX="43.0" layoutY="221.0" text="Đáp án A:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDapAnNguPhapA" layoutX="142.0" layoutY="321.0" prefHeight="25.0" prefWidth="474.0" />
-      <Label layoutX="48.0" layoutY="447.0" text="Đáp án B:">
+      <TextField fx:id="txtDapAnNguPhapA" layoutX="129.0" layoutY="221.0" prefHeight="25.0" prefWidth="613.0" />
+      <Label layoutX="43.0" layoutY="265.0" text="Đáp án B:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDapAnNguPhapB" layoutX="136.0" layoutY="447.0" prefHeight="25.0" prefWidth="474.0" />
-      <Label layoutX="53.0" layoutY="479.0" text="Đáp án C:">
+      <TextField fx:id="txtDapAnNguPhapB" layoutX="129.0" layoutY="265.0" prefHeight="25.0" prefWidth="613.0" />
+      <Label layoutX="41.0" layoutY="310.0" text="Đáp án C:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDapAnNguPhapC" layoutX="159.0" layoutY="479.0" prefHeight="25.0" prefWidth="474.0" />
+      <TextField fx:id="txtDapAnNguPhapC" layoutX="129.0" layoutY="310.0" prefHeight="25.0" prefWidth="613.0" />
+      <ComboBox fx:id="cbDapAnNguPhapDung" layoutX="158.0" layoutY="401.0" prefWidth="150.0" promptText="Chọn đáp án đúng" />
    </children>
 </AnchorPane>
