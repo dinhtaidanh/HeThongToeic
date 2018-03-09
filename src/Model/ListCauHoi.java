@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ListCauHoi {
     private ArrayList<Cau> dsCau;
     private static int cauHienTai;
-
+    private static int STT = 0;
     public ListCauHoi(String tenBang,int viTriBatDau, int soLuongCau){
         dsCau = new ArrayList<>();
         try{
@@ -35,17 +35,19 @@ public class ListCauHoi {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp.
               Cau cau = new Cau();
-              cau.setCauHoi(rs.getString(1));
-              cau.setDapAn1(rs.getString(2));
-              cau.setDapAn2(rs.getString(3));
-              cau.setDapAn3(rs.getString(4));
-              cau.setDapAn4(rs.getString(5));
-              cau.setDapAnDung(rs.getString(6)); 
+              STT++;
+              cau.setSTT(STT);
+              cau.setCauHoi(rs.getString("CauHoi"));
+              cau.setDapAn1(rs.getString("DapAn1"));
+              cau.setDapAn2(rs.getString("DapAn2"));
+              cau.setDapAn3(rs.getString("DapAn3"));
+              cau.setDapAn4(rs.getString("DapAn4"));
+              cau.setDapAnDung(rs.getString("DapAnDung")); 
                 dsCau.add(cau);
             }
-        }catch (ClassNotFoundException | SQLException ex){
-            
+        }catch (ClassNotFoundException | SQLException ex){            
         }
+        
     }
 
     /**

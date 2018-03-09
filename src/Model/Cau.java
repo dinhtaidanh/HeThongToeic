@@ -10,6 +10,8 @@ package Model;
  * @author Danh
  */
 public class Cau {
+
+    private int STT = 0;
     private String cauHoi = "";
     private String dapAn1 = "";
     private String dapAn2 = "";
@@ -25,7 +27,7 @@ public class Cau {
         this.dapAnDung = DapAnDung;
     }
     public Cau(String CauHoi,String DapAn1, String DapAn2,String DapAn3,String DapAn4,String 
-            DapAnDung){    
+            DapAnDung){
         this.cauHoi = CauHoi;
         this.dapAn1 = DapAn1;
         this.dapAn2 = DapAn2;
@@ -33,7 +35,7 @@ public class Cau {
         this.dapAn4 = DapAn4;
         this.dapAnDung = DapAnDung;
     }
-
+    
     /**
      * @return the CauHoi
      */
@@ -131,5 +133,21 @@ public class Cau {
     public void setTraLoi(String traLoi) {
         this.traLoi = traLoi;
     }
+
+    /**
+     * @return the STT
+     */
+    public int getSTT() {
+        return STT;
+    }
+
+    /**
+     * @param STT the STT to set
+     */
+    public void setSTT(int STT) {
+        this.STT = STT;
+    }
+
+    
     
 }

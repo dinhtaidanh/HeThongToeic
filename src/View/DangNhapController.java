@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
+import javafx.stage.Stage;
 
 /**
  *
@@ -53,10 +54,14 @@ public class DangNhapController implements Initializable {
                 {
                     String quyen = rs.getString("quyen");
                     if (quyen.equals("admin")){
+                        Stage stage = (Stage) txttendangnhap.getScene().getWindow();
+                        stage.close();
                         HienCuaSo h = new HienCuaSo();
                         h.showWindow("/View/ManHinhChinh.fxml");
                     }
                     else{
+                        Stage stage = (Stage) txttendangnhap.getScene().getWindow();
+                        stage.close();
                         HienCuaSo h = new HienCuaSo();
                         h.showWindow("/View/ManHinhUser.fxml");
                     }

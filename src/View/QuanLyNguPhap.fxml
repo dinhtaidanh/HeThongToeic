@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="552.0" prefWidth="757.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="View.QuanLyNguPhapController">
+   <children>
+      <Label layoutX="258.0" layoutY="14.0" text="DANH SÁCH CÂU HỎI NGỮ PHÁP">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbvListCauHoi" editable="true" layoutX="14.0" layoutY="52.0" prefHeight="449.0" prefWidth="629.0" />
+   </children>
+</AnchorPane>

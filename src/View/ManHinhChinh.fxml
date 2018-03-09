@@ -17,6 +17,7 @@
             <Button fx:id="btnNghe" alignment="CENTER" mnemonicParsing="false" onAction="#onLuyenNghePhoto" prefHeight="25.0" prefWidth="179.0" text="Luyện nghe photo" />
             <Button fx:id="btnNguPhap" mnemonicParsing="false" onAction="#onLuyenNguPhap" prefHeight="25.0" prefWidth="179.0" text="Luyện trắc nghiệm ngữ pháp" textAlignment="CENTER" />
             <Button fx:id="btnDienKhuyet" mnemonicParsing="false" onAction="#onLuyenDienKhuyet" prefHeight="25.0" prefWidth="178.0" text="Luyện điền khuyết" textAlignment="CENTER" />
+            <Button fx:id="btnQuanLyCau" mnemonicParsing="false" onAction="#onQuanLyCau" prefHeight="25.0" prefWidth="181.0" text="Quản lý câu hỏi" />
          </children>
          <opaqueInsets>
             <Insets />

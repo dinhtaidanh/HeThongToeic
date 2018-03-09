@@ -57,7 +57,23 @@ public class ManHinhChinhController implements Initializable {
     }
     @FXML
     private void onLuyenDienKhuyet(ActionEvent event) {
-             
+        try{
+        Parent root = FXMLLoader.load(getClass().getResource(""));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);  
+        stage.setScene(scene);
+        stage.show();    
+        }catch (IOException e) {e.printStackTrace();}     
+    }
+    @FXML
+    private void onQuanLyCau(ActionEvent event) {
+        try{
+        Parent root = FXMLLoader.load(getClass().getResource("QuanLyNguPhap.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);  
+        stage.setScene(scene);
+        stage.show();    
+        }catch (IOException e) {e.printStackTrace();}     
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
