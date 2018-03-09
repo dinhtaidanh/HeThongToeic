@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="HeThongToeic.jar" size="68430742" download="eager" />
+=======
+    <jar href="HeThongToeic.jar" size="24079" download="eager" />
+>>>>>>> eca800ac70771d1e4c6e61910072534917db9ca2
     <jar href="lib\mysql-connector-java-8.0.9-rc.jar" size="2018353" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="HeThongToeic" >
