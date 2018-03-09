@@ -15,7 +15,7 @@ public class MySQLConnUtils {
  
      String dbName = "toeicsystem";
      String userName = "root";
-     String password = "123456";
+     String password = "Anhtan123";
  
      return getMySQLConnection(hostName, dbName, userName, password);
  }

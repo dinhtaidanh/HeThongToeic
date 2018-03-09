@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="285.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThemCauHoiPhotoController">
+   <children>
+      <Label layoutX="37.0" layoutY="52.0" prefHeight="34.0" prefWidth="54.0" text="Audio">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="98.0" prefHeight="34.0" prefWidth="54.0" text="Photo">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="150.0" prefHeight="34.0" prefWidth="62.0" text="Đáp án">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAudio" layoutX="109.0" layoutY="57.0" prefHeight="25.0" prefWidth="421.0" />
+      <TextField fx:id="txtPhoto" layoutX="109.0" layoutY="103.0" prefHeight="25.0" prefWidth="421.0" />
+      <RadioButton fx:id="rad1" layoutX="109.0" layoutY="159.0" mnemonicParsing="false" onAction="#load" text="A" />
+      <RadioButton fx:id="rad2" layoutX="221.0" layoutY="159.0" mnemonicParsing="false" onAction="#load" text="B" />
+      <RadioButton fx:id="rad3" layoutX="335.0" layoutY="159.0" mnemonicParsing="false" onAction="#load" text="C" />
+      <RadioButton fx:id="rad4" layoutX="436.0" layoutY="159.0" mnemonicParsing="false" onAction="#load" text="D" />
+      <Button fx:id="btAudio" layoutX="534.0" layoutY="57.0" mnemonicParsing="false" onAction="#audio" prefHeight="25.0" prefWidth="40.0" text="..." />
+      <Button fx:id="btPhoto" layoutX="534.0" layoutY="103.0" mnemonicParsing="false" onAction="#photo" prefHeight="25.0" prefWidth="40.0" text="..." />
+      <Button fx:id="btThem" layoutX="268.0" layoutY="224.0" mnemonicParsing="false" onAction="#them" prefHeight="25.0" prefWidth="54.0" text="Thêm" />
+   </children>
+</AnchorPane>

@@ -57,7 +57,8 @@ public class DangNhapController implements Initializable {
                         h.showWindow("/View/ManHinhChinh.fxml");
                     }
                     else{
-                        /*code mở form màn hình chính cho người dùng ở đây*/
+                        HienCuaSo h = new HienCuaSo();
+                        h.showWindow("/View/ManHinhUser.fxml");
                     }
 
                 }

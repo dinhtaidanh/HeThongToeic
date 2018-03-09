@@ -36,7 +36,14 @@ public class ManHinhChinhController implements Initializable {
     }
     @FXML
     private void onLuyenNghePhoto(ActionEvent event) {
-             
+         try{
+        Parent root = FXMLLoader.load(getClass().getResource("LuyenNghe.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);  
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.show();    
+        }catch (IOException e) {e.printStackTrace();}
     }
     @FXML
     private void onLuyenNguPhap(ActionEvent event) {

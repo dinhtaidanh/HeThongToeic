@@ -49,7 +49,7 @@ public class ThemCauHoiController implements Initializable {
     @FXML
     private void onThemNghePhoto(ActionEvent event) {
         try{
-        Parent root = FXMLLoader.load(getClass().getResource("ThemNguPhap.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ThemCauHoiPhoto.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);       
         stage.setScene(scene);
