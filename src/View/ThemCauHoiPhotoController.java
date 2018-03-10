@@ -59,7 +59,7 @@ public class ThemCauHoiPhotoController implements Initializable {
         fileChooser.getExtensionFilters().add(new ExtensionFilter("WAV Files", "*.wav"));
         fileChooser.getExtensionFilters().add(new ExtensionFilter("MPEG-4 Files", "*.mpeg-4"));
         File selectedFile = fileChooser.showOpenDialog(null);
-        txtAudio.setText(selectedFile.getPath());
+        txtAudio.setText(selectedFile.getAbsolutePath().replace("\\", "/"));
     }
     @FXML
     private void photo(ActionEvent event) {
@@ -68,7 +68,7 @@ public class ThemCauHoiPhotoController implements Initializable {
         fileChooser.getExtensionFilters().add(new ExtensionFilter("GIF Files", "*.gif"));
         fileChooser.getExtensionFilters().add(new ExtensionFilter("PNG Files", "*.png"));
         File selectedFile = fileChooser.showOpenDialog(null);
-        txtPhoto.setText(selectedFile.getPath());
+        txtPhoto.setText(selectedFile.getAbsolutePath().replace("\\", "/"));
     }
     @FXML
     private void them(ActionEvent event) {
