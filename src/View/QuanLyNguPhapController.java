@@ -6,9 +6,13 @@
 package View;
 
 import Model.Cau;
+import Model.ConnectionUtils;
 import Model.ListCauHoi;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,15 +35,19 @@ import javafx.stage.Stage;
  */
 public class QuanLyNguPhapController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+   
     @FXML
     private TableView<Cau> tbvListCauHoi = new TableView<Cau>();
-    private ListCauHoi dsCauHoi = new ListCauHoi("nguphap",0,10);
+    private ListCauHoi dsCauHoi = new ListCauHoi();
+    private Cau cauDuocChon;
+    public Cau getCauDuocChon() {
+        return cauDuocChon;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        dsCauHoi.readTable("nguphap");
         TableColumn<Cau, String> STT = new TableColumn<Cau, String>("STT");
         TableColumn<Cau, String> CauHoi = new TableColumn<Cau, String>("Câu hỏi");
         TableColumn<Cau, String> dA = new TableColumn<Cau, String>("A");
@@ -69,14 +77,7 @@ public class QuanLyNguPhapController implements Initializable {
     }
     @FXML
     private void onAddQuestion(){
-        try{
-        Parent root = FXMLLoader.load(getClass().getResource("ThemNguPhap.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);  
-        stage.setScene(scene);
-        stage.show();    
-        }catch (IOException e) {
-        }
+        showStage("ThemNguPhap.fxml");
     }
     @FXML
     private void onDeleteQuestion(){
@@ -84,12 +85,38 @@ public class QuanLyNguPhapController implements Initializable {
     }
     @FXML
     private void onModifyQuestion(){
+        //Text text = new Text(tbvListCauHoi.getSelectionModel().getSelectedItem().getCauHoi());
+        cauDuocChon = tbvListCauHoi.getSelectionModel().getSelectedItem();
+        try{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SuaCauHoi.fxml"));
+        SuaCauHoiController controller = loader.getController();
+        Parent root = loader.load();
+        controller.setCauDuocChon(cauDuocChon);
         Stage stage = new Stage();
-        StackPane pane = new StackPane();
-        Text text = new Text(tbvListCauHoi.getSelectionModel().getSelectedItem().getCauHoi());
-        pane.getChildren().add(text);
-        Scene scene = new Scene(pane,500,300);
+        Scene scene = new Scene(root);  
         stage.setScene(scene);
-        stage.show();
+        stage.show();    
+        }catch(IOException e){
+            
+        }
+            
+    }
+    private void Connect(){
+        try{
+        Connection connection = ConnectionUtils.getMyConnection();
+        Statement statement = connection.createStatement();
+        }catch(ClassNotFoundException|SQLException e){
+            
+        }
+    }
+    private void showStage(String fxmlPath){
+        try{
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);  
+        stage.setScene(scene);
+        stage.show();    
+        }catch (IOException e) {
+        }
     }
 }

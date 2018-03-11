@@ -10,9 +10,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThemNguPhapController">
+<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SuaCauHoiController">
    <children>
-      <Button fx:id="btnThemCauHoiNguPhap" layoutX="332.0" layoutY="467.0" mnemonicParsing="false" onAction="#onThemCauHoiNguPhap" prefHeight="25.0" prefWidth="128.0" text="Thêm" />
+      <Button fx:id="btnSaveChange" layoutX="332.0" layoutY="467.0" mnemonicParsing="false" onAction="#onSaveChange" prefHeight="25.0" prefWidth="128.0" text="Lưu lại" />
       <HTMLEditor fx:id="htmlEditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="129.0" layoutY="61.0" prefHeight="142.0" prefWidth="613.0" />
       <Label layoutX="54.0" layoutY="61.0" text="Câu hỏi:">
          <font>

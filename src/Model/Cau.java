@@ -12,6 +12,7 @@ package Model;
 public class Cau {
 
     private int STT = 0;
+    private int Id = 0;
     private String cauHoi = "";
     private String dapAn1 = "";
     private String dapAn2 = "";
@@ -20,22 +21,20 @@ public class Cau {
     private String dapAnDung = "";
     private String traLoi = "";
     
-    public Cau(){
+    /**
+     * @return the Id
+     */
+    public int getId() {
+        return Id;
     }
-    public Cau(String CauHoi,String DapAnDung){
-        this.cauHoi = CauHoi;  
-        this.dapAnDung = DapAnDung;
+
+    /**
+     * @param Id the Id to set
+     */
+    public void setId(int Id) {
+        this.Id = Id;
     }
-    public Cau(String CauHoi,String DapAn1, String DapAn2,String DapAn3,String DapAn4,String 
-            DapAnDung){
-        this.cauHoi = CauHoi;
-        this.dapAn1 = DapAn1;
-        this.dapAn2 = DapAn2;
-        this.dapAn3 = DapAn3;
-        this.dapAn4 = DapAn4;
-        this.dapAnDung = DapAnDung;
-    }
-    
+
     /**
      * @return the CauHoi
      */

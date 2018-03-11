@@ -19,24 +19,24 @@ public class ListCauHoi {
     private ArrayList<Cau> dsCau;
     private static int cauHienTai;
     private static int STT = 0;
-    public ListCauHoi(String tenBang,int viTriBatDau, int soLuongCau){
-        dsCau = new ArrayList<>();
+    public ListCauHoi(){
+        dsCau = new ArrayList<>();  
+    }
+
+    public void readTable(String tableName){
         try{
             Connection connection = ConnectionUtils.getMyConnection();
- 
-             // Tạo đối tượng Statement.
             Statement statement = connection.createStatement();
 
-            String sql = "Select CauHoi, DapAn1, DapAn2, DapAn3, DapAn4,"
-                  + "DapAnDung from " + tenBang;
-                    //+ "limit " + viTriBatDau + ", " + soLuongCau;
-
-            // Thực thi câu lệnh SQL trả về đối tượng ResultSet.
+            String sql = "Select Id, CauHoi, DapAn1, DapAn2, DapAn3, DapAn4,"
+                  + "DapAnDung from " + tableName;
+                           
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp.
               Cau cau = new Cau();
               STT++;
               cau.setSTT(STT);
+              cau.setId(rs.getInt("Id"));
               cau.setCauHoi(rs.getString("CauHoi"));
               cau.setDapAn1(rs.getString("DapAn1"));
               cau.setDapAn2(rs.getString("DapAn2"));
@@ -47,12 +47,8 @@ public class ListCauHoi {
             }
         }catch (ClassNotFoundException | SQLException ex){            
         }
-        
     }
-
-    /**
-     * @return the dsCau
-     */
+    
     public ArrayList<Cau> getDsCau() {
         return dsCau;
     }

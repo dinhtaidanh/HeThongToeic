@@ -43,13 +43,14 @@ public class ThiNguPhapController implements Initializable  {
     @FXML
     private WebView cauHoi = new WebView();
     private static int cauHienTai = 0;
-    private ListCauHoi dsCauHoi = new ListCauHoi("nguphap",0,10);
+    private ListCauHoi dsCauHoi = new ListCauHoi();
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
         rdA.setToggleGroup(radioGroup);
         rdB.setToggleGroup(radioGroup);
         rdC.setToggleGroup(radioGroup);
         rdD.setToggleGroup(radioGroup);
+        dsCauHoi.readTable("nguphap");
         fillData();      
         radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
            @Override

@@ -5,13 +5,13 @@
  */
 package View;
 
+import Model.Cau;
 import Model.ConnectionUtils;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,9 +25,14 @@ import javafx.scene.web.HTMLEditor;
  *
  * @author Danh
  */
-public class ThemNguPhapController implements Initializable {
-
-    
+public class SuaCauHoiController implements Initializable {
+    private Cau cauDuocChon = new Cau();
+    public Cau getCauDuocChon() {
+        return cauDuocChon;
+    }
+    public void setCauDuocChon(Cau cauDuocChon) {
+        this.cauDuocChon = cauDuocChon;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO     
@@ -47,9 +52,7 @@ public class ThemNguPhapController implements Initializable {
     @FXML
     private ComboBox cbDapAnNguPhapDung;
     @FXML
-    private void onThemCauHoiNguPhap(ActionEvent event)throws ClassNotFoundException,
-          SQLException{
-        // Lấy ra kết nối tới cơ sở dữ liệu.       
+    private void onSaveChange(ActionEvent event)throws ClassNotFoundException,SQLException{       
         Connection connection = ConnectionUtils.getMyConnection();
         Statement statement = connection.createStatement();
         String CauHoi = "'"+htmlEditor.getHtmlText()+"'";
@@ -59,13 +62,14 @@ public class ThemNguPhapController implements Initializable {
         String DapAn4 = "'"+txtDapAnNguPhapD.getText()+"'";
         String DapAnDung = "'"+cbDapAnNguPhapDung.getSelectionModel().getSelectedItem().toString()+"'";
         
-        String sql = "INSERT INTO nguphap(CauHoi, DapAn1, DapAn2, DapAn3, DapAn4,DapAnDung)"
-                + "VALUES ("+CauHoi
-                + ", " + DapAn1
-                + ", " + DapAn2
-                + ", " + DapAn3
-                + ", " + DapAn4
-                + ", " + DapAnDung + ")";
+        String sql = "UPDATE nguphap SET CauHoi= '" + CauHoi + "', "
+                + "DapAn1= '" + DapAn1 + "', "
+                + "DapAn2= '" + DapAn2 + "', "
+                + "DapAn3= '" + DapAn3 + "', "
+                + "DapAn4= '" + DapAn4 + "', "
+                + "DapAnDung= '" + DapAnDung +"' "  
+                + "WHERE Id = " + cauDuocChon.getId();
+                      
  
       // Thực thi câu lệnh.
       // executeUpdate(String) sử dụng cho các loại lệnh Insert,Update,Delete.
@@ -76,11 +80,11 @@ public class ThemNguPhapController implements Initializable {
       // In ra số dòng được trèn vào bởi câu lệnh trên.
       if(rowCount!=0){
           Alert a = new Alert(Alert.AlertType.INFORMATION);
-          a.setContentText("Thêm câu hỏi thành công");
+          a.setContentText("Sửa câu hỏi thành công");
           a.show();
       }else{
           Alert a = new Alert(Alert.AlertType.ERROR);
-          a.setContentText("Thêm câu hỏi thất bại");
+          a.setContentText("Sửa câu hỏi thất bại");
           a.show();
       }
     }

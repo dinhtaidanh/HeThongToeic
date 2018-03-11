@@ -29,12 +29,12 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txttendangnhap" layoutX="161.0" layoutY="79.0" prefHeight="25.0" prefWidth="205.0" promptText="Nhập tên đăng nhập ...">
+      <TextField fx:id="txttendangnhap" layoutX="161.0" layoutY="79.0" prefHeight="25.0" prefWidth="205.0" promptText="Nhập tên đăng nhập ..." text="admin">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="txtmatkhau" layoutX="161.0" layoutY="116.0" prefHeight="31.0" prefWidth="205.0" promptText="Nhập mật khẩu ...">
+      <PasswordField fx:id="txtmatkhau" layoutX="161.0" layoutY="116.0" prefHeight="31.0" prefWidth="205.0" promptText="Nhập mật khẩu ..." text="123">
          <font>
             <Font size="15.0" />
          </font></PasswordField>
