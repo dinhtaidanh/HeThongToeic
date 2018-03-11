@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="459.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangKiController">
+<children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <Label alignment="CENTER" layoutX="184.0" layoutY="32.0" prefHeight="37.0" prefWidth="259.0" text="ĐĂNG KÍ TÀI KHOẢN" textFill="#1a00ff" wrapText="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTenDangNhap" layoutX="229.0" layoutY="79.0" prefHeight="31.0" prefWidth="271.0" promptText="Nhập tên đăng nhập ...">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="txtMatKhau" layoutX="229.0" layoutY="335.0" prefHeight="31.0" prefWidth="271.0" promptText="Nhập mật khẩu ...">
+         <font>
+            <Font size="15.0" />
+         </font></PasswordField>
+      <Button fx:id="btDangKi" layoutX="258.0" layoutY="391.0" onAction="#dangki" prefHeight="31.0" prefWidth="85.0" text="Đăng kí">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtHoTen" layoutX="229.0" layoutY="129.0" prefHeight="31.0" prefWidth="271.0" promptText="Nhập tên họ tên ...">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtEmail" layoutX="229.0" layoutY="226.0" prefHeight="31.0" prefWidth="271.0" promptText="Nhập Email ...">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtDiaChi" layoutX="229.0" layoutY="280.0" prefHeight="31.0" prefWidth="271.0" promptText="Nhập tên địa chỉ ...">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="73.0" layoutY="338.0" prefHeight="25.0" prefWidth="106.0" text="Mật khẩu :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="283.0" prefHeight="25.0" prefWidth="116.0" text="Địa chỉ :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="229.0" prefHeight="25.0" prefWidth="116.0" text="Email :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="178.0" prefHeight="25.0" prefWidth="116.0" text="Giới tính :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="132.0" prefHeight="25.0" prefWidth="116.0" text="Họ tên :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="82.0" prefHeight="25.0" prefWidth="116.0" text="Tên đăng nhập :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="Rad1" layoutX="229.0" layoutY="182.0" mnemonicParsing="false" onAction="#load" text="Nam" />
+      <RadioButton fx:id="Rad2" layoutX="377.0" layoutY="182.0" mnemonicParsing="false" onAction="#load" text="Nữ" />
+    </children> 
+</AnchorPane>

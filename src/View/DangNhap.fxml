@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="216.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
+<AnchorPane id="AnchorPane" prefHeight="228.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
     <children>
         <Button fx:id="btdangnhap" layoutX="161.0" layoutY="161.0" onAction="#handleButtonAction" text="Đăng nhập">
          <font>
@@ -29,11 +29,20 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txttendangnhap" layoutX="161.0" layoutY="79.0" prefHeight="25.0" prefWidth="205.0" text="admin">
+      <TextField fx:id="txttendangnhap" layoutX="161.0" layoutY="79.0" prefHeight="25.0" prefWidth="205.0" promptText="Nhập tên đăng nhập ...">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="txtmatkhau" layoutX="161.0" layoutY="116.0" prefHeight="31.0" prefWidth="205.0" text="123" />
+      <PasswordField fx:id="txtmatkhau" layoutX="161.0" layoutY="116.0" prefHeight="31.0" prefWidth="205.0" promptText="Nhập mật khẩu ...">
+         <font>
+            <Font size="15.0" />
+         </font></PasswordField>
+      <Button fx:id="btdangki" layoutX="264.0" layoutY="161.0" onAction="#dangki" prefHeight="31.0" prefWidth="85.0" text="Đăng kí">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Hyperlink fx:id="QuenMatKhau" layoutX="28.0" layoutY="192.0" onAction="#quenMatKhau" text="Quên mật khẩu ?" textFill="#1891f5" />
     </children>
 </AnchorPane>

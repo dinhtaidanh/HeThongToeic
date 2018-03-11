@@ -66,7 +66,7 @@ public class ManHinhChinhController implements Initializable {
         }catch (IOException e) {e.printStackTrace();}     
     }
     @FXML
-    private void onQuanLyCau(ActionEvent event) {
+    private void onQuanLyNguPhap(ActionEvent event) {
         try{
         Parent root = FXMLLoader.load(getClass().getResource("QuanLyNguPhap.fxml"));
         Stage stage = new Stage();

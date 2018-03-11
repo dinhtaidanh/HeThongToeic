@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="265.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuenMatKhauController">
+   <children>
+      <Label layoutX="57.0" layoutY="56.0" text="Tên đăng nhập :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="100.0" text="Email :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="136.0" text="Mật khẩu mới :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="btCapNhat" layoutX="274.0" layoutY="200.0" mnemonicParsing="false" onAction="#capNhat" prefHeight="31.0" prefWidth="91.0" text="Cập nhật" />
+      <TextField fx:id="txtTenDangNhap" layoutX="232.0" layoutY="57.0" prefHeight="25.0" prefWidth="310.0" promptText="Nhập tên đăng nhập ...">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtEmail" layoutX="232.0" layoutY="98.0" prefHeight="25.0" prefWidth="310.0" promptText="Nhập Email đã đăng kí ...">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="txtMatKhau" layoutX="232.0" layoutY="137.0" prefHeight="25.0" prefWidth="310.0" promptText="Nhập mật khẩu mới ...">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </PasswordField>
+   </children>
+</AnchorPane>
