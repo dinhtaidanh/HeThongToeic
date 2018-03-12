@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuanLiUserController">
+   <children>
+      <Label layoutX="28.0" layoutY="29.0" text="Tên đăng nhập :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="65.0" text="Họ tên :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="102.0" text="Email :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="140.0" text="Địa chỉ :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="181.0" text="Giới tính :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="221.0" text="Quyền :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="btXoa" layoutX="333.0" layoutY="300.0" mnemonicParsing="false" onAction="#xoa" prefHeight="25.0" prefWidth="64.0" text="Xóa" />
+      <Button fx:id="btCapNhat" layoutX="249.0" layoutY="300.0" mnemonicParsing="false" onAction="#capNhat" text="Cập nhật" />
+      <Label layoutX="29.0" layoutY="256.0" text="Mật khẩu :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTenDangNhap" layoutX="177.0" layoutY="27.0" prefHeight="25.0" prefWidth="398.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtHoTen" layoutX="177.0" layoutY="63.0" prefHeight="25.0" prefWidth="398.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtEmail" layoutX="177.0" layoutY="100.0" prefHeight="25.0" prefWidth="398.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtDiaChi" layoutX="177.0" layoutY="138.0" prefHeight="25.0" prefWidth="398.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtMatKhau" layoutX="177.0" layoutY="254.0" prefHeight="25.0" prefWidth="398.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <RadioButton fx:id="radGioiTinh1" layoutX="177.0" layoutY="186.0" mnemonicParsing="false" text="Nam" />
+      <RadioButton fx:id="radGioiTinh2" layoutX="376.0" layoutY="186.0" mnemonicParsing="false" text="Nữ" />
+      <RadioButton fx:id="radQuyen1" layoutX="177.0" layoutY="226.0" mnemonicParsing="false" text="Admin" />
+      <RadioButton fx:id="radQuyen2" layoutX="376.0" layoutY="226.0" mnemonicParsing="false" text="Khách" />
+      <TableView fx:id="tbvListUser" layoutX="21.0" layoutY="338.0" prefHeight="269.0" prefWidth="710.0" />
+   </children>
+</AnchorPane>

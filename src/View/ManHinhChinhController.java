@@ -75,6 +75,16 @@ public class ManHinhChinhController implements Initializable {
         stage.show();    
         }catch (IOException e) {e.printStackTrace();}     
     }
+    @FXML
+    private void onQuanLyUser(ActionEvent event) {
+        try{
+        Parent root = FXMLLoader.load(getClass().getResource("QuanLiUser.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);  
+        stage.setScene(scene);
+        stage.show();    
+        }catch (IOException e) {e.printStackTrace();}     
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

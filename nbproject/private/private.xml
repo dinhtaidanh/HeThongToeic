@@ -3,18 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemCauHoiPhotoController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNguPhapController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/ListCauHoi.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/LuyenNgheController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/Cau.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/DangNhapController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ManHinhChinh.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/SuaCauHoiController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemCauHoiController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiNguPhapController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuenMatKhauController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Controller/HienCuaSo.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/ConnectionUtils.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemCauHoiPhotoController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNguPhapController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/Cau.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/SuaCauHoi.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/DangNhapController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/MySQLConnUtils.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemDienKhuyetController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ManHinhChinhController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Controller/HienCuaSo.java</file>
         </group>
     </open-files>
 </project-private>

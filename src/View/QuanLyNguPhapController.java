@@ -19,13 +19,22 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
 /**
@@ -65,13 +74,13 @@ public class QuanLyNguPhapController implements Initializable {
         dD.setCellValueFactory(new PropertyValueFactory<>("DapAn4"));
         DapAnDung.setCellValueFactory(new PropertyValueFactory<>("DapAnDung"));
         
-        ObservableList<Cau> list = getUserList();
+        ObservableList<Cau> list = getQuestionList();
         tbvListCauHoi.setItems(list);
         tbvListCauHoi.getColumns().addAll(STT,CauHoi,dA,dB,dC,dD,DapAnDung);
         
         
     }    
-    private ObservableList<Cau> getUserList() {        
+    private ObservableList<Cau> getQuestionList() {        
         ObservableList<Cau> list = FXCollections.observableArrayList(dsCauHoi.getDsCau());
         return list;
     }
@@ -87,27 +96,66 @@ public class QuanLyNguPhapController implements Initializable {
     private void onModifyQuestion(){
         //Text text = new Text(tbvListCauHoi.getSelectionModel().getSelectedItem().getCauHoi());
         cauDuocChon = tbvListCauHoi.getSelectionModel().getSelectedItem();
-        try{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SuaCauHoi.fxml"));
-        SuaCauHoiController controller = loader.getController();
-        Parent root = loader.load();
-        controller.setCauDuocChon(cauDuocChon);
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);  
-        stage.setScene(scene);
-        stage.show();    
-        }catch(IOException e){
+        Stage s = new Stage();
+        GridPane p = new GridPane();
+        p.setPadding(new Insets(20));
+        HTMLEditor htmlEditor = new HTMLEditor();
+        htmlEditor.setHtmlText(cauDuocChon.getCauHoi());
+        htmlEditor.setMaxHeight(200);
+        TextField txtDapAn1 = new TextField(cauDuocChon.getDapAn1());
+        TextField txtDapAn2 = new TextField(cauDuocChon.getDapAn2());
+        TextField txtDapAn3 = new TextField(cauDuocChon.getDapAn3());
+        TextField txtDapAn4 = new TextField(cauDuocChon.getDapAn4());     
+        ComboBox cbDapAnNguPhapDung = new ComboBox();
+        cbDapAnNguPhapDung.getItems().addAll("A", "B", "C","D");
+        cbDapAnNguPhapDung.setValue(cauDuocChon.getDapAnDung());
+        cbDapAnNguPhapDung.promptTextProperty().set(cauDuocChon.getDapAnDung());
+        Button btnLuu = new Button("Lưu lại");
+        btnLuu.setOnAction((event) -> {
+            try{              
+                Connection connection = ConnectionUtils.getMyConnection();
+                Statement statement = connection.createStatement();
+                String sql = "UPDATE nguphap" +
+                       "SET CauHoi='"+htmlEditor.getHtmlText()+"', "
+                       + "DapAn1='"+txtDapAn1.getText()+"', "
+                       + "DapAn2='"+txtDapAn2.getText()+"', "
+                       + "DapAn3='"+txtDapAn3.getText()+"', "
+                       + "DapAn4='"+txtDapAn4.getText()+"', "
+                       + "DapAnDung='"+cbDapAnNguPhapDung.getSelectionModel().getSelectedItem().toString()+"', "
+                       + "WHERE Id='"+cauDuocChon.getId()+"'";
+               int rowCount = 0;
+               rowCount = statement.executeUpdate(sql);
+               if(rowCount!=0){
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("Thêm câu hỏi thành công");
+                    a.show();                   
+                }
+                else{
+                    Alert a = new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("Thêm câu hỏi thất bại");
+                    a.show();
+                }
+                System.out.println(rowCount);
+            }catch(ClassNotFoundException|SQLException e){
+            }    
+        });
+        p.add(new Label("Câu hỏi: "),0,0);
+        p.add(new Label("Đáp án A: "),0,1);
+        p.add(new Label("Đáp án B: "),0,2);
+        p.add(new Label("Đáp án C: "),0,3);
+        p.add(new Label("Đáp án D: "),0,4);
+        p.add(new Label("Đáp án đúng: "),0,5);
+        p.add(htmlEditor,1,0);
+        p.add(txtDapAn1,1,1);
+        p.add(txtDapAn2,1,2);
+        p.add(txtDapAn3,1,3);
+        p.add(txtDapAn4,1,4);
+        p.add(cbDapAnNguPhapDung,1,5);
+        p.add(btnLuu, 1, 6);
+        Scene scene = new Scene(p,1000,700);
+        s.setScene(scene);
+        s.show();
             
-        }
-            
-    }
-    private void Connect(){
-        try{
-        Connection connection = ConnectionUtils.getMyConnection();
-        Statement statement = connection.createStatement();
-        }catch(ClassNotFoundException|SQLException e){
-            
-        }
     }
     private void showStage(String fxmlPath){
         try{
