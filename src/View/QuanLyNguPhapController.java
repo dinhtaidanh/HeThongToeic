@@ -11,6 +11,7 @@ import Model.ListCauHoi;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
@@ -49,6 +50,7 @@ public class QuanLyNguPhapController implements Initializable {
     private TableView<Cau> tbvListCauHoi = new TableView<Cau>();
     private ListCauHoi dsCauHoi = new ListCauHoi();
     private Cau cauDuocChon;
+    private int rowCount = 0;
     public Cau getCauDuocChon() {
         return cauDuocChon;
     }
@@ -111,33 +113,37 @@ public class QuanLyNguPhapController implements Initializable {
         cbDapAnNguPhapDung.setValue(cauDuocChon.getDapAnDung());
         cbDapAnNguPhapDung.promptTextProperty().set(cauDuocChon.getDapAnDung());
         Button btnLuu = new Button("Lưu lại");
-        btnLuu.setOnAction((event) -> {
+        btnLuu.setOnAction(event -> {
             try{              
                 Connection connection = ConnectionUtils.getMyConnection();
                 Statement statement = connection.createStatement();
-                String sql = "UPDATE nguphap" +
-                       "SET CauHoi='"+htmlEditor.getHtmlText()+"', "
-                       + "DapAn1='"+txtDapAn1.getText()+"', "
-                       + "DapAn2='"+txtDapAn2.getText()+"', "
-                       + "DapAn3='"+txtDapAn3.getText()+"', "
-                       + "DapAn4='"+txtDapAn4.getText()+"', "
-                       + "DapAnDung='"+cbDapAnNguPhapDung.getSelectionModel().getSelectedItem().toString()+"', "
-                       + "WHERE Id='"+cauDuocChon.getId()+"'";
-               int rowCount = 0;
-               rowCount = statement.executeUpdate(sql);
-               if(rowCount!=0){
-                    Alert a = new Alert(Alert.AlertType.INFORMATION);
-                    a.setContentText("Thêm câu hỏi thành công");
-                    a.show();                   
-                }
+                String sql = "UPDATE nguphap SET CauHoi = ?, DapAn1 = ?, DapAn2 = ?"+
+                        ", DapAn3 = ?, DapAn4 = ?, DapAnDung = ? WHERE Id = ?";
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(1,htmlEditor.getHtmlText());
+                ps.setString(2, txtDapAn1.getText());
+                ps.setString(3, txtDapAn2.getText());
+                ps.setString(4, txtDapAn3.getText());
+                ps.setString(5, txtDapAn4.getText());
+                ps.setString(6, cbDapAnNguPhapDung.getSelectionModel().getSelectedItem().toString());
+                ps.setInt(7, cauDuocChon.getId());
+                rowCount = ps.executeUpdate();
+                ps.close();
+                if(rowCount != 0){
+                     Alert a = new Alert(Alert.AlertType.INFORMATION);
+                     a.setContentText("Thêm câu hỏi thành công");
+                     a.show();                   
+                 }
                 else{
                     Alert a = new Alert(Alert.AlertType.ERROR);
                     a.setContentText("Thêm câu hỏi thất bại");
                     a.show();
                 }
-                System.out.println(rowCount);
-            }catch(ClassNotFoundException|SQLException e){
-            }    
+                }catch(ClassNotFoundException|SQLException e){
+                    Alert a = new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("Lỗi cú pháp SQL");
+                    a.show();
+                }    
         });
         p.add(new Label("Câu hỏi: "),0,0);
         p.add(new Label("Đáp án A: "),0,1);

@@ -28,8 +28,7 @@ public class ListCauHoi {
             Connection connection = ConnectionUtils.getMyConnection();
             Statement statement = connection.createStatement();
 
-            String sql = "Select Id, CauHoi, DapAn1, DapAn2, DapAn3, DapAn4,"
-                  + "DapAnDung from " + tableName;
+            String sql = "Select * from " + tableName;
                            
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp.

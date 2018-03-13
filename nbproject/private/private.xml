@@ -6,20 +6,21 @@
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/ListCauHoi.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/LuyenNgheController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ManHinhChinh.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/SuaCauHoiController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemNguPhapController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemCauHoiController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiNguPhapController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuenMatKhauController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/Acc.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Controller/HienCuaSo.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/ConnectionUtils.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemCauHoiPhotoController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNguPhapController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/Cau.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/SuaCauHoi.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemNguPhap.fxml</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/DangNhapController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/MySQLConnUtils.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemDienKhuyetController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ManHinhChinhController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLiUserController.java</file>
         </group>
     </open-files>
 </project-private>
