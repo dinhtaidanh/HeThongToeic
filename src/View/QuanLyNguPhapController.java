@@ -14,7 +14,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,16 +30,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
@@ -48,6 +52,13 @@ public class QuanLyNguPhapController implements Initializable {
    
     @FXML
     private TableView<Cau> tbvListCauHoi = new TableView<Cau>();
+    @FXML
+    private Button btnThemCauHoi = new Button();
+    @FXML
+    private Button btnSuaCauHoi = new Button();
+    @FXML
+    private Button btnXoaCauHoi = new Button();
+    
     private ListCauHoi dsCauHoi = new ListCauHoi();
     private Cau cauDuocChon;
     private int rowCount = 0;
@@ -57,32 +68,24 @@ public class QuanLyNguPhapController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        dsCauHoi.readTable("nguphap");
-        TableColumn<Cau, String> STT = new TableColumn<Cau, String>("STT");
-        TableColumn<Cau, String> CauHoi = new TableColumn<Cau, String>("Câu hỏi");
-        TableColumn<Cau, String> dA = new TableColumn<Cau, String>("A");
-        TableColumn<Cau, String> dB = new TableColumn<Cau, String>("B");
-        TableColumn<Cau, String> dC = new TableColumn<Cau, String>("C");
-        TableColumn<Cau, String> dD = new TableColumn<Cau, String>("D");
-        TableColumn<Cau, String> DapAnDung = new TableColumn<Cau, String>("Đáp án đúng");
-            
-        CauHoi.setMaxWidth(200);
-        STT.setCellValueFactory(new PropertyValueFactory<>("STT"));
-        CauHoi.setCellValueFactory(new PropertyValueFactory<>("CauHoi"));
-        dA.setCellValueFactory(new PropertyValueFactory<>("DapAn1"));
-        dB.setCellValueFactory(new PropertyValueFactory<>("DapAn2"));
-        dC.setCellValueFactory(new PropertyValueFactory<>("DapAn3"));
-        dD.setCellValueFactory(new PropertyValueFactory<>("DapAn4"));
-        DapAnDung.setCellValueFactory(new PropertyValueFactory<>("DapAnDung"));
-        
-        ObservableList<Cau> list = getQuestionList();
-        tbvListCauHoi.setItems(list);
-        tbvListCauHoi.getColumns().addAll(STT,CauHoi,dA,dB,dC,dD,DapAnDung);
-        
-        
+        // TODO      
+        loadListCauHoi();
+        if(tbvListCauHoi.getSelectionModel().isEmpty()){
+            btnSuaCauHoi.setDisable(true);
+            btnXoaCauHoi.setDisable(true);
+        }
+        tbvListCauHoi.getFocusModel().focusedCellProperty().addListener(
+        new ChangeListener<TablePosition>() {
+            @Override
+            public void changed(ObservableValue<? extends TablePosition> observable,
+                    TablePosition oldPos, TablePosition pos) {
+                btnSuaCauHoi.setDisable(false);
+                btnXoaCauHoi.setDisable(false);
+            }
+        });
     }    
-    private ObservableList<Cau> getQuestionList() {        
+    private ObservableList<Cau> getQuestionList() {  ;
+        dsCauHoi.readTable("nguphap");
         ObservableList<Cau> list = FXCollections.observableArrayList(dsCauHoi.getDsCau());
         return list;
     }
@@ -92,7 +95,25 @@ public class QuanLyNguPhapController implements Initializable {
     }
     @FXML
     private void onDeleteQuestion(){
-        
+        cauDuocChon = tbvListCauHoi.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xóa câu hỏi");
+        alert.setHeaderText("Xóa câu hỏi được chọn");
+        alert.setContentText("Bạn có chắc chắn?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            try{
+            Connection connection = ConnectionUtils.getMyConnection();
+            Statement statement = connection.createStatement();
+            String sql = "DELETE FROM nguphap WHERE Id="+cauDuocChon.getId();
+            statement.executeUpdate(sql);
+            tbvListCauHoi.getItems().remove(cauDuocChon);
+            }catch(ClassNotFoundException | SQLException ex){
+                
+            }
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
     }
     @FXML
     private void onModifyQuestion(){
@@ -101,6 +122,7 @@ public class QuanLyNguPhapController implements Initializable {
         Stage s = new Stage();
         GridPane p = new GridPane();
         p.setPadding(new Insets(20));
+        p.setVgap(20);
         HTMLEditor htmlEditor = new HTMLEditor();
         htmlEditor.setHtmlText(cauDuocChon.getCauHoi());
         htmlEditor.setMaxHeight(200);
@@ -131,17 +153,17 @@ public class QuanLyNguPhapController implements Initializable {
                 ps.close();
                 if(rowCount != 0){
                      Alert a = new Alert(Alert.AlertType.INFORMATION);
-                     a.setContentText("Thêm câu hỏi thành công");
+                     a.setContentText("Sửa câu hỏi thành công!");
                      a.show();                   
                  }
                 else{
                     Alert a = new Alert(Alert.AlertType.ERROR);
-                    a.setContentText("Thêm câu hỏi thất bại");
+                    a.setContentText("Sửa câu hỏi thất bại!");
                     a.show();
                 }
                 }catch(ClassNotFoundException|SQLException e){
                     Alert a = new Alert(Alert.AlertType.ERROR);
-                    a.setContentText("Lỗi cú pháp SQL");
+                    a.setContentText("Lỗi cú pháp SQL!!!");
                     a.show();
                 }    
         });
@@ -158,7 +180,7 @@ public class QuanLyNguPhapController implements Initializable {
         p.add(txtDapAn4,1,4);
         p.add(cbDapAnNguPhapDung,1,5);
         p.add(btnLuu, 1, 6);
-        Scene scene = new Scene(p,1000,700);
+        Scene scene = new Scene(p,1000,500);
         s.setScene(scene);
         s.show();
             
@@ -172,5 +194,41 @@ public class QuanLyNguPhapController implements Initializable {
         stage.show();    
         }catch (IOException e) {
         }
+    }
+    private void closeCurrentStage(){
+        Stage currentStage = (Stage) tbvListCauHoi.getScene().getWindow();
+        currentStage.close();
+    }
+    private void loadListCauHoi(){       
+        TableColumn<Cau, String> Id = new TableColumn<Cau, String>("Mã câu");
+        TableColumn<Cau, String> CauHoi = new TableColumn<Cau, String>("Câu hỏi");
+        TableColumn<Cau, String> dA = new TableColumn<Cau, String>("A");
+        TableColumn<Cau, String> dB = new TableColumn<Cau, String>("B");
+        TableColumn<Cau, String> dC = new TableColumn<Cau, String>("C");
+        TableColumn<Cau, String> dD = new TableColumn<Cau, String>("D");
+        TableColumn<Cau, String> DapAnDung = new TableColumn<Cau, String>("Đáp án đúng");
+            
+        CauHoi.setMaxWidth(200);
+        Id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        CauHoi.setCellValueFactory(new PropertyValueFactory<>("CauHoi"));
+        dA.setCellValueFactory(new PropertyValueFactory<>("DapAn1"));
+        dB.setCellValueFactory(new PropertyValueFactory<>("DapAn2"));
+        dC.setCellValueFactory(new PropertyValueFactory<>("DapAn3"));
+        dD.setCellValueFactory(new PropertyValueFactory<>("DapAn4"));
+        DapAnDung.setCellValueFactory(new PropertyValueFactory<>("DapAnDung"));
+        
+        ObservableList<Cau> list = getQuestionList();
+        tbvListCauHoi.setItems(list);
+        tbvListCauHoi.getColumns().addAll(Id,CauHoi,dA,dB,dC,dD,DapAnDung);
+        
+    }
+    @FXML
+    private void onReturn(){
+        closeCurrentStage();       
+    }
+    @FXML
+    private void onRefreshList(){
+        closeCurrentStage();
+        showStage("QuanLyNguPhap.fxml");
     }
 }

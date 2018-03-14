@@ -15,7 +15,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="idCauHoi" layoutX="61.0" layoutY="37.0" text="0">
+      <Label fx:id="idCauHoi" layoutX="59.0" layoutY="37.0" prefHeight="26.0" prefWidth="12.0" text="0">
          <font>
             <Font size="17.0" />
          </font>
@@ -29,7 +29,7 @@
       <MediaView fx:id="audio" fitHeight="30.0" fitWidth="450.0" layoutX="102.0" layoutY="70.0" preserveRatio="false" visible="false" />
       <ImageView fx:id="imgPhat" fitHeight="44.0" fitWidth="114.0" layoutX="102.0" layoutY="63.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../videos/1.gif" />
+            <Image url="@../media/1.gif" />
          </image>
       </ImageView>
       <Label fx:id="lbThongBao" layoutX="102.0" layoutY="64.0" prefHeight="44.0" prefWidth="379.0" text="Hãy phát âm thanh !" visible="false" />
@@ -37,13 +37,13 @@
       <RadioButton fx:id="rad2" layoutX="93.0" layoutY="227.0" mnemonicParsing="false" text="B" visible="false" />
       <RadioButton fx:id="rad3" layoutX="93.0" layoutY="259.0" mnemonicParsing="false" text="C" visible="false" />
       <RadioButton fx:id="rad4" layoutX="93.0" layoutY="288.0" mnemonicParsing="false" text="D" visible="false" />
-      <ImageView fx:id="photo" fitHeight="185.0" fitWidth="325.0" layoutX="255.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-      <Button fx:id="btBatDau" layoutX="290.0" layoutY="332.0" mnemonicParsing="false" onAction="#batdau" text="Bắt đầu" />
+      <ImageView fx:id="photo" fitHeight="278.0" fitWidth="325.0" layoutX="255.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+      <Button fx:id="btBatDau" layoutX="263.0" layoutY="343.0" mnemonicParsing="false" onAction="#batdau" text="Bắt đầu" />
       <Button fx:id="btKiemTra" layoutX="198.0" layoutY="355.0" mnemonicParsing="false" onAction="#kiemtra" text="Kiểm tra" visible="false" />
       <Button fx:id="btTiepTuc" layoutX="377.0" layoutY="355.0" mnemonicParsing="false" onAction="#tieptuc" text="Tiếp tục" visible="false" />
-      <ImageView fx:id="hello" fitHeight="278.0" fitWidth="553.0" layoutX="23.0" layoutY="31.0" pickOnBounds="true">
+      <ImageView fx:id="hello" fitHeight="240.0" fitWidth="553.0" layoutX="23.0" layoutY="69.0" pickOnBounds="true">
          <image>
-            <Image url="@../videos/11.jpg" />
+            <Image url="@../media/11.jpg" />
          </image>
       </ImageView>
    </children> 

@@ -11,7 +11,6 @@ package Model;
  */
 public class Cau {
 
-    private int STT = 0;
     private int Id = 0;
     private String cauHoi = "";
     private String dapAn1 = "";
@@ -133,20 +132,4 @@ public class Cau {
         this.traLoi = traLoi;
     }
 
-    /**
-     * @return the STT
-     */
-    public int getSTT() {
-        return STT;
-    }
-
-    /**
-     * @param STT the STT to set
-     */
-    public void setSTT(int STT) {
-        this.STT = STT;
-    }
-
-    
-    
 }

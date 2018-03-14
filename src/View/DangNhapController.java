@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -38,11 +39,13 @@ public class DangNhapController implements Initializable {
     @FXML
     private Hyperlink QuenMatKhau;
     @FXML
-    private TextField txttendangnhap; 
+    private TextField txtTenDangNhap; 
     @FXML
-    private PasswordField txtmatkhau; 
+    private PasswordField txtMatKhau; 
     @FXML
-    private Button btdangnhap;  
+    private Button btnDangNhap; 
+    @FXML 
+    private AnchorPane pane = new AnchorPane();
     @FXML
     private void quenMatKhau(ActionEvent event) {
         try{
@@ -52,20 +55,22 @@ public class DangNhapController implements Initializable {
         Scene scene = new Scene(root);  
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
-        stage.show();  
-        Stage stage1 = (Stage) btdangnhap.getScene().getWindow();
-        stage1.close();
+        stage.show();
+        Stage currentStage = (Stage) btnDangNhap.getScene().getWindow();
+        currentStage.close();
         }catch (IOException e) {e.printStackTrace();}
     }
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void onDangNhap(ActionEvent event) {
         try{
                 Connection connection = ConnectionUtils.getMyConnection();             
                 Statement statement = connection.createStatement();
 
-                String sql = "SELECT * FROM user WHERE ten_dang_nhap='"+txttendangnhap.getText().trim()+"'AND mat_khau='"+ txtmatkhau.getText().trim()+"' ";                    
+                String sql = "SELECT * FROM user WHERE ten_dang_nhap='"
+                        +txtTenDangNhap.getText().trim()+"'AND mat_khau='"+
+                        txtMatKhau.getText().trim()+"' ";                    
                 ResultSet rs = statement.executeQuery(sql);
-                if(txttendangnhap.getText().trim().equals("") || txtmatkhau.getText().trim().equals("")){
+                if(txtTenDangNhap.getText().trim().equals("") || txtMatKhau.getText().trim().equals("")){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
                     alert.setContentText("Chưa nhập Tên đăng nhập hoặc Mật khẩu !");
@@ -77,11 +82,14 @@ public class DangNhapController implements Initializable {
                     if (quyen.equals("admin")){
                         HienCuaSo h = new HienCuaSo();
                         h.showWindow("/View/ManHinhChinh.fxml");
-                        
+                        Stage stage = (Stage) btnDangNhap.getScene().getWindow();
+                        stage.close();
                     }
                     else{
                         HienCuaSo h = new HienCuaSo();
                         h.showWindow("/View/ManHinhUser.fxml");
+                        Stage stage = (Stage) btnDangNhap.getScene().getWindow();
+                        stage.close();
                     }
 
                 }
@@ -101,7 +109,7 @@ public class DangNhapController implements Initializable {
             }
     }
     @FXML
-    private void dangki(ActionEvent event) {
+    private void onDangKy(ActionEvent event) {
         try{
             
         Parent root = FXMLLoader.load(getClass().getResource("DangKi.fxml"));
@@ -110,13 +118,14 @@ public class DangNhapController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.show();  
-        Stage stage1 = (Stage) btdangnhap.getScene().getWindow();
-        stage1.close();
+        Stage currentStage = (Stage) btnDangNhap.getScene().getWindow();
+        currentStage.close();
         }catch (IOException e) {e.printStackTrace();}
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // TODO  
+//        currentStage.setTitle("Đăng nhập");
     }    
     
 }

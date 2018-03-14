@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuanLyNguPhapController">
+<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuanLyNguPhapController">
    <children>
       <Label layoutX="173.0" layoutY="14.0" prefHeight="26.0" prefWidth="311.0" text="DANH SÁCH CÂU HỎI NGỮ PHÁP">
          <font>
@@ -15,8 +15,10 @@
          </font>
       </Label>
       <TableView fx:id="tbvListCauHoi" editable="true" layoutX="14.0" layoutY="124.0" prefHeight="436.0" prefWidth="629.0" />
-      <Button fx:id="btnThemCau" layoutX="14.0" layoutY="91.0" mnemonicParsing="false" onAction="#onAddQuestion" text="Thêm câu hỏi mới" />
-      <Button fx:id="btnSuaCauHoi" layoutX="274.0" layoutY="91.0" mnemonicParsing="false" onAction="#onModifyQuestion" text="Chỉnh sửa câu hỏi" />
-      <Button fx:id="btnXoaCauHoi" layoutX="565.0" layoutY="91.0" mnemonicParsing="false" onAction="#onDeleteQuestion" text="Xóa câu hỏi" />
+      <Button fx:id="btnThemCauHoi" layoutX="14.0" layoutY="91.0" mnemonicParsing="false" onAction="#onAddQuestion" text="Thêm câu hỏi mới" />
+      <Button fx:id="btnSuaCauHoi" layoutX="193.0" layoutY="91.0" mnemonicParsing="false" onAction="#onModifyQuestion" text="Chỉnh sửa câu hỏi" />
+      <Button fx:id="btnXoaCauHoi" layoutX="406.0" layoutY="91.0" mnemonicParsing="false" onAction="#onDeleteQuestion" text="Xóa câu hỏi" />
+      <Button fx:id="btnRefreshList" layoutX="551.0" layoutY="91.0" mnemonicParsing="false" onAction="#onRefreshList" prefHeight="25.0" prefWidth="92.0" text="Refresh" />
+      <Button fx:id="btnReturn" layoutX="303.0" layoutY="575.0" mnemonicParsing="false" onAction="#onReturn" text="Quay về" />
    </children>
 </AnchorPane>

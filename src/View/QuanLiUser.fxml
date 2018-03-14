@@ -7,74 +7,84 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuanLiUserController">
+<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuanLiUserController">
    <children>
-      <Label layoutX="28.0" layoutY="29.0" text="Tên đăng nhập :">
+      <Label layoutX="27.0" layoutY="65.0" text="Tên đăng nhập :">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="28.0" layoutY="65.0" text="Họ tên :">
+      <Label layoutX="28.0" layoutY="102.0" text="Họ tên :">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="26.0" layoutY="102.0" text="Email :">
+      <Label layoutX="29.0" layoutY="145.0" text="Email :">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="28.0" layoutY="140.0" text="Địa chỉ :">
+      <Label layoutX="28.0" layoutY="186.0" text="Địa chỉ :">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="28.0" layoutY="181.0" text="Giới tính :">
+      <Label layoutX="29.0" layoutY="218.0" text="Giới tính :">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="26.0" layoutY="221.0" text="Quyền :">
+      <Label layoutX="29.0" layoutY="254.0" text="Quyền :">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btXoa" layoutX="333.0" layoutY="300.0" mnemonicParsing="false" onAction="#xoa" prefHeight="25.0" prefWidth="64.0" text="Xóa" />
-      <Button fx:id="btCapNhat" layoutX="249.0" layoutY="300.0" mnemonicParsing="false" onAction="#capNhat" text="Cập nhật" />
-      <Label layoutX="29.0" layoutY="256.0" text="Mật khẩu :">
+      <Button fx:id="btXoa" layoutX="331.0" layoutY="337.0" mnemonicParsing="false" onAction="#xoa" prefHeight="25.0" prefWidth="64.0" text="Xóa" />
+      <Button fx:id="btCapNhat" layoutX="249.0" layoutY="337.0" mnemonicParsing="false" onAction="#capNhat" text="Cập nhật" />
+      <Label layoutX="29.0" layoutY="292.0" text="Mật khẩu :">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="txtTenDangNhap" layoutX="177.0" layoutY="27.0" prefHeight="25.0" prefWidth="398.0">
+      <TextField fx:id="txtTenDangNhap" layoutX="174.0" layoutY="60.0" prefHeight="25.0" prefWidth="398.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtHoTen" layoutX="177.0" layoutY="63.0" prefHeight="25.0" prefWidth="398.0">
+      <TextField fx:id="txtHoTen" layoutX="174.0" layoutY="97.0" prefHeight="25.0" prefWidth="398.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtEmail" layoutX="177.0" layoutY="100.0" prefHeight="25.0" prefWidth="398.0">
+      <TextField fx:id="txtEmail" layoutX="174.0" layoutY="142.0" prefHeight="25.0" prefWidth="398.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtDiaChi" layoutX="177.0" layoutY="138.0" prefHeight="25.0" prefWidth="398.0">
+      <TextField fx:id="txtDiaChi" layoutX="174.0" layoutY="183.0" prefHeight="25.0" prefWidth="398.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtMatKhau" layoutX="177.0" layoutY="254.0" prefHeight="25.0" prefWidth="398.0">
+      <TextField fx:id="txtMatKhau" layoutX="177.0" layoutY="289.0" prefHeight="25.0" prefWidth="398.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <RadioButton fx:id="radGioiTinh1" layoutX="177.0" layoutY="186.0" mnemonicParsing="false" text="Nam" />
-      <RadioButton fx:id="radGioiTinh2" layoutX="376.0" layoutY="186.0" mnemonicParsing="false" text="Nữ" />
-      <RadioButton fx:id="radQuyen1" layoutX="177.0" layoutY="226.0" mnemonicParsing="false" text="Admin" />
-      <RadioButton fx:id="radQuyen2" layoutX="376.0" layoutY="226.0" mnemonicParsing="false" text="Khách" />
-      <TableView fx:id="tbvListUser" layoutX="21.0" layoutY="338.0" prefHeight="269.0" prefWidth="710.0" />
+      <RadioButton fx:id="radGioiTinh1" layoutX="178.0" layoutY="223.0" mnemonicParsing="false" text="Nam" />
+      <RadioButton fx:id="radGioiTinh2" layoutX="376.0" layoutY="223.0" mnemonicParsing="false" text="Nữ" />
+      <RadioButton fx:id="radQuyen1" layoutX="178.0" layoutY="259.0" mnemonicParsing="false" text="Admin" />
+      <RadioButton fx:id="radQuyen2" layoutX="376.0" layoutY="259.0" mnemonicParsing="false" text="Khách" />
+      <TableView fx:id="tbvListUser" layoutX="21.0" layoutY="371.0" prefHeight="269.0" prefWidth="710.0" />
+      <Label layoutX="28.0" layoutY="24.0" text="ID :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbId" layoutX="174.0" layoutY="24.0" prefHeight="26.0" prefWidth="64.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

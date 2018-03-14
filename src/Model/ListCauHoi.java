@@ -30,11 +30,9 @@ public class ListCauHoi {
 
             String sql = "Select * from " + tableName;
                            
-            ResultSet rs = statement.executeQuery(sql);
+            ResultSet rs = statement.executeQuery(sql);  
             while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp.
               Cau cau = new Cau();
-              STT++;
-              cau.setSTT(STT);
               cau.setId(rs.getInt("Id"));
               cau.setCauHoi(rs.getString("CauHoi"));
               cau.setDapAn1(rs.getString("DapAn1"));
