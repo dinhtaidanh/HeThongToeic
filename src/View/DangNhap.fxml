@@ -7,9 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="228.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
+<AnchorPane id="AnchorPane" prefHeight="228.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
     <children>
-        <Button fx:id="btnDangNhap" layoutX="161.0" layoutY="161.0" onAction="#onDangNhap" text="Đăng nhập">
+        <Button fx:id="btdangnhap" layoutX="161.0" layoutY="161.0" onAction="#login" text="Đăng nhập">
          <font>
             <Font size="15.0" />
          </font></Button>
@@ -29,20 +29,20 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtTenDangNhap" layoutX="161.0" layoutY="79.0" prefHeight="25.0" prefWidth="205.0" promptText="Nhập tên đăng nhập ..." text="admin">
+      <TextField fx:id="txtUserName" layoutX="161.0" layoutY="79.0" prefHeight="25.0" prefWidth="205.0" promptText="Nhập tên đăng nhập ..." text="admin">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="txtMatKhau" layoutX="161.0" layoutY="116.0" prefHeight="31.0" prefWidth="205.0" promptText="Nhập mật khẩu ..." text="123">
+      <PasswordField fx:id="txtPassword" layoutX="161.0" layoutY="116.0" prefHeight="31.0" prefWidth="205.0" promptText="Nhập mật khẩu ..." text="123">
          <font>
             <Font size="15.0" />
          </font></PasswordField>
-      <Button fx:id="btnDangKy" layoutX="264.0" layoutY="161.0" onAction="#onDangKy" prefHeight="31.0" prefWidth="85.0" text="Đăng kí">
+      <Button fx:id="btnRegister" layoutX="264.0" layoutY="161.0" onAction="#register" prefHeight="31.0" prefWidth="85.0" text="Đăng kí">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Hyperlink fx:id="QuenMatKhau" layoutX="28.0" layoutY="192.0" onAction="#quenMatKhau" text="Quên mật khẩu ?" textFill="#1891f5" />
+      <Hyperlink fx:id="hpQuenMatKhau" layoutX="28.0" layoutY="192.0" onAction="#quenMatKhau" text="Quên mật khẩu ?" textFill="#1891f5" />
     </children>
 </AnchorPane>

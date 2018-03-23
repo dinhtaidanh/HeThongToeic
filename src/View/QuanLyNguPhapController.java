@@ -14,8 +14,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -74,16 +72,12 @@ public class QuanLyNguPhapController implements Initializable {
             btnSuaCauHoi.setDisable(true);
             btnXoaCauHoi.setDisable(true);
         }
-        tbvListCauHoi.getFocusModel().focusedCellProperty().addListener(
-        new ChangeListener<TablePosition>() {
-            @Override
-            public void changed(ObservableValue<? extends TablePosition> observable,
-                    TablePosition oldPos, TablePosition pos) {
-                btnSuaCauHoi.setDisable(false);
-                btnXoaCauHoi.setDisable(false);
-            }
+        tbvListCauHoi.getFocusModel().focusedCellProperty().addListener((ObservableValue<? extends TablePosition> observable, TablePosition oldPos, TablePosition pos) -> {
+            btnSuaCauHoi.setDisable(false);
+            btnXoaCauHoi.setDisable(false);
         });
     }    
+    @SuppressWarnings("empty-statement")
     private ObservableList<Cau> getQuestionList() {  ;
         dsCauHoi.readTable("nguphap");
         ObservableList<Cau> list = FXCollections.observableArrayList(dsCauHoi.getDsCau());
@@ -141,16 +135,16 @@ public class QuanLyNguPhapController implements Initializable {
                 Statement statement = connection.createStatement();
                 String sql = "UPDATE nguphap SET CauHoi = ?, DapAn1 = ?, DapAn2 = ?"+
                         ", DapAn3 = ?, DapAn4 = ?, DapAnDung = ? WHERE Id = ?";
-                PreparedStatement ps = connection.prepareStatement(sql);
-                ps.setString(1,htmlEditor.getHtmlText());
-                ps.setString(2, txtDapAn1.getText());
-                ps.setString(3, txtDapAn2.getText());
-                ps.setString(4, txtDapAn3.getText());
-                ps.setString(5, txtDapAn4.getText());
-                ps.setString(6, cbDapAnNguPhapDung.getSelectionModel().getSelectedItem().toString());
-                ps.setInt(7, cauDuocChon.getId());
-                rowCount = ps.executeUpdate();
-                ps.close();
+                try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                    ps.setString(1,htmlEditor.getHtmlText());
+                    ps.setString(2, txtDapAn1.getText());
+                    ps.setString(3, txtDapAn2.getText());
+                    ps.setString(4, txtDapAn3.getText());
+                    ps.setString(5, txtDapAn4.getText());
+                    ps.setString(6, cbDapAnNguPhapDung.getSelectionModel().getSelectedItem().toString());
+                    ps.setInt(7, cauDuocChon.getId());
+                    rowCount = ps.executeUpdate();
+                }
                 if(rowCount != 0){
                      Alert a = new Alert(Alert.AlertType.INFORMATION);
                      a.setContentText("Sửa câu hỏi thành công!");
@@ -200,7 +194,7 @@ public class QuanLyNguPhapController implements Initializable {
         currentStage.close();
     }
     private void loadListCauHoi(){       
-        TableColumn<Cau, String> Id = new TableColumn<Cau, String>("Mã câu");
+        TableColumn<Cau, String> Id = new TableColumn<>("Mã câu");
         TableColumn<Cau, String> CauHoi = new TableColumn<Cau, String>("Câu hỏi");
         TableColumn<Cau, String> dA = new TableColumn<Cau, String>("A");
         TableColumn<Cau, String> dB = new TableColumn<Cau, String>("B");

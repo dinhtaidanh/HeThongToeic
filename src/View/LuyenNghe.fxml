@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
@@ -9,42 +10,81 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LuyenNgheController"><children>
-      <Label layoutX="24.0" layoutY="37.0" text="Câu">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <Label fx:id="idCauHoi" layoutX="59.0" layoutY="37.0" prefHeight="26.0" prefWidth="12.0" text="0">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="78.0" layoutY="37.0" text=":">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <Button fx:id="btPhat" layoutX="24.0" layoutY="72.0" mnemonicParsing="false" onAction="#phat" text="Phát" visible="false" />
-      <MediaView fx:id="audio" fitHeight="30.0" fitWidth="450.0" layoutX="102.0" layoutY="70.0" preserveRatio="false" visible="false" />
-      <ImageView fx:id="imgPhat" fitHeight="44.0" fitWidth="114.0" layoutX="102.0" layoutY="63.0" pickOnBounds="true" visible="false">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="774.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LuyenNgheController">
+   <children>
+      <ImageView fitHeight="92.0" fitWidth="774.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../media/1.gif" />
+            <Image url="@../Images/top_banner_listen.png" />
          </image>
       </ImageView>
-      <Label fx:id="lbThongBao" layoutX="102.0" layoutY="64.0" prefHeight="44.0" prefWidth="379.0" text="Hãy phát âm thanh !" visible="false" />
-      <RadioButton fx:id="rad1" layoutX="93.0" layoutY="200.0" mnemonicParsing="false" text="A" visible="false" />
-      <RadioButton fx:id="rad2" layoutX="93.0" layoutY="227.0" mnemonicParsing="false" text="B" visible="false" />
-      <RadioButton fx:id="rad3" layoutX="93.0" layoutY="259.0" mnemonicParsing="false" text="C" visible="false" />
-      <RadioButton fx:id="rad4" layoutX="93.0" layoutY="288.0" mnemonicParsing="false" text="D" visible="false" />
-      <ImageView fx:id="photo" fitHeight="278.0" fitWidth="325.0" layoutX="255.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-      <Button fx:id="btBatDau" layoutX="263.0" layoutY="343.0" mnemonicParsing="false" onAction="#batdau" text="Bắt đầu" />
-      <Button fx:id="btKiemTra" layoutX="198.0" layoutY="355.0" mnemonicParsing="false" onAction="#kiemtra" text="Kiểm tra" visible="false" />
-      <Button fx:id="btTiepTuc" layoutX="377.0" layoutY="355.0" mnemonicParsing="false" onAction="#tieptuc" text="Tiếp tục" visible="false" />
-      <ImageView fx:id="hello" fitHeight="240.0" fitWidth="553.0" layoutX="23.0" layoutY="69.0" pickOnBounds="true">
-         <image>
-            <Image url="@../media/11.jpg" />
-         </image>
-      </ImageView>
-   </children> 
-</AnchorPane>
+      <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="NGHE HIỂU PHOTO" underline="true">
+         <font>
+            <Font name="Gloucester MT Extra Condensed" size="26.0" />
+         </font>
+      </Text>
+      <HBox prefHeight="399.0" prefWidth="774.0">
+         <children>
+            <VBox prefHeight="395.0" prefWidth="412.0" spacing="20.0">
+               <children>
+                  <Text fx:id="txtCauSo" fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Câu số xx">
+                     <font>
+                        <Font name="Tahoma Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn đáp án mô tả bức tranh bạn thấy gần đúng nhất.">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <RadioButton fx:id="rdA" mnemonicParsing="false" text="A" />
+                  <RadioButton fx:id="rdB" mnemonicParsing="false" text="B" />
+                  <RadioButton fx:id="rdC" mnemonicParsing="false" text="C" />
+                  <RadioButton fx:id="rdD" mnemonicParsing="false" text="D" />
+                  <Button fx:id="btnNextQuestion" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="34.0" prefWidth="93.0" style="-fx-background-color: GREEN;" text="Câu tiếp theo" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnTinhDiem" mnemonicParsing="false" onAction="#tinhDiem" prefHeight="34.0" prefWidth="93.0" style="-fx-background-color: Blue;" text="Tính điểm" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="130.0" top="30.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="394.0" prefWidth="444.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="388.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playAudio" style="-fx-background-color: green;" text="PLAY" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhấn để nghe đoạn audio">
+                           <font>
+                              <Font name="System Italic" size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </HBox>
+                  <ImageView fx:id="imvPhoto" fitHeight="261.0" fitWidth="307.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../media/1.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

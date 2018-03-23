@@ -24,7 +24,7 @@
          <font>
             <Font size="15.0" />
          </font></PasswordField>
-      <Button fx:id="btDangKi" layoutX="258.0" layoutY="391.0" onAction="#dangki" prefHeight="31.0" prefWidth="85.0" text="Đăng kí">
+      <Button fx:id="btDangKi" layoutX="258.0" layoutY="391.0" onAction="#register" prefHeight="31.0" prefWidth="85.0" text="Đăng kí">
          <font>
             <Font size="15.0" />
          </font>
@@ -74,7 +74,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton fx:id="Rad1" layoutX="229.0" layoutY="182.0" mnemonicParsing="false" onAction="#load" text="Nam" />
-      <RadioButton fx:id="Rad2" layoutX="377.0" layoutY="182.0" mnemonicParsing="false" onAction="#load" text="Nữ" />
+      <RadioButton fx:id="rdNam" layoutX="229.0" layoutY="182.0" mnemonicParsing="false" onAction="#load" text="Nam" />
+      <RadioButton fx:id="rdNu" layoutX="377.0" layoutY="182.0" mnemonicParsing="false" onAction="#load" text="Nữ" />
     </children> 
 </AnchorPane>

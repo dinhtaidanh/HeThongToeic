@@ -10,6 +10,7 @@ package Model;
  * @author ASUS
  */
 public class Acc {
+
     private String id;
     private String tenDangNhap;
     private String matKhau;
@@ -18,11 +19,12 @@ public class Acc {
     private String email;
     private String diaChi;
     private String gioiTinh;
-    
-    public Acc(){
-        
+
+    public Acc() {
+
     }
-    public Acc(String id,String tenDangNhap,String matKhau,String quyen,String hoTen,String email,String diachi,String gioitinh){
+
+    public Acc(String id, String tenDangNhap, String matKhau, String quyen, String hoTen, String email, String diachi, String gioitinh) {
         this.id = id;
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
@@ -144,6 +146,5 @@ public class Acc {
     public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
-    
-    
+
 }
