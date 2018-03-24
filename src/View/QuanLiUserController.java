@@ -6,15 +6,12 @@
 package View;
 
 import Controller.HienCuaSo;
-import Model.Acc;
-import Model.Cau;
-import Model.ConnectionUtils;
+import Model.HibernateUtilUser;
+import Model.User;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,10 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,8 +29,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * FXML Controller class
@@ -47,7 +45,7 @@ public class QuanLiUserController implements Initializable {
 
     /**
      * Initializes the controller class.
-     */   
+     */
     @FXML
     private TextField txtTenDangNhap;
     @FXML
@@ -73,227 +71,214 @@ public class QuanLiUserController implements Initializable {
     @FXML
     private Label lbId;
     String quyen = "";
-    String gioitinh = "";
+    String gioiTinh = "";
     @FXML
-    private TableView<Acc> tbvListUser; 
-    private ArrayList<Acc> arrAcc = new ArrayList<Acc>();
+    private TableView<User> tbvListUser;
+    private ArrayList<User> arrUser = new ArrayList<User>();
+
     @FXML
     private void capNhat(ActionEvent event) {
-        try{
-            if(txtTenDangNhap.getText().trim().equals("") || txtDiaChi.getText().trim().equals("")|| txtEmail.getText().trim().equals("")|| txtHoTen.getText().trim().equals("")|| txtMatKhau.getText().trim().equals("")){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setContentText("Phải nhập đầy đủ thông tin !");
-                    alert.showAndWait();
-                    return;
-                }
-            if(radGioiTinh1.isSelected()){
-                gioitinh = "Nam";
-            }
-            else if(radGioiTinh2.isSelected()){
-                gioitinh = "Nữ";
-            }
-            if(radQuyen1.isSelected()){
-                quyen = "admin";
-            }else if(radQuyen2.isSelected()){
-                quyen = "khach";
-            }
-            if(checkEmail(txtEmail.getText().trim())== false){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setContentText("Email không hợp lệ !");
-                alert.showAndWait();
-                return;
-            }           
-                Connection connection = ConnectionUtils.getMyConnection();             
-                Statement statement = connection.createStatement();
-                String sql = "UPDATE user SET ten_dang_nhap ='"+txtTenDangNhap.getText().trim()+"',mat_khau ='"+txtMatKhau.getText().trim()+"',quyen ='"+quyen+"',ho_ten='"+txtHoTen.getText().trim()+"',email = '"+txtEmail.getText().trim()+"',dia_chi = '"+txtDiaChi.getText().trim()+"',gioi_tinh='"+gioitinh+"'WHERE id='"+lbId.getText()+"'";
-                int rowCount = 0;
-                rowCount = statement.executeUpdate(sql);                
-                if(rowCount != 0)
-                {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setContentText("Cập nhật thành công !");
-                    alert.showAndWait(); 
-                    HienCuaSo h = new HienCuaSo();
-                    h.showWindow("/View/QuanLiUser.fxml");
-                    Stage stage1 = (Stage) btCapNhat.getScene().getWindow();
-                    stage1.close();
+        if (txtTenDangNhap.getText().trim().equals("")
+                || txtDiaChi.getText().trim().equals("")
+                || txtEmail.getText().trim().equals("")
+                || txtHoTen.getText().trim().equals("")
+                || txtMatKhau.getText().trim().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setContentText("Phải nhập đầy đủ thông tin !");
+            alert.showAndWait();
+            return;
+        }
+        if (radGioiTinh1.isSelected()) {
+            gioiTinh = "Nam";
+        } else if (radGioiTinh2.isSelected()) {
+            gioiTinh = "Nữ";
+        }
+        if (radQuyen1.isSelected()) {
+            quyen = "admin";
+        } else if (radQuyen2.isSelected()) {
+            quyen = "khach";
+        }
+        if (checkEmail(txtEmail.getText().trim()) == false) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setContentText("Email không hợp lệ !");
+            alert.showAndWait();
+            return;
+        }
+        SessionFactory factory = HibernateUtilUser.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        User user = new User();
+        user.setUsername(txtTenDangNhap.getText());
+        user.setPassword(txtMatKhau.getText());
+        user.setQuyen(quyen);
+        user.setHoTen(txtHoTen.getText());
+        user.setEmail(txtEmail.getText());
+        user.setDiaChi(txtDiaChi.getText());
+        user.setGioiTinh(gioiTinh);
+        session.merge(user);
+        transaction.commit();
+        Criteria criteria = session.createCriteria(User.class);
+        List result = criteria.list();
+        Iterator iterator = result.iterator();
 
-                }
-                else{
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setContentText("Một lỗi đã xãy ra !");
-                    alert.showAndWait();
-                }            
-            }
-            catch (ClassNotFoundException | SQLException e) {
-                // TODO: handle exception
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setContentText("Lỗi kết nối !");
-                alert.showAndWait();
-            }
+        if (iterator.hasNext()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setContentText("Cập nhật thành công !");
+            alert.showAndWait();
+            HienCuaSo h = new HienCuaSo();
+            h.showWindow("/View/QuanLiUser.fxml");
+            Stage currentStage = (Stage) btCapNhat.getScene().getWindow();
+            currentStage.close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setContentText("Một lỗi đã xãy ra !");
+            alert.showAndWait();
+        }
+        session.close();
     }
+
     @FXML
     private void xoa(ActionEvent event) {
-        try{            
-                Connection connection = ConnectionUtils.getMyConnection();             
-                Statement statement = connection.createStatement();
-                String sql = "DELETE FROM user WHERE id = '"+lbId.getText()+"'";             
-                int rowCount = 0;
-                rowCount = statement.executeUpdate(sql);                
-                if(rowCount != 0)
-                {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setContentText("Xóa thành công !");
-                    alert.showAndWait();                  
-                    HienCuaSo h = new HienCuaSo();
-                    h.showWindow("/View/QuanLiUser.fxml");
-                    Stage stage1 = (Stage) btXoa.getScene().getWindow();
-                    stage1.close();
-                }
-                else{
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setContentText("Một lỗi đã xãy ra !");
-                    alert.showAndWait();
-                    
-                }            
-            }
-            catch (ClassNotFoundException | SQLException e) {
-                // TODO: handle exception
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setContentText("Lỗi kết nối !");
-                alert.showAndWait();
-            }
-    }    
+
+        SessionFactory factory = HibernateUtilUser.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.add(Restrictions.eq("id", Integer.parseInt(lbId.getText())));
+        List result = criteria.list();
+        Iterator iterator = result.iterator();
+        User user = (User) iterator.next();
+        session.delete(user);
+        transaction.commit();
+        result = criteria.list();
+        iterator = result.iterator();
+        if (!iterator.hasNext()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setContentText("Xóa thành công !");
+            alert.showAndWait();
+            Stage currentStage = (Stage) btXoa.getScene().getWindow();
+            currentStage.close();
+            HienCuaSo h = new HienCuaSo();
+            h.showWindow("/View/QuanLiUser.fxml");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setContentText("Một lỗi đã xãy ra !");
+            alert.showAndWait();
+
+        }
+        session.close();
+    }
+
     @FXML
-    private void load() { 
-        try{
-            tbvListUser.setOnMouseClicked(e ->{
-            if( e.getClickCount() == 1 ) {
-            Acc p = tbvListUser.getSelectionModel().getSelectedItem();
-            
-            String id = p.getId();
-            String tenDangNhap = p.getTenDangNhap();
-            String hoTen = p.getHoTen();
-            String email = p.getEmail();
-            String diaChi = p.getDiaChi();
-            String matKhau = p.getMatKhau();
-            String gioiTinh = p.getGioiTinh();
-            String quyen = p.getQuyen();
-            
-            txtTenDangNhap.setText(tenDangNhap);
-            txtHoTen.setText(hoTen);
-            txtEmail.setText(email);
-            txtDiaChi.setText(diaChi);
-            txtMatKhau.setText(matKhau);            
-            lbId.setText(id);  
-            
-            if(gioiTinh.equals("Nam")){
-                radGioiTinh1.setSelected(true);
-            }
-            else{radGioiTinh2.setSelected(true);}
-            
-            if(quyen.equals("admin")){
-                radQuyen1.setSelected(true);
-            }
-            else{radQuyen2.setSelected(true);}
-            
-            }});             
-        }catch (Exception rx) {
-                // TODO: handle exception
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setContentText("Lỗi kết nối !");
-                alert.showAndWait();
-            }
-    }
-    private void loaddata(){
-        try{       
-                ToggleGroup group = new ToggleGroup();
-                radGioiTinh1.setToggleGroup(group);
-                radGioiTinh2.setToggleGroup(group);
-                
-                ToggleGroup group1 = new ToggleGroup();
-                radQuyen1.setToggleGroup(group1);
-                radQuyen2.setToggleGroup(group1);
-                
-                Connection connection = ConnectionUtils.getMyConnection();             
-                Statement statement = connection.createStatement();
-                String sql = "SELECT * FROM user ";                    
-                ResultSet rs = statement.executeQuery(sql);
-                while(rs.next())
-                {
-                    Acc acc = new Acc();
-                    acc.setId(rs.getString("id"));
-                    acc.setTenDangNhap(rs.getString("ten_dang_nhap"));
-                    acc.setMatKhau(rs.getString("mat_khau"));
-                    acc.setHoTen(rs.getString("ho_ten"));
-                    acc.setDiaChi(rs.getString("dia_chi"));
-                    acc.setGioiTinh(rs.getString("gioi_tinh"));
-                    acc.setEmail(rs.getString("email"));
-                    acc.setQuyen(rs.getString("quyen"));
-                    arrAcc.add(acc);   
-                    
-                    
-                } 
-                TableColumn<Acc, String> id = new TableColumn<Acc, String>("Mã user");
-                TableColumn<Acc, String> tenDangNhap = new TableColumn<Acc, String>("Tên đăng nhập");
-                TableColumn<Acc, String> matKhau = new TableColumn<Acc, String>("Mật khẩu");
-                TableColumn<Acc, String> quyen = new TableColumn<Acc, String>("Quyền");
-                TableColumn<Acc, String> hoTen = new TableColumn<Acc, String>("Họ tên");
-                TableColumn<Acc, String> email = new TableColumn<Acc, String>("Email");
-                TableColumn<Acc, String> diaChi = new TableColumn<Acc, String>("Địa chỉ");
-                TableColumn<Acc, String> gioiTinh = new TableColumn<Acc, String>("Giới tính");
+    private void load() {
+        try {
+            tbvListUser.setOnMouseClicked(e -> {
+                if (e.getClickCount() == 1) {
+                    User u = tbvListUser.getSelectionModel().getSelectedItem();
 
-                id.setCellValueFactory(new PropertyValueFactory<>("id"));
-                tenDangNhap.setCellValueFactory(new PropertyValueFactory<>("tenDangNhap"));
-                matKhau.setCellValueFactory(new PropertyValueFactory<>("matKhau"));
-                quyen.setCellValueFactory(new PropertyValueFactory<>("quyen"));
-                hoTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
-                email.setCellValueFactory(new PropertyValueFactory<>("email"));
-                diaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
-                gioiTinh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+                    String id = String.valueOf(u.getId());
+                    String tenDangNhap = u.getUsername();
+                    String hoTen = u.getHoTen();
+                    String email = u.getEmail();
+                    String diaChi = u.getDiaChi();
+                    String matKhau = u.getPassword();
+                    gioiTinh = u.getGioiTinh();
+                    quyen = u.getQuyen();
 
-                ObservableList<Acc> list = getUserList();
-                tbvListUser.setItems(list);
-                tbvListUser.getColumns().addAll(id,tenDangNhap,matKhau,quyen,hoTen,email,diaChi,gioiTinh);
-                
-                statement.close();
-                
-  
-            }
-            catch (ClassNotFoundException | SQLException e) {
-                // TODO: handle exception
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setContentText("Lỗi kết nối !");
-                alert.showAndWait();
-            }
+                    txtTenDangNhap.setText(tenDangNhap);
+                    txtHoTen.setText(hoTen);
+                    txtEmail.setText(email);
+                    txtDiaChi.setText(diaChi);
+                    txtMatKhau.setText(matKhau);
+                    lbId.setText(id);
+
+                    if (gioiTinh.equals("Nam")) {
+                        radGioiTinh1.setSelected(true);
+                    } else {
+                        radGioiTinh2.setSelected(true);
+                    }
+
+                    if (quyen.equals("admin")) {
+                        radQuyen1.setSelected(true);
+                    } else {
+                        radQuyen2.setSelected(true);
+                    }
+
+                }
+            });
+        } catch (Exception rx) {
+            // TODO: handle exception
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setContentText("Lỗi kết nối !");
+            alert.showAndWait();
+        }
     }
+
+    private void loadData() {
+
+        ToggleGroup groupGioiTinh = new ToggleGroup();
+        radGioiTinh1.setToggleGroup(groupGioiTinh);
+        radGioiTinh2.setToggleGroup(groupGioiTinh);
+
+        ToggleGroup groupQuyen = new ToggleGroup();
+        radQuyen1.setToggleGroup(groupQuyen);
+        radQuyen2.setToggleGroup(groupQuyen);
+
+        SessionFactory factory = HibernateUtilUser.getSessionFactory();
+        Session session = factory.openSession();
+        Criteria criteria = session.createCriteria(User.class);
+        List result = criteria.list();
+        Iterator iterator = result.iterator();
+        while (iterator.hasNext()) {
+            User u = (User) iterator.next();
+            arrUser.add(u);
+        }
+        TableColumn<User, String> id = new TableColumn<User, String>("Mã user");
+        TableColumn<User, String> username = new TableColumn<User, String>("Tên đăng nhập");
+        TableColumn<User, String> password = new TableColumn<User, String>("Mật khẩu");
+        TableColumn<User, String> quyen = new TableColumn<User, String>("Quyền");
+        TableColumn<User, String> hoTen = new TableColumn<User, String>("Họ tên");
+        TableColumn<User, String> email = new TableColumn<User, String>("Email");
+        TableColumn<User, String> diaChi = new TableColumn<User, String>("Địa chỉ");
+        TableColumn<User, String> gioiTinh = new TableColumn<User, String>("Giới tính");
+
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        password.setCellValueFactory(new PropertyValueFactory<>("password"));
+        quyen.setCellValueFactory(new PropertyValueFactory<>("quyen"));
+        hoTen.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        diaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+        gioiTinh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+
+        ObservableList<User> list = getUserList();
+        tbvListUser.setItems(list);
+        tbvListUser.getColumns().addAll(id, username, password, quyen, hoTen, email, diaChi, gioiTinh);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         loaddata();
-         load();
+        loadData();
+        load();
     }
-    private ObservableList<Acc> getUserList() {        
-        ObservableList<Acc> list = FXCollections.observableArrayList(arrAcc);
+
+    private ObservableList<User> getUserList() {
+        ObservableList<User> list = FXCollections.observableArrayList(arrUser);
         return list;
     }
+
     private Boolean checkEmail(String email) {
         String emailPattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern regex = Pattern.compile(emailPattern);
         Matcher matcher = regex.matcher(email);
-        if (matcher.find()) {
-            return true;
-        } else {           
-            return false;
-        }
+        return matcher.find();
     }
 }
