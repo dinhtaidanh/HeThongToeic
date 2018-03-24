@@ -58,13 +58,11 @@ public class ThiNguPhapController implements Initializable  {
                // Có lựa chọn
                if (radioGroup.getSelectedToggle() != null) {
                    RadioButton rd = (RadioButton) radioGroup.getSelectedToggle();
-                   System.out.println("Button: " + rd.getText());
                    if(rd.getText().substring(0,1)!=null){
                    String traLoi = rd.getText().substring(0,1);  
                    dsCauHoi.getDsCau().get(cauHienTai).setTraLoi(traLoi);
                    }
-               }
-                          
+               }                         
            }
        });
                 

@@ -5,17 +5,14 @@ package View;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import Controller.HienCuaSo;
-import Model.ConnectionUtils;
+import Model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +24,12 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -61,56 +64,41 @@ public class DangNhapController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) {
-        try {
-//            Session session = HibernateUtil.getSessionFactory().openSession();
-//            Transaction transaction = session.beginTransaction();
-//            List users = session.createQuery("FROM User").list();
-//            for (Iterator iterator = users.iterator(); iterator.hasNext();) {
-//                User employee = (User) iterator.next();
-//                System.out.println("Họ và tên: " + employee.getHoTen());
-//                System.out.println("------");
-//            }
-//            transaction.commit();
-//            session.close();
-            Connection connection = ConnectionUtils.getMyConnection();
-            Statement statement = connection.createStatement();
+        Configuration config = new Configuration();
+        config.configure("hibernate.cfg.xml");
+        config.addAnnotatedClass(User.class);
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(config.getProperties());
+        SessionFactory factory = config.buildSessionFactory(builder.build());
 
-            String sql = "SELECT * FROM user WHERE ten_dang_nhap='"
-                    + txtUserName.getText().trim() + "'AND mat_khau='"
-                    + txtPassword.getText().trim() + "' ";
-            ResultSet rs = statement.executeQuery(sql);
-            if (txtUserName.getText().trim().equals("") || txtPassword.getText().trim().equals("")) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setContentText("Chưa nhập Tên đăng nhập hoặc Mật khẩu !");
-                alert.showAndWait();
-            } else if (rs.next()) {
-                String quyen = rs.getString("quyen");
-                if (quyen.equals("admin")) {
-                    HienCuaSo h = new HienCuaSo();
-                    h.showWindow("/View/ManHinhChinh.fxml");
-                    Stage currentStage = (Stage) btnRegister.getScene().getWindow();
-                    currentStage.close();
-                } else {
-                    HienCuaSo h = new HienCuaSo();
-                    h.showWindow("/View/ManHinhUser.fxml");
-                    Stage currentStage = (Stage) btnRegister.getScene().getWindow();
-                    currentStage.close();
-                }
-
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setContentText("Sai tài khoản hoặc mật khẩu !");
-                alert.showAndWait();
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO: handle exception
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setContentText("Lỗi kết nối !");
+        Session session = factory.openSession();
+        //Transaction trans = session.beginTransaction();
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.add(Restrictions.eq("username", txtUserName.getText()));
+        criteria.add(Restrictions.eq("password", txtPassword.getText()));
+        List result = criteria.list();      
+        Iterator iterator = result.iterator();
+        if(iterator.hasNext()){
+        User u = (User)iterator.next();
+        if(u.getQuyen().equals("admin")){
+            try{
+            Parent root = FXMLLoader.load(getClass().getResource("ManHinhChinh.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);  
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.show();
+            Stage currentStage = (Stage) btnRegister.getScene().getWindow();
+            currentStage.close();
+            }catch (IOException e) {}
+        }
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi đăng nhập");
+            alert.setHeaderText("Không thể đăng nhập");
+            alert.setContentText("Sai tài khoản hoặc mật khẩu");
             alert.showAndWait();
         }
+            
     }
 
     @FXML

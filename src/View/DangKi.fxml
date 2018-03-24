@@ -74,7 +74,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <RadioButton fx:id="rdNam" layoutX="229.0" layoutY="182.0" mnemonicParsing="false" onAction="#load" text="Nam" />
-      <RadioButton fx:id="rdNu" layoutX="377.0" layoutY="182.0" mnemonicParsing="false" onAction="#load" text="Nữ" />
+      <RadioButton fx:id="rdNam" layoutX="229.0" layoutY="182.0" mnemonicParsing="false" text="Nam" />
+      <RadioButton fx:id="rdNu" layoutX="377.0" layoutY="182.0" mnemonicParsing="false"  text="Nữ" />
     </children> 
 </AnchorPane>

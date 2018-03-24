@@ -5,16 +5,17 @@
  */
 package View;
 
-import Model.ConnectionUtils;
+import Model.HibernateUtilUser;
+import Model.User;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,9 +26,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * FXML Controller class
@@ -55,24 +62,16 @@ public class DangKiController implements Initializable {
     private RadioButton rdNam;
     @FXML
     private RadioButton rdNu;
-    String GioiTinh = "";
-
+    ToggleGroup radioGroup;
+    String gioiTinh = "";
     private Boolean checkUserName(String tenDangNhap) {
-        try {
-            Connection connection = ConnectionUtils.getMyConnection();
-            Statement statement = connection.createStatement();
-
-            String sql = "SELECT * FROM user WHERE ten_dang_nhap='" + txtTenDangNhap.getText().trim() + "' ";
-            ResultSet rs = statement.executeQuery(sql);
-            return rs.next();
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO: handle exception
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setContentText("Lỗi kết nối !");
-            alert.showAndWait();
-        }
-        return null;
+        SessionFactory factory = HibernateUtilUser.getSessionFactory();
+        Session session = factory.openSession();
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.add(Restrictions.eq("username", tenDangNhap));
+        List result = criteria.list();      
+        Iterator iterator = result.iterator();
+        return iterator.hasNext();             
     }
 
     private Boolean checkEmail(String email) {
@@ -83,8 +82,7 @@ public class DangKiController implements Initializable {
     }
 
     @FXML
-    private void register(ActionEvent event) throws IOException {
-        try {
+    private void register(ActionEvent event) throws IOException {       
             if (txtTenDangNhap.getText().trim().equals("")
                     || txtDiaChi.getText().trim().equals("")
                     || txtEmail.getText().trim().equals("")
@@ -105,16 +103,25 @@ public class DangKiController implements Initializable {
                 return;
             }
             if (checkUserName(txtTenDangNhap.getText()) == false) {
-                String quyen = "khach";
-                Connection connection = ConnectionUtils.getMyConnection();
-                Statement statement = connection.createStatement();
-                String sql = "INSERT INTO user(ten_dang_nhap,mat_khau,quyen,ho_ten,email,dia_chi,gioi_tinh) VALUES ('" 
-                        + txtTenDangNhap.getText() + "','" + txtMatKhau.getText() + "','" + quyen + "','" 
-                        + txtHoTen.getText() + "','" + txtEmail.getText() + "','" + txtDiaChi.getText() 
-                        + "','" + GioiTinh + "' )";
-                int rowCount = 0;
-                rowCount = statement.executeUpdate(sql);
-                if (rowCount != 0) {
+                SessionFactory factory = HibernateUtilUser.getSessionFactory();
+                Session session = factory.openSession();
+                Transaction trans = session.beginTransaction();
+                User user = new User();
+                user.setUsername(txtTenDangNhap.getText());
+                user.setPassword(txtMatKhau.getText());
+                user.setQuyen("khach");
+                user.setHoTen(txtHoTen.getText());
+                user.setDiaChi(txtDiaChi.getText());
+                user.setEmail(txtEmail.getText());
+                user.setGioiTinh(gioiTinh);
+                session.save(user);
+                trans.commit();
+                Criteria criteria = session.createCriteria(User.class);
+                criteria.add(Restrictions.eq("username", txtTenDangNhap.getText()));
+                List result = criteria.list();
+        
+                Iterator iterator = result.iterator();              
+                if (iterator.hasNext()) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
                     alert.setContentText("Tạo tài khoản thành công ! Hãy đăng nhập vào tài khoản của bạn !");
@@ -125,8 +132,8 @@ public class DangKiController implements Initializable {
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(scene);
                     stage.show();
-                    Stage stage1 = (Stage) btDangKi.getScene().getWindow();
-                    stage1.close();
+                    Stage currentStage = (Stage) btDangKi.getScene().getWindow();
+                    currentStage.close();
 
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -140,30 +147,21 @@ public class DangKiController implements Initializable {
                 alert.setContentText("Tên tài khoản đã tồn tại !");
                 alert.showAndWait();
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO: handle exception
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setContentText("Lỗi kết nối !");
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
-    private void load(ActionEvent event) {
-        ToggleGroup group = new ToggleGroup();
-        rdNam.setToggleGroup(group);
-        rdNu.setToggleGroup(group);
-        if (rdNam.isSelected()) {
-            GioiTinh = "Nam";
-        } else if (rdNu.isSelected()) {
-            GioiTinh = "Nữ";
-        }
-    }
-
+        } 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        radioGroup = new ToggleGroup();
+        rdNam.setToggleGroup(radioGroup);
+        rdNu.setToggleGroup(radioGroup);
+        radioGroup.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) -> {
+            // Có lựa chọn
+            if (radioGroup.getSelectedToggle() != null) {
+                RadioButton rd = (RadioButton) radioGroup.getSelectedToggle();
+                gioiTinh = rd.getText();
+            }
+        });
     }
 
 }

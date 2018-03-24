@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="228.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
     <children>
-        <Button fx:id="btdangnhap" layoutX="161.0" layoutY="161.0" onAction="#login" text="Đăng nhập">
+        <Button fx:id="btnDangNhap" layoutX="161.0" layoutY="161.0" onAction="#login" text="Đăng nhập">
          <font>
             <Font size="15.0" />
          </font></Button>
