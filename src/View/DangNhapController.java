@@ -91,6 +91,18 @@ public class DangNhapController implements Initializable {
             currentStage.close();
             }catch (IOException e) {}
         }
+        else if(u.getQuyen().equals("khach")){
+            try{
+            Parent root = FXMLLoader.load(getClass().getResource("ManHinhUser.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);  
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.show();
+            Stage currentStage = (Stage) btnRegister.getScene().getWindow();
+            currentStage.close();
+            }catch (IOException e) {}
+        }
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Lỗi đăng nhập");
