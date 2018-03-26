@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="774.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LuyenNgheController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="774.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LuyenNgheController">
    <children>
       <ImageView fitHeight="92.0" fitWidth="774.0" pickOnBounds="true" smooth="false">
          <image>
@@ -22,11 +22,11 @@
             <Font name="Gloucester MT Extra Condensed" size="26.0" />
          </font>
       </Text>
-      <HBox prefHeight="399.0" prefWidth="774.0">
+      <HBox prefHeight="408.0" prefWidth="774.0">
          <children>
             <VBox prefHeight="395.0" prefWidth="412.0" spacing="20.0">
                <children>
-                  <Text fx:id="txtCauSo" fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Câu số xx">
+                  <Text fx:id="txtCauSo" fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Question xx" wrappingWidth="113.0">
                      <font>
                         <Font name="Tahoma Bold" size="18.0" />
                      </font>
@@ -58,7 +58,7 @@
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="394.0" prefWidth="444.0">
+            <VBox alignment="CENTER" focusTraversable="true" prefHeight="376.0" prefWidth="328.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="388.0" spacing="10.0">
                      <children>
@@ -72,12 +72,13 @@
                               <Font name="System Italic" size="16.0" />
                            </font>
                         </Text>
+                        <MediaView fx:id="mdvAudio" fitHeight="10.0" fitWidth="10.0" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </HBox>
-                  <ImageView fx:id="imvPhoto" fitHeight="261.0" fitWidth="307.0" pickOnBounds="true">
+                  <ImageView fx:id="imvPhoto" fitHeight="246.0" fitWidth="279.0" pickOnBounds="true">
                      <image>
                         <Image url="@../media/1.jpg" />
                      </image>

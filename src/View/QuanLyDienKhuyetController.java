@@ -5,8 +5,8 @@
  */
 package View;
 
-import Model.HibernateUtilNguPhap;
-import Model.NguPhap;
+import Model.HibernateUtilDienKhuyet;
+import Model.DienKhuyet;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,11 +49,11 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Danh
  */
-public class QuanLyNguPhapController implements Initializable {
+public class QuanLyDienKhuyetController implements Initializable {
 
    
     @FXML
-    private TableView<NguPhap> tbvListCauHoi = new TableView<>();
+    private TableView<DienKhuyet> tbvListCauHoi = new TableView<>();
     @FXML
     private Button btnThemCauHoi = new Button();
     @FXML
@@ -64,7 +64,7 @@ public class QuanLyNguPhapController implements Initializable {
     private Button btnRefreshList = new Button();
     @FXML 
     private Button btnReturn = new Button();
-    private NguPhap cauDuocChon;
+    private DienKhuyet cauDuocChon;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO      
@@ -76,32 +76,32 @@ public class QuanLyNguPhapController implements Initializable {
         tbvListCauHoi.getFocusModel().focusedCellProperty().addListener((ObservableValue<? extends TablePosition> observable, TablePosition oldPos, TablePosition pos) -> {
             btnSuaCauHoi.setDisable(false);
             btnXoaCauHoi.setDisable(false);
-        });        
+        });    
         btnThemCauHoi.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Images/Add_32x32.png"))));
         btnRefreshList.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Images/Refresh_32x32.png"))));
         btnSuaCauHoi.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Images/Edit_32x32.png"))));
         btnXoaCauHoi.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Images/Delete_32x32.png"))));
         btnReturn.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/Images/Backward_32x32.png"))));
     }    
-    private ObservableList<NguPhap> getQuestionList() {  ;
-        SessionFactory factory = HibernateUtilNguPhap.getSessionFactory();
+    private ObservableList<DienKhuyet> getQuestionList() {  ;
+        SessionFactory factory = HibernateUtilDienKhuyet.getSessionFactory();
         Session session = factory.openSession();
-        Criteria criteria = session.createCriteria(NguPhap.class);
+        Criteria criteria = session.createCriteria(DienKhuyet.class);
         //criteria.add(Restrictions.eq("username", tenDangNhap));
         List result = criteria.list(); 
-        ArrayList<NguPhap> listNguPhap = new ArrayList<>();
+        ArrayList<DienKhuyet> listDienKhuyet = new ArrayList<>();
         Iterator iterator = result.iterator();
         while(iterator.hasNext()){
-            NguPhap nguPhap = (NguPhap) iterator.next();
-            listNguPhap.add(nguPhap);
+            DienKhuyet dienKhuyet = (DienKhuyet) iterator.next();
+            listDienKhuyet.add(dienKhuyet);
         }
-        ObservableList<NguPhap> list = FXCollections.observableArrayList(listNguPhap);
+        ObservableList<DienKhuyet> list = FXCollections.observableArrayList(listDienKhuyet);
         session.close();  
         return list;
     }
     @FXML
     private void onAddQuestion(){
-        showStage("ThemNguPhap.fxml");
+        showStage("ThemDienKhuyet.fxml");
     }
     @FXML
     private void onDeleteQuestion(){
@@ -112,15 +112,15 @@ public class QuanLyNguPhapController implements Initializable {
         alert.setContentText("Bạn có chắc chắn?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            SessionFactory factory = HibernateUtilNguPhap.getSessionFactory();
+            SessionFactory factory = HibernateUtilDienKhuyet.getSessionFactory();
             Session session = factory.openSession();
             Transaction trans = session.beginTransaction();
-            Criteria criteria = session.createCriteria(NguPhap.class);
+            Criteria criteria = session.createCriteria(DienKhuyet.class);
             criteria.add(Restrictions.eq("id", cauDuocChon.getId()));
             List rs = criteria.list(); 
             Iterator iterator = rs.iterator();
-            NguPhap nguPhap = (NguPhap) iterator.next();
-            session.delete(nguPhap);
+            DienKhuyet dienKhuyet = (DienKhuyet) iterator.next();
+            session.delete(dienKhuyet);
             trans.commit();
             session.close();           
         } else {
@@ -142,23 +142,23 @@ public class QuanLyNguPhapController implements Initializable {
         TextField txtDapAn2 = new TextField(cauDuocChon.getDapAn2());
         TextField txtDapAn3 = new TextField(cauDuocChon.getDapAn3());
         TextField txtDapAn4 = new TextField(cauDuocChon.getDapAn4());     
-        ComboBox cbDapAnNguPhapDung = new ComboBox();
-        cbDapAnNguPhapDung.getItems().addAll("A", "B", "C","D");
-        cbDapAnNguPhapDung.setValue(cauDuocChon.getDapAnDung());
-        cbDapAnNguPhapDung.promptTextProperty().set(cauDuocChon.getDapAnDung());
+        ComboBox cbDapAnDienKhuyetDung = new ComboBox();
+        cbDapAnDienKhuyetDung.getItems().addAll("A", "B", "C","D");
+        cbDapAnDienKhuyetDung.setValue(cauDuocChon.getDapAnDung());
+        cbDapAnDienKhuyetDung.promptTextProperty().set(cauDuocChon.getDapAnDung());
         Button btnLuu = new Button("Lưu lại");
         btnLuu.setOnAction(event -> {
-            SessionFactory factory = HibernateUtilNguPhap.getSessionFactory();
+            SessionFactory factory = HibernateUtilDienKhuyet.getSessionFactory();
             Session session = factory.openSession();
             Transaction trans = session.beginTransaction();
-            NguPhap nguPhap = new NguPhap();
+            DienKhuyet nguPhap = new DienKhuyet();
             nguPhap.setId(cauDuocChon.getId());
             nguPhap.setCauHoi(htmlEditor.getHtmlText());
             nguPhap.setDapAn1(txtDapAn1.getText());
             nguPhap.setDapAn2(txtDapAn2.getText());
             nguPhap.setDapAn3(txtDapAn3.getText());
             nguPhap.setDapAn4(txtDapAn4.getText());
-            nguPhap.setDapAnDung(cbDapAnNguPhapDung.getSelectionModel().getSelectedItem().toString());
+            nguPhap.setDapAnDung(cbDapAnDienKhuyetDung.getSelectionModel().getSelectedItem().toString());
             session.update(nguPhap);
             trans.commit();
             session.close();
@@ -175,11 +175,11 @@ public class QuanLyNguPhapController implements Initializable {
         p.add(txtDapAn2,1,2);
         p.add(txtDapAn3,1,3);
         p.add(txtDapAn4,1,4);
-        p.add(cbDapAnNguPhapDung,1,5);
+        p.add(cbDapAnDienKhuyetDung,1,5);
         p.add(btnLuu, 1, 6);
         Scene scene = new Scene(p,1000,500);
         s.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
-        s.setTitle("Chỉnh sửa câu hỏi ngữ pháp");
+        s.setTitle("Chỉnh sửa câu hỏi điền khuyết");
         s.setScene(scene);
         s.show();
             
@@ -199,13 +199,13 @@ public class QuanLyNguPhapController implements Initializable {
         currentStage.close();
     }
     private void loadListCauHoi(){       
-        TableColumn<NguPhap, String> id = new TableColumn<NguPhap, String>("Mã câu");
-        TableColumn<NguPhap, String> cauHoi = new TableColumn<NguPhap, String>("Câu hỏi");
-        TableColumn<NguPhap, String> dapAnA = new TableColumn<NguPhap, String>("A");
-        TableColumn<NguPhap, String> dapAnB = new TableColumn<NguPhap, String>("B");
-        TableColumn<NguPhap, String> dapAnC = new TableColumn<NguPhap, String>("C");
-        TableColumn<NguPhap, String> dapAnD = new TableColumn<NguPhap, String>("D");
-        TableColumn<NguPhap, String> dapAnDung = new TableColumn<NguPhap, String>("Đáp án đúng");
+        TableColumn<DienKhuyet, String> id = new TableColumn<DienKhuyet, String>("Mã câu");
+        TableColumn<DienKhuyet, String> cauHoi = new TableColumn<DienKhuyet, String>("Câu hỏi");
+        TableColumn<DienKhuyet, String> dapAnA = new TableColumn<DienKhuyet, String>("A");
+        TableColumn<DienKhuyet, String> dapAnB = new TableColumn<DienKhuyet, String>("B");
+        TableColumn<DienKhuyet, String> dapAnC = new TableColumn<DienKhuyet, String>("C");
+        TableColumn<DienKhuyet, String> dapAnD = new TableColumn<DienKhuyet, String>("D");
+        TableColumn<DienKhuyet, String> dapAnDung = new TableColumn<DienKhuyet, String>("Đáp án đúng");
             
         cauHoi.setMaxWidth(200);
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -216,19 +216,19 @@ public class QuanLyNguPhapController implements Initializable {
         dapAnD.setCellValueFactory(new PropertyValueFactory<>("dapAn4"));
         dapAnDung.setCellValueFactory(new PropertyValueFactory<>("dapAnDung"));
         
-        ObservableList<NguPhap> list = getQuestionList();
+        ObservableList<DienKhuyet> list = getQuestionList();
         tbvListCauHoi.setItems(list);
         tbvListCauHoi.getColumns().addAll(id,cauHoi,dapAnA,dapAnB,dapAnC,dapAnD,dapAnDung);
         
     }
     @FXML
-    private void onReturn(){       
-        closeCurrentStage(); 
+    private void onReturn(){      
+        closeCurrentStage();  
         showStage("/View/ManHinhChinh.fxml");
     }
     @FXML
     private void onRefreshList(){
         closeCurrentStage();
-        showStage("QuanLyNguPhap.fxml");
+        showStage("QuanLyDienKhuyet.fxml");
     }
 }

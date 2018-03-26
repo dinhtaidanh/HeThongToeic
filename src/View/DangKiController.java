@@ -70,7 +70,8 @@ public class DangKiController implements Initializable {
         criteria.add(Restrictions.eq("username", tenDangNhap));
         List result = criteria.list();      
         Iterator iterator = result.iterator();
-        return iterator.hasNext();             
+        
+        return iterator.hasNext();  
     }
 
     private Boolean checkEmail(String email) {
@@ -133,7 +134,7 @@ public class DangKiController implements Initializable {
                     stage.show();
                     Stage currentStage = (Stage) btDangKi.getScene().getWindow();
                     currentStage.close();
-
+                    session.close();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");

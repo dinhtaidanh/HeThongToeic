@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,18 +8,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuanLyNguPhapController">
+<AnchorPane id="AnchorPane" prefHeight="586.0" prefWidth="967.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuanLyNguPhapController">
    <children>
-      <Label layoutX="173.0" layoutY="14.0" prefHeight="26.0" prefWidth="311.0" text="DANH SÁCH CÂU HỎI NGỮ PHÁP">
+      <Text fill="#0c0346" layoutX="238.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUẢN LÝ CÂU HỎI NGỮ PHÁP">
          <font>
-            <Font name="Tahoma" size="21.0" />
+            <Font name="Tahoma Bold" size="18.0" />
          </font>
-      </Label>
-      <TableView fx:id="tbvListCauHoi" editable="true" layoutX="14.0" layoutY="124.0" prefHeight="436.0" prefWidth="629.0" />
-      <Button fx:id="btnThemCauHoi" layoutX="14.0" layoutY="91.0" mnemonicParsing="false" onAction="#onAddQuestion" text="Thêm câu hỏi mới" />
-      <Button fx:id="btnSuaCauHoi" layoutX="193.0" layoutY="91.0" mnemonicParsing="false" onAction="#onModifyQuestion" text="Chỉnh sửa câu hỏi" />
-      <Button fx:id="btnXoaCauHoi" layoutX="406.0" layoutY="91.0" mnemonicParsing="false" onAction="#onDeleteQuestion" text="Xóa câu hỏi" />
-      <Button fx:id="btnRefreshList" layoutX="551.0" layoutY="91.0" mnemonicParsing="false" onAction="#onRefreshList" prefHeight="25.0" prefWidth="92.0" text="Refresh" />
-      <Button fx:id="btnReturn" layoutX="303.0" layoutY="575.0" mnemonicParsing="false" onAction="#onReturn" text="Quay về" />
+      </Text>
+      <TableView fx:id="tbvListCauHoi" editable="true" layoutX="11.0" layoutY="55.0" prefHeight="489.0" prefWidth="722.0" />
+      <Button fx:id="btnThemCauHoi" layoutX="764.0" layoutY="116.0" mnemonicParsing="false" onAction="#onAddQuestion" prefHeight="33.0" prefWidth="168.0" style="-fx-background-color: green; -fx-background-image: ;" text="Thêm câu hỏi mới" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnSuaCauHoi" layoutX="764.0" layoutY="200.0" mnemonicParsing="false" onAction="#onModifyQuestion" prefHeight="33.0" prefWidth="168.0" style="-fx-background-color: green;" text="Chỉnh sửa câu hỏi" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnXoaCauHoi" layoutX="764.0" layoutY="285.0" mnemonicParsing="false" onAction="#onDeleteQuestion" prefHeight="33.0" prefWidth="168.0" style="-fx-background-color: green;" text="Xóa câu hỏi" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnRefreshList" layoutX="764.0" layoutY="368.0" mnemonicParsing="false" onAction="#onRefreshList" prefHeight="33.0" prefWidth="168.0" style="-fx-background-color: green;" text="Refresh" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnReturn" layoutX="764.0" layoutY="451.0" mnemonicParsing="false" onAction="#onReturn" prefHeight="33.0" prefWidth="168.0" style="-fx-background-color: green;" text="Quay về" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

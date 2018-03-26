@@ -110,6 +110,7 @@ public class QuanLiUserController implements Initializable {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         User user = new User();
+        user.setId(Integer.parseInt(lbId.getText()));
         user.setUsername(txtTenDangNhap.getText());
         user.setPassword(txtMatKhau.getText());
         user.setQuyen(quyen);
@@ -117,7 +118,7 @@ public class QuanLiUserController implements Initializable {
         user.setEmail(txtEmail.getText());
         user.setDiaChi(txtDiaChi.getText());
         user.setGioiTinh(gioiTinh);
-        session.merge(user);
+        session.update(user);
         transaction.commit();
         Criteria criteria = session.createCriteria(User.class);
         List result = criteria.list();
@@ -261,7 +262,7 @@ public class QuanLiUserController implements Initializable {
         ObservableList<User> list = getUserList();
         tbvListUser.setItems(list);
         tbvListUser.getColumns().addAll(id, username, password, quyen, hoTen, email, diaChi, gioiTinh);
-
+        session.close();
     }
 
     @Override

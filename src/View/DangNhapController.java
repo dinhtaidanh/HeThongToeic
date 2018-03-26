@@ -110,7 +110,7 @@ public class DangNhapController implements Initializable {
             alert.setContentText("Sai tài khoản hoặc mật khẩu");
             alert.showAndWait();
         }
-            
+        session.close();
     }
 
     @FXML

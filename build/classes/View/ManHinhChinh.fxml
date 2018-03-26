@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -8,17 +9,60 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="338.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ManHinhChinhController">
-    <children>
-      <Label layoutX="64.0" layoutY="14.0" prefHeight="37.0" prefWidth="317.0" text="HỆ THỐNG LUYỆN THI TOEIC" textAlignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>         
-      <Button fx:id="btnNghe" alignment="CENTER" layoutX="253.0" layoutY="169.0" mnemonicParsing="false" onAction="#onLuyenNghePhoto" prefHeight="25.0" prefWidth="179.0" text="Luyện nghe photo" />
-      <Button fx:id="btnNguPhap" layoutX="253.0" layoutY="120.0" mnemonicParsing="false" onAction="#onLuyenNguPhap" prefHeight="25.0" prefWidth="179.0" text="Luyện trắc nghiệm ngữ pháp" textAlignment="CENTER" />
-      <Button fx:id="btnDienKhuyet" layoutX="253.0" layoutY="76.0" mnemonicParsing="false" onAction="#onLuyenDienKhuyet" prefHeight="25.0" prefWidth="178.0" text="Luyện điền khuyết" textAlignment="CENTER" />
-      <Button fx:id="btnQuanLyCau" layoutX="14.0" layoutY="76.0" mnemonicParsing="false" onAction="#onQuanLyNguPhap" prefHeight="25.0" prefWidth="181.0" text="Quản lý câu hỏi ngữ pháp" />
-      <Button fx:id="btnQuanLyUser" layoutX="13.0" layoutY="120.0" mnemonicParsing="false" onAction="#onQuanLyUser" prefHeight="25.0" prefWidth="181.0" text="Quản lý user" />
-    </children>
-</AnchorPane>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ManHinhChinhController">
+   <children>
+      <ImageView fitHeight="110.0" fitWidth="676.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Images/banner_toeic_everyday.png" />
+         </image>
+      </ImageView>
+      <HBox prefHeight="394.0" prefWidth="673.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="394.0" prefWidth="343.0" spacing="30.0">
+               <children>
+                  <Button fx:id="btnQuanLyUser" mnemonicParsing="false" onAction="#onQuanLyUser" prefHeight="55.0" prefWidth="250.0" style="-fx-background-color: green;" text="Quản lý tài khoản" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnQuanLyNguPhap" mnemonicParsing="false" onAction="#onQuanLyNguPhap" prefHeight="55.0" prefWidth="250.0" style="-fx-background-color: green;" text="Quản lý câu hỏi ngữ pháp" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnQuanLyDienKhuyet" mnemonicParsing="false" onAction="#onQuanLyDienKhuyet" prefHeight="55.0" prefWidth="250.0" style="-fx-background-color: green;" text="Quản lý câu hỏi điền khuyết" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnQuanLyNghePhoto" mnemonicParsing="false" onAction="#onQuanLyNghePhoto" prefHeight="55.0" prefWidth="250.0" style="-fx-background-color: green;" text="Quản lý câu hỏi nghe photo" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="394.0" prefWidth="334.0" spacing="30.0">
+               <children>
+                  <Button fx:id="btnDienKhuyet" mnemonicParsing="false" onAction="#onLuyenDienKhuyet" prefHeight="55.0" prefWidth="250.0" style="-fx-background-color: green;" text="Phần thi điền khuyết" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnNguPhap" mnemonicParsing="false" onAction="#onLuyenNguPhap" prefHeight="55.0" prefWidth="250.0" style="-fx-background-color: green;" text="Phần thi ngữ pháp" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnNghe" alignment="CENTER" mnemonicParsing="false" onAction="#onLuyenNghePhoto" prefHeight="55.0" prefWidth="250.0" style="-fx-background-color: green;" text="Phần thi nghe photo" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
