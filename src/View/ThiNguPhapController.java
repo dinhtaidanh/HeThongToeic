@@ -8,12 +8,16 @@ package View;
 import Controller.HienCuaSo;
 import Model.Cau;
 import Model.ListCauHoi;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -21,6 +25,8 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -131,5 +137,16 @@ public class ThiNguPhapController implements Initializable  {
         alert.showAndWait(); 
         HienCuaSo w = new HienCuaSo();
         w.showWindow("/View/KetQua.fxml");
+    }
+    @FXML
+    public void quayVe() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ManHinhChinh.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) lblCauSo.getScene().getWindow();
+        currentStage.close();
     }
 }

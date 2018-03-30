@@ -5,36 +5,36 @@
  */
 package View;
 
-import Model.ConnectionUtils;
 import Model.HibernateUtilLuyenNghe;
-import Model.HibernateUtilUser;
 import Model.LuyenNghe;
-import Model.User;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -48,6 +48,12 @@ public class LuyenNgheController implements Initializable {
 
     @FXML
     Button btnPlay;
+    @FXML
+    Button btnNextQuestion;
+    @FXML
+    Button btnTinhDiem;
+    @FXML
+    Button btnPreviousQuestion;
     @FXML
     Text txtCauSo;
     @FXML
@@ -65,22 +71,34 @@ public class LuyenNgheController implements Initializable {
     @FXML
     ImageView imvPhoto = new ImageView();;
     @FXML
-    ToggleGroup group = new ToggleGroup();
+    ToggleGroup radioGroup = new ToggleGroup();
     private ArrayList<LuyenNghe> listLuyenNghe = new ArrayList<>();
     private static int cauHienTai = 0;
-    String dapAn = "";
-    int diem = 0;
-    int id = 0;
+    private static String[] listTraLoi;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO     
+        // TODO    
+        btnPreviousQuestion.setVisible(false);
         btnPlay.setText("PLAY");
+        btnTinhDiem.setVisible(false);
         txtCauSo.setText("Question " + String.valueOf(cauHienTai+1) + ":");
-        rdA.setToggleGroup(group);
-        rdB.setToggleGroup(group);
-        rdC.setToggleGroup(group);
-        rdD.setToggleGroup(group);
+        rdA.setToggleGroup(radioGroup);
+        rdB.setToggleGroup(radioGroup);
+        rdC.setToggleGroup(radioGroup);
+        rdD.setToggleGroup(radioGroup);
+        radioGroup.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) -> {
+            // Có lựa chọn
+            if (radioGroup.getSelectedToggle() != null) {
+                RadioButton rd = (RadioButton) radioGroup.getSelectedToggle();
+                if(rd.getText().substring(0,1)!=null){
+                    String traLoi = rd.getText();
+                    listTraLoi[cauHienTai]= traLoi;
+                }
+            }
+        });
+        
         SessionFactory factory = HibernateUtilLuyenNghe.getSessionFactory();
         Session session = factory.openSession();
         Criteria criteria = session.createCriteria(LuyenNghe.class);
@@ -89,11 +107,16 @@ public class LuyenNgheController implements Initializable {
         while (iterator.hasNext()) {
             LuyenNghe luyenNghe = (LuyenNghe) iterator.next();
             listLuyenNghe.add(luyenNghe);
-        }        
+        }
+        listTraLoi = new String[listLuyenNghe.size()];
+        for(int i = 0;i<listTraLoi.length;i++){
+            listTraLoi[i]="";
+        }
         loadMedia();
     }
 
     private void loadMedia() {
+        
         String photoPath = listLuyenNghe.get(cauHienTai).getLinkPhoto();
         String audioPath = listLuyenNghe.get(cauHienTai).getLinkAudio();
         File fileAudio = new File(audioPath);
@@ -105,7 +128,25 @@ public class LuyenNgheController implements Initializable {
         Image img = new Image(filePhoto.toURI().toString());
         imvPhoto.setImage(img);    
     }
-
+    private void getCurrent(){
+        rdA.setSelected(false);
+        rdB.setSelected(false);
+        rdC.setSelected(false);
+        rdD.setSelected(false);
+        btnPlay.setText("PLAY");
+        mediaPlayer.stop();
+        txtCauSo.setText("Question "+String.valueOf(cauHienTai+1)+":");
+        switch(listTraLoi[cauHienTai]){
+            case "A":rdA.setSelected(true);
+            break;
+            case "B":rdB.setSelected(true);
+            break;
+            case "C":rdC.setSelected(true);
+            break;
+            case "D":rdD.setSelected(true);
+            break;
+        }
+    }
     @FXML
     private void playAudio(ActionEvent event) {
         if (btnPlay.getText().equals("PLAY")) {
@@ -118,47 +159,41 @@ public class LuyenNgheController implements Initializable {
     }
 
     @FXML
-    private void nextQuestion() {
-        if(cauHienTai < listLuyenNghe.size()-1){
-            if (rdA.isSelected()) {
-                dapAn = "A";
-            } else if (rdB.isSelected()) {
-                dapAn = "B";
-            } else if (rdC.isSelected()) {
-                dapAn = "C";
-            } else if (rdD.isSelected()) {
-                dapAn = "D";
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Lưu ý!!");
-                alert.setContentText("Chưa chọn đáp án!!");
-                alert.showAndWait();
-            }
-            if(group.getSelectedToggle()!=null){
+    private void nextQuestion() {    
+        if(cauHienTai == listLuyenNghe.size()-1)
+            btnTinhDiem.setVisible(true);
+        if(cauHienTai < listLuyenNghe.size()-1 && radioGroup.getSelectedToggle() != null){
+            btnPreviousQuestion.setVisible(true);
             cauHienTai++;
-            btnPlay.setText("PLAY");
-            rdA.setSelected(false);
-            rdB.setSelected(false);
-            rdC.setSelected(false);
-            rdD.setSelected(false);
-            txtCauSo.setText("Question " + String.valueOf(cauHienTai+1) + ":");
-            loadMedia();  
-            }
-        } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Lưu ý!!");
-                alert.setContentText("Hết câu hỏi!!");
-                alert.showAndWait();
-        }
-    }       
+            getCurrent();
+            loadMedia();
+        }  
+    } 
+    @FXML
+    private void previousQuestion(){
+        if(cauHienTai > 0 && radioGroup.getSelectedToggle() != null){
+            cauHienTai--;
+            getCurrent();
+            loadMedia();
+        }  
+    }
     @FXML
     private void tinhDiem() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
-        String thongbao = "Bạn đã hoàn thành bài thi với số điểm là:" + diem;
+        String thongbao = "Bạn đã hoàn thành bài thi với số điểm là: " ;
         alert.setContentText(thongbao);
         alert.showAndWait();
+    }
+    @FXML
+    public void quayVe() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnTinhDiem.getScene().getWindow();
+        currentStage.close();
     }
 }

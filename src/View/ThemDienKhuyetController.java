@@ -5,17 +5,24 @@
  */
 package View;
 
-import Model.ConnectionUtils;
+import Model.HibernateUtilDienKhuyet;
+import Model.DienKhuyet;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * FXML Controller class
@@ -30,9 +37,11 @@ public class ThemDienKhuyetController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        cbDapAnDienKhuyetDung.getItems().removeAll(cbDapAnDienKhuyetDung.getItems());
+        cbDapAnDienKhuyetDung.getItems().addAll("A", "B", "C", "D");
     }    
     @FXML
-    private TextArea txtCauHoiDienKhuyet;
+    private TextField txtCauHoiDienKhuyet;
     @FXML
     private TextField txtDapAnDienKhuyetA;
     @FXML
@@ -42,44 +51,33 @@ public class ThemDienKhuyetController implements Initializable {
     @FXML
     private TextField txtDapAnDienKhuyetD;
     @FXML
-    private TextField txtDapAnDienKhuyetDung;
+    private ComboBox cbDapAnDienKhuyetDung;
     @FXML
-    private void onThemCauHoiDienKhuyet(ActionEvent event)throws ClassNotFoundException,
-          SQLException{
-        // Lấy ra kết nối tới cơ sở dữ liệu.
-        
-        Connection connection = ConnectionUtils.getMyConnection();
-        Statement statement = connection.createStatement();
-        String CauHoi = "'"+txtCauHoiDienKhuyet.getText()+"'";
-        String DapAn1 = "'"+txtDapAnDienKhuyetA.getText()+"'";
-        String DapAn2 = "'"+txtDapAnDienKhuyetB.getText()+"'";
-        String DapAn3 = "'"+txtDapAnDienKhuyetC.getText()+"'";
-        String DapAn4 = "'"+txtDapAnDienKhuyetD.getText()+"'";
-        int DapAnDung = -1;
-        switch(txtDapAnDienKhuyetDung.getText()){
-            case "A" : DapAnDung = 0;
-            break;
-            case "B": DapAnDung = 1;
-            break;
-            case "C": DapAnDung = 2;
-            break;
-            case "D": DapAnDung = 3;
+    private void onThemCauHoiDienKhuyet(ActionEvent event){
+          SessionFactory factory = HibernateUtilDienKhuyet.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        DienKhuyet dienKhuyet = new DienKhuyet();
+        dienKhuyet.setCauHoi(txtCauHoiDienKhuyet.getText().trim());
+        dienKhuyet.setDapAn1(txtDapAnDienKhuyetA.getText().trim());
+        dienKhuyet.setDapAn2(txtDapAnDienKhuyetB.getText().trim());
+        dienKhuyet.setDapAn3(txtDapAnDienKhuyetC.getText().trim());
+        dienKhuyet.setDapAn4(txtDapAnDienKhuyetD.getText().trim());
+        dienKhuyet.setDapAnDung(cbDapAnDienKhuyetDung.getSelectionModel().getSelectedItem().toString());
+        session.save(dienKhuyet);
+        trans.commit();
+        Criteria criteria = session.createCriteria(DienKhuyet.class);
+        criteria.add(Restrictions.eq("cauHoi", txtCauHoiDienKhuyet.getText().trim()));
+        List result = criteria.list();
+        Iterator iterator = result.iterator();
+        if (iterator.hasNext()) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Thêm câu hỏi thành công");
+            a.show();
+        } else {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Thêm câu hỏi thất bại");
+            a.show();
         }
-        
-        
-        String sql = "INSERT INTO dienkhuyet(CauHoi, DapAn1, DapAn2, DapAn3, DapAn4,DapAnDung)"
-                + "VALUES ("+CauHoi
-                + ", " + DapAn1
-                + ", " + DapAn2
-                + ", " + DapAn3
-                + ", " + DapAn4
-                + ", " + DapAnDung + ")";
- 
-      // Thực thi câu lệnh.
-      // executeUpdate(String) sử dụng cho các loại lệnh Insert,Update,Delete.
-      int rowCount = statement.executeUpdate(sql);
- 
-      // In ra số dòng được trèn vào bởi câu lệnh trên.
-      System.out.println("Row Count affected = " + rowCount);
     }
 }
