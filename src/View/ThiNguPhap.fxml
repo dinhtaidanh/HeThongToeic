@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.web.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -9,25 +10,121 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="pane" prefHeight="386.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiNguPhapController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="752.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiNguPhapController">
    <children>
-      <WebView fx:id="cauHoi" layoutX="15.0" layoutY="67.0" prefHeight="85.0" prefWidth="528.0" />
-      <Button fx:id="btnSau" layoutX="453.0" layoutY="296.0" mnemonicParsing="false" onAction="#onNextQuestion" text="Câu tiếp theo" />
-      <Button fx:id="btnTruoc" layoutX="14.0" layoutY="296.0" mnemonicParsing="false" onAction="#onPreviousQuestion" text="Câu trước" />
-      <Button fx:id="btnTinhDiem" layoutX="243.0" layoutY="347.0" mnemonicParsing="false" onAction="#onTinhDiemNguPhap" text="Tính điểm" />
-      <RadioButton fx:id="rdA" layoutX="17.0" layoutY="159.0" mnemonicParsing="false" text="A. " />
-      <RadioButton fx:id="rdB" layoutX="16.0" layoutY="191.0" mnemonicParsing="false" text="B. " />
-      <RadioButton fx:id="rdC" layoutX="16.0" layoutY="219.0" mnemonicParsing="false" text="C. " />
-      <RadioButton fx:id="rdD" layoutX="16.0" layoutY="249.0" mnemonicParsing="false" text="D. " />
-      <Label fx:id="lblCauSo" layoutX="17.0" layoutY="41.0" text="Câu số ">
-         <font>
-            <Font name="Times New Roman Bold" size="13.0" />
-         </font>
-      </Label>
-      <Text layoutX="34.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn lỗi sai từ các đáp án A, B, C và D">
-         <font>
-            <Font name="System Italic" size="15.0" />
-         </font>
-      </Text>
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text fill="#190b72" strokeType="OUTSIDE" strokeWidth="0.0" text="LUYỆN THI NGỮ PHÁP">
+               <font>
+                  <Font name="Tahoma Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn lỗi sai từ các đáp án A, B, C và D">
+               <font>
+                  <Font name="Tahoma Bold" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="712.0">
+         <children>
+            <Label fx:id="lblCauSo" text="Câu số ">
+               <font>
+                  <Font name="Tahoma Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="129.0" prefWidth="712.0">
+         <children>
+            <WebView fx:id="cauHoi" pickOnBounds="true" prefHeight="57.0" prefWidth="729.0" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER_LEFT" spacing="15.0">
+         <children>
+            <RadioButton fx:id="rdA" mnemonicParsing="false" text="A. " />
+            <RadioButton fx:id="rdB" mnemonicParsing="false" text="B. " />
+            <RadioButton fx:id="rdC" mnemonicParsing="false" text="C. " />
+            <RadioButton fx:id="rdD" mnemonicParsing="false" text="D. " />
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" />
+         </VBox.margin>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="712.0">
+         <children>
+            <Button fx:id="btnTruoc" mnemonicParsing="false" onAction="#onPreviousQuestion" prefHeight="44.0" prefWidth="131.0" styleClass="warning" text="Câu trước" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Prev_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnSau" mnemonicParsing="false" onAction="#onNextQuestion" prefHeight="44.0" prefWidth="143.0" styleClass="warning" text="Câu tiếp theo" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="300.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Next_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="39.0">
+         <children>
+            <Button fx:id="btnQuayVe" mnemonicParsing="false" onAction="#quayVe" prefHeight="44.0" prefWidth="115.0" styleClass="primary" text="Quay về" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/DoublePrev_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnTinhDiem" mnemonicParsing="false" onAction="#onTinhDiemNguPhap" prefHeight="44.0" prefWidth="121.0" styleClass="danger" text="Tính điểm" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/CalculateNow_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </HBox>
    </children>
-</Pane>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

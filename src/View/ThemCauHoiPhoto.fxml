@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,31 +9,81 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="285.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThemCauHoiPhotoController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="600.0" spacing="10.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThemCauHoiPhotoController">
    <children>
-      <Label layoutX="37.0" layoutY="52.0" prefHeight="34.0" prefWidth="54.0" text="Audio">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="37.0" layoutY="98.0" prefHeight="34.0" prefWidth="54.0" text="Photo">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="37.0" layoutY="150.0" prefHeight="34.0" prefWidth="62.0" text="Đáp án">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtAudio" layoutX="109.0" layoutY="57.0" prefHeight="25.0" prefWidth="421.0" />
-      <TextField fx:id="txtPhoto" layoutX="109.0" layoutY="103.0" prefHeight="25.0" prefWidth="421.0" />
-      <RadioButton fx:id="rad1" layoutX="109.0" layoutY="159.0" mnemonicParsing="false" onAction="#load" text="A" />
-      <RadioButton fx:id="rad2" layoutX="221.0" layoutY="159.0" mnemonicParsing="false" onAction="#load" text="B" />
-      <RadioButton fx:id="rad3" layoutX="335.0" layoutY="159.0" mnemonicParsing="false" onAction="#load" text="C" />
-      <RadioButton fx:id="rad4" layoutX="436.0" layoutY="159.0" mnemonicParsing="false" onAction="#load" text="D" />
-      <Button fx:id="btAudio" layoutX="534.0" layoutY="57.0" mnemonicParsing="false" onAction="#audio" prefHeight="25.0" prefWidth="40.0" text="..." />
-      <Button fx:id="btPhoto" layoutX="534.0" layoutY="103.0" mnemonicParsing="false" onAction="#photo" prefHeight="25.0" prefWidth="40.0" text="..." />
-      <Button fx:id="btThem" layoutX="268.0" layoutY="224.0" mnemonicParsing="false" onAction="#them" prefHeight="25.0" prefWidth="54.0" text="Thêm" />
+      <HBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="580.0">
+         <children>
+            <Text fill="#1a1c8d" strokeType="OUTSIDE" strokeWidth="0.0" text="THÊM CÂU HỎI NGHE PHOTO">
+               <font>
+                  <Font name="Tahoma Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="5.0">
+         <children>
+            <Label prefHeight="34.0" prefWidth="54.0" text="Photo:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtPhoto" prefHeight="25.0" prefWidth="421.0" />
+            <Button fx:id="btPhoto" mnemonicParsing="false" onAction="#photo" prefHeight="32.0" prefWidth="79.0" styleClass="primary" text="Browse..." />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="5.0">
+         <children>
+            <Label prefHeight="34.0" prefWidth="54.0" text="Audio:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAudio" prefHeight="25.0" prefWidth="421.0" />
+            <Button fx:id="btAudio" mnemonicParsing="false" onAction="#audio" prefHeight="32.0" prefWidth="77.0" styleClass="primary" text="Browse..." />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <Label prefHeight="34.0" prefWidth="62.0" text="Đáp án:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="rad1" mnemonicParsing="false" selected="true" text="A">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radioGroup" />
+               </toggleGroup>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></RadioButton>
+            <RadioButton fx:id="rad2" mnemonicParsing="false" text="B" toggleGroup="$radioGroup">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></RadioButton>
+            <RadioButton fx:id="rad3" mnemonicParsing="false" text="C" toggleGroup="$radioGroup">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></RadioButton>
+            <RadioButton fx:id="rad4" mnemonicParsing="false" text="D" toggleGroup="$radioGroup">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></RadioButton>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="580.0">
+         <children>
+            <Button fx:id="btThem" mnemonicParsing="false" onAction="#them" prefHeight="42.0" prefWidth="114.0" styleClass="success" text="Thêm">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Add_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

@@ -7,9 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="228.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="228.0" prefWidth="387.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
     <children>
-        <Button fx:id="btnDangNhap" layoutX="161.0" layoutY="161.0" onAction="#login" text="Đăng nhập">
+        <Button fx:id="btnDangNhap" layoutX="161.0" layoutY="161.0" onAction="#login" styleClass="success" text="Đăng nhập">
          <font>
             <Font size="15.0" />
          </font></Button>
@@ -38,11 +38,10 @@
          <font>
             <Font size="15.0" />
          </font></PasswordField>
-      <Button fx:id="btnRegister" layoutX="264.0" layoutY="161.0" onAction="#register" prefHeight="31.0" prefWidth="85.0" text="Đăng kí">
+      <Button fx:id="btnRegister" layoutX="264.0" layoutY="161.0" onAction="#register" prefHeight="31.0" prefWidth="85.0" styleClass="primary" text="Đăng kí">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Hyperlink fx:id="hpQuenMatKhau" layoutX="28.0" layoutY="192.0" onAction="#quenMatKhau" text="Quên mật khẩu ?" textFill="#1891f5" />
     </children>
 </AnchorPane>

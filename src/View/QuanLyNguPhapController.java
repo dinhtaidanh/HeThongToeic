@@ -188,7 +188,8 @@ public class QuanLyNguPhapController implements Initializable {
         try{
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
         Stage stage = new Stage();
-        Scene scene = new Scene(root);  
+        Scene scene = new Scene(root); 
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
         }catch (IOException e) {

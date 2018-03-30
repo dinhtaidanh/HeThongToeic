@@ -23,6 +23,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/View/DangNhap.fxml"));        
         Scene scene = new Scene(root);     
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
         stage.show();
     }

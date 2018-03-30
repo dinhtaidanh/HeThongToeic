@@ -135,9 +135,7 @@ public class QuanLyDienKhuyetController implements Initializable {
         GridPane p = new GridPane();
         p.setPadding(new Insets(20));
         p.setVgap(20);
-        HTMLEditor htmlEditor = new HTMLEditor();
-        htmlEditor.setHtmlText(cauDuocChon.getCauHoi());
-        htmlEditor.setMaxHeight(200);
+        TextField txtCauHoi = new TextField(cauDuocChon.getCauHoi());       
         TextField txtDapAn1 = new TextField(cauDuocChon.getDapAn1());
         TextField txtDapAn2 = new TextField(cauDuocChon.getDapAn2());
         TextField txtDapAn3 = new TextField(cauDuocChon.getDapAn3());
@@ -153,7 +151,7 @@ public class QuanLyDienKhuyetController implements Initializable {
             Transaction trans = session.beginTransaction();
             DienKhuyet nguPhap = new DienKhuyet();
             nguPhap.setId(cauDuocChon.getId());
-            nguPhap.setCauHoi(htmlEditor.getHtmlText());
+            nguPhap.setCauHoi(txtCauHoi.getText());
             nguPhap.setDapAn1(txtDapAn1.getText());
             nguPhap.setDapAn2(txtDapAn2.getText());
             nguPhap.setDapAn3(txtDapAn3.getText());
@@ -170,7 +168,7 @@ public class QuanLyDienKhuyetController implements Initializable {
         p.add(new Label("Đáp án C: "),0,3);
         p.add(new Label("Đáp án D: "),0,4);
         p.add(new Label("Đáp án đúng: "),0,5);
-        p.add(htmlEditor,1,0);
+        p.add(txtCauHoi,1,0);
         p.add(txtDapAn1,1,1);
         p.add(txtDapAn2,1,2);
         p.add(txtDapAn3,1,3);
@@ -190,6 +188,7 @@ public class QuanLyDienKhuyetController implements Initializable {
         Stage stage = new Stage();
         Scene scene = new Scene(root);  
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();    
         }catch (IOException e) {
         }

@@ -24,7 +24,6 @@ public class LuyenNghe implements Serializable {
     private String linkAudio;
     @Column(name="LinkPhoto", length = 1000)
     private String linkPhoto;
-
     /**
      * @return the id
      */
@@ -80,6 +79,5 @@ public class LuyenNghe implements Serializable {
     public void setLinkPhoto(String linkPhoto) {
         this.linkPhoto = linkPhoto;
     }
-    
-    
+ 
 }

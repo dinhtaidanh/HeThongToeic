@@ -55,6 +55,7 @@ public class DangNhapController implements Initializable {
             Scene scene = new Scene(root);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
             Stage currentStage = (Stage) btnRegister.getScene().getWindow();
             currentStage.close();
@@ -85,6 +86,7 @@ public class DangNhapController implements Initializable {
             Stage stage = new Stage();
             Scene scene = new Scene(root);  
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
             Stage currentStage = (Stage) btnRegister.getScene().getWindow();
@@ -96,6 +98,7 @@ public class DangNhapController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("ManHinhUser.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);  
+            stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.show();
@@ -120,6 +123,7 @@ public class DangNhapController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("DangKi.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
+            stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.show();

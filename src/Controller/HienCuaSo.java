@@ -6,6 +6,8 @@
 package Controller;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,13 +19,15 @@ import javafx.stage.Stage;
  */
 public class HienCuaSo{
     public void showWindow(String path){
-        try{
-        Parent root = FXMLLoader.load(getClass().getResource(path));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);  
-        stage.setScene(scene);
-        stage.show();    
-        }catch (IOException e) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(path));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setResizable(false);
+            stage.setScene(scene);            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(HienCuaSo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

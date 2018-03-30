@@ -6,13 +6,19 @@
 package View;
 
 import Model.ConnectionUtils;
+import Model.HibernateUtilLuyenNghe;
+import Model.LuyenNghe;
 import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,9 +26,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * FXML Controller class
@@ -43,16 +56,18 @@ public class ThemCauHoiPhotoController implements Initializable {
     @FXML
     private Button btPhoto;
     @FXML
-    private RadioButton rad1;
+    private RadioButton rdA;
     @FXML
-    private RadioButton rad2;
+    private RadioButton rdB;
     @FXML
-    private RadioButton rad3;
+    private RadioButton rdC;
     @FXML
-    private RadioButton rad4;
-    String dapan = "";
+    private RadioButton rdD;
     @FXML
-    private void audio(ActionEvent event) {
+    private ToggleGroup radioGroup;
+    private static String dapAn = "";
+    @FXML
+    private void audio(ActionEvent event) throws NullPointerException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new ExtensionFilter("MP3 Files", "*.mp3"));
         fileChooser.getExtensionFilters().add(new ExtensionFilter("AIFF Files", "*.aiff"));
@@ -62,7 +77,7 @@ public class ThemCauHoiPhotoController implements Initializable {
         txtAudio.setText(selectedFile.getAbsolutePath().replace("\\", "/"));
     }
     @FXML
-    private void photo(ActionEvent event) {
+    private void photo(ActionEvent event) throws NullPointerException{
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new ExtensionFilter("JPG Files", "*.jpg"));
         fileChooser.getExtensionFilters().add(new ExtensionFilter("GIF Files", "*.gif"));
@@ -72,55 +87,45 @@ public class ThemCauHoiPhotoController implements Initializable {
     }
     @FXML
     private void them(ActionEvent event) {
-         try{
-                Connection connection = ConnectionUtils.getMyConnection();             
-                Statement statement = connection.createStatement();
-                String sql = "INSERT INTO luyennghe(DapAn,LinkAudio,LinkPhoto) VALUES ('"+dapan+"','"+ txtAudio.getText()+"','"+ txtPhoto.getText()+"' )";                    
-                int rowCount = 0;
-                rowCount = statement.executeUpdate(sql);
-                if(rowCount != 0)
-                {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setContentText("Thêm thành công !");
-                    alert.showAndWait();
-
-                }
-                else{
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setContentText("Lỗi thêm câu hỏi!");
-                    alert.showAndWait();
-                }
-            }
-            catch (ClassNotFoundException | SQLException e) {
-                // TODO: handle exception
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setContentText("Lỗi kết nối !");
-                alert.showAndWait();
-            }
-    }
-    @FXML
-    private void load(ActionEvent event) {
-        ToggleGroup group = new ToggleGroup();
-        rad1.setToggleGroup(group);
-        rad2.setToggleGroup(group);
-        rad3.setToggleGroup(group);
-        rad4.setToggleGroup(group); 
-        if(rad1.isSelected()){
-            dapan = "A";
-        }else if(rad2.isSelected()){
-            dapan = "B";
-        }else if(rad3.isSelected()){
-            dapan = "C";
-        }else{
-            dapan = "D";
+         SessionFactory factory = HibernateUtilLuyenNghe.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        LuyenNghe luyenNghe = new LuyenNghe();
+        luyenNghe.setLinkAudio(txtAudio.getText().trim());
+        luyenNghe.setLinkPhoto(txtPhoto.getText().trim());        
+        luyenNghe.setDapAn(dapAn);
+        session.save(luyenNghe);
+        trans.commit();
+        Criteria criteria = session.createCriteria(LuyenNghe.class);
+        criteria.add(Restrictions.eq("linkAudio", txtAudio.getText().trim()));
+        List result = criteria.list();
+        Iterator iterator = result.iterator();
+        if (iterator.hasNext()) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Thêm câu hỏi thành công");
+            a.show();
+            Stage currentStage = (Stage) btAudio.getScene().getWindow();
+            currentStage.close();
+        } else {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Thêm câu hỏi thất bại");
+            a.show();
         }
-    }
+    }  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+           @Override
+           public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+               // Có lựa chọn
+               if (radioGroup.getSelectedToggle() != null) {
+                   RadioButton rd = (RadioButton) radioGroup.getSelectedToggle();
+                   if(rd.getText()!=null){
+                       dapAn = rd.getText();
+                   }
+               }                         
+           }
+       });
     }    
     
 }
