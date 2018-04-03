@@ -187,10 +187,17 @@ public class LuyenNgheController implements Initializable {
     }
     @FXML
     public void quayVe() throws IOException {
+<<<<<<< HEAD
         Parent root = FXMLLoader.load(getClass().getResource("ManHinhChinh.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setResizable(false);
+=======
+        Parent root = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.initModality(Modality.APPLICATION_MODAL);
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
         stage.setScene(scene);
         stage.show();
         Stage currentStage = (Stage) btnTinhDiem.getScene().getWindow();

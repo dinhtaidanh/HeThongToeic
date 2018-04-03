@@ -43,7 +43,11 @@
                   <RadioButton fx:id="rdD" mnemonicParsing="false" text="D" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                      <children>
+<<<<<<< HEAD
                         <Button fx:id="btnPreviousQuestion" mnemonicParsing="false" onAction="#previousQuestion" prefHeight="35.0" styleClass="success" text="Câu trước " textFill="WHITE">
+=======
+                        <Button fx:id="btnPreviousQuestion" mnemonicParsing="false" onAction="#previousQuestion" prefHeight="35.0" styleClass="action-btn" text="Câu trước " textFill="WHITE">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -58,7 +62,11 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+<<<<<<< HEAD
                         <Button fx:id="btnNextQuestion" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="35.0" styleClass="success" text="Câu tiếp theo" textFill="WHITE">
+=======
+                        <Button fx:id="btnNextQuestion" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="35.0" styleClass="action-btn" text="Câu tiếp theo" textFill="WHITE">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -84,7 +92,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="388.0" spacing="10.0">
                      <children>
+<<<<<<< HEAD
                         <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playAudio" prefHeight="32.0" prefWidth="87.0" styleClass="warning" text="PLAY" textFill="WHITE">
+=======
+                        <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playAudio" prefHeight="35.0" prefWidth="97.0" styleClass="warning" text="PLAY" textFill="WHITE">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -111,7 +123,11 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="52.0" prefWidth="774.0">
          <children>
+<<<<<<< HEAD
             <Button fx:id="btnReturn" onAction="#quayVe" prefHeight="39.0" prefWidth="93.0" styleClass="primary" text="Quay về" textFill="WHITE">
+=======
+            <Button fx:id="btnReturn" onAction="#quayVe" prefHeight="35.0" styleClass="primary" text="Quay về" textFill="WHITE">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
                <font>
                   <Font name="Tahoma Bold" size="15.0" />
                </font>
@@ -129,7 +145,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+<<<<<<< HEAD
             <Button fx:id="btnTinhDiem" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tinhDiem" prefHeight="38.0" prefWidth="111.0" styleClass="danger" text="TÍNH ĐIỂM" textFill="WHITE">
+=======
+            <Button fx:id="btnTinhDiem" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tinhDiem" prefHeight="35.0" styleClass="success" text="TÍNH ĐIỂM" textFill="WHITE">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

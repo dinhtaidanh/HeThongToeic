@@ -8,6 +8,10 @@ package View;
 import Model.HibernateUtilNguPhap;
 import Model.NguPhap;
 import java.net.URL;
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
