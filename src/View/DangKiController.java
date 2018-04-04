@@ -169,11 +169,8 @@ public class DangKiController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
-<<<<<<< HEAD
         stage.setResizable(false);
-=======
         stage.initModality(Modality.APPLICATION_MODAL);
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
         stage.setScene(scene);
         stage.show();
         Stage currentStage = (Stage) btDangKi.getScene().getWindow();

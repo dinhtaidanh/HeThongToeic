@@ -6,15 +6,8 @@
 package View;
 
 import Controller.HienCuaSo;
-import Model.Cau;
 import Model.HibernateUtilNguPhap;
-import Model.HibernateUtilUser;
-import Model.ListCauHoi;
-<<<<<<< HEAD
 import Model.NguPhap;
-import Model.User;
-=======
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,12 +30,9 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-=======
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
 
 /**
  * FXML Controller class

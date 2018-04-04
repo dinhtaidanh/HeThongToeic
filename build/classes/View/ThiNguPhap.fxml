@@ -10,7 +10,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<<<<<<< HEAD
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="752.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiNguPhapController">
+=======
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiNguPhapController">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -30,7 +35,11 @@
             </Text>
          </children>
       </HBox>
+<<<<<<< HEAD
       <HBox prefHeight="34.0" prefWidth="712.0">
+=======
+      <HBox prefHeight="100.0" prefWidth="712.0">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
          <children>
             <Label fx:id="lblCauSo" text="Câu số ">
                <font>
@@ -41,6 +50,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="129.0" prefWidth="712.0">
          <children>
+<<<<<<< HEAD
             <WebView fx:id="cauHoi" pickOnBounds="true" prefHeight="57.0" prefWidth="729.0" />
          </children>
       </HBox>
@@ -58,6 +68,34 @@
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="712.0">
          <children>
             <Button fx:id="btnTruoc" mnemonicParsing="false" onAction="#onPreviousQuestion" prefHeight="44.0" prefWidth="131.0" styleClass="warning" text="Câu trước" textFill="WHITE">
+=======
+            <WebView fx:id="cauHoi" prefHeight="57.0" prefWidth="679.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+         <children>
+            <RadioButton fx:id="rdA" mnemonicParsing="false" text="A. " />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+         <children>
+            <RadioButton fx:id="rdB" mnemonicParsing="false" text="B. " />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+         <children>
+            <RadioButton fx:id="rdC" mnemonicParsing="false" text="C. " />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+         <children>
+            <RadioButton fx:id="rdD" mnemonicParsing="false" text="D. " />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="712.0">
+         <children>
+            <Button fx:id="btnTruoc" mnemonicParsing="false" onAction="#onPreviousQuestion" prefHeight="40.0" prefWidth="161.0" style="-fx-background-color: green;" text="Câu trước" textFill="WHITE">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
@@ -72,9 +110,15 @@
                   </ImageView>
                </graphic>
             </Button>
+<<<<<<< HEAD
             <Button fx:id="btnSau" mnemonicParsing="false" onAction="#onNextQuestion" prefHeight="44.0" prefWidth="143.0" styleClass="warning" text="Câu tiếp theo" textFill="WHITE">
                <HBox.margin>
                   <Insets left="300.0" />
+=======
+            <Button fx:id="btnSau" mnemonicParsing="false" onAction="#onNextQuestion" prefHeight="40.0" prefWidth="194.0" style="-fx-background-color: green;" text="Câu tiếp theo" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="400.0" />
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
                </HBox.margin>
                <font>
                   <Font name="Tahoma Bold" size="12.0" />
@@ -94,7 +138,11 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="39.0">
          <children>
+<<<<<<< HEAD
             <Button fx:id="btnQuayVe" mnemonicParsing="false" onAction="#quayVe" prefHeight="44.0" prefWidth="115.0" styleClass="primary" text="Quay về" textFill="WHITE">
+=======
+            <Button fx:id="btnQuayVe" mnemonicParsing="false" onAction="#quayVe" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: green;" text="Quay về" textFill="WHITE">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
                <font>
                   <Font name="Tahoma Bold" size="12.0" />
                </font>
@@ -106,7 +154,11 @@
                   </ImageView>
                </graphic>
             </Button>
+<<<<<<< HEAD
             <Button fx:id="btnTinhDiem" mnemonicParsing="false" onAction="#onTinhDiemNguPhap" prefHeight="44.0" prefWidth="121.0" styleClass="danger" text="Tính điểm" textFill="WHITE">
+=======
+            <Button fx:id="btnTinhDiem" mnemonicParsing="false" onAction="#onTinhDiemNguPhap" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: green;" text="Tính điểm" textFill="WHITE">
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
                <font>
                   <Font name="Tahoma Bold" size="12.0" />
                </font>
@@ -119,9 +171,12 @@
                </graphic>
             </Button>
          </children>
+<<<<<<< HEAD
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
+=======
+>>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
       </HBox>
    </children>
    <padding>
