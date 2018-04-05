@@ -18,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.web.HTMLEditor;
+import javafx.stage.Stage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -35,7 +36,7 @@ public class ThemNguPhapController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO     
         cbDapAnNguPhapDung.getItems().removeAll(cbDapAnNguPhapDung.getItems());
-        cbDapAnNguPhapDung.getItems().addAll("A", "B", "C", "D");
+        cbDapAnNguPhapDung.getItems().addAll("A", "B", "C", "D");    
     }
     @FXML
     private TextField txtDapAnNguPhapA;
@@ -77,5 +78,7 @@ public class ThemNguPhapController implements Initializable {
             a.setContentText("Thêm câu hỏi thất bại");
             a.show();
         }
+        Stage currentStage = (Stage) txtDapAnNguPhapA.getScene().getWindow();
+        currentStage.close();
     }
 }

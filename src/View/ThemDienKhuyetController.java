@@ -15,9 +15,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,12 +35,15 @@ public class ThemDienKhuyetController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         cbDapAnDienKhuyetDung.getItems().removeAll(cbDapAnDienKhuyetDung.getItems());
         cbDapAnDienKhuyetDung.getItems().addAll("A", "B", "C", "D");
-    }    
+    }  
+    @FXML
+    private Button btnThem;
     @FXML
     private TextField txtCauHoiDienKhuyet;
     @FXML
@@ -79,5 +83,7 @@ public class ThemDienKhuyetController implements Initializable {
             a.setContentText("Thêm câu hỏi thất bại");
             a.show();
         }
+        Stage currentStage = (Stage) btnThem.getScene().getWindow();
+        currentStage.close();
     }
 }

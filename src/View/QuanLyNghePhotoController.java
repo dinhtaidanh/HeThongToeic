@@ -36,6 +36,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -131,11 +132,14 @@ public class QuanLyNghePhotoController implements Initializable {
         //Text text = new Text(tbvListCauHoi.getSelectionModel().getSelectedItem().getCauHoi());
         cauDuocChon = tbvListCauHoi.getSelectionModel().getSelectedItem();
         Stage s = new Stage();
+        s.initModality(Modality.APPLICATION_MODAL);
+        s.setResizable(false);
         GridPane p = new GridPane();
         p.setPadding(new Insets(20));
         p.setVgap(20);      
         TextField txtLinkAudio = new TextField(cauDuocChon.getLinkAudio());
-        TextField txtLinkPhoto = new TextField(cauDuocChon.getLinkPhoto());     
+        TextField txtLinkPhoto = new TextField(cauDuocChon.getLinkPhoto()); 
+        txtLinkAudio.setMinWidth(400);
         ComboBox cbDapAnLuyenNgheDung = new ComboBox();
         cbDapAnLuyenNgheDung.getItems().addAll("A", "B", "C","D");
         cbDapAnLuyenNgheDung.setValue(cauDuocChon.getDapAn());
@@ -154,7 +158,8 @@ public class QuanLyNghePhotoController implements Initializable {
             session.update(luyenNghe);
             trans.commit();
             session.close();
-            
+            Stage currentStage = (Stage) btnLuu.getScene().getWindow();
+            currentStage.close();
         });
         p.add(new Label("Link audio: "),0,0);
         p.add(new Label("Link photo: "),0,1);
@@ -164,7 +169,7 @@ public class QuanLyNghePhotoController implements Initializable {
         p.add(txtLinkPhoto,1,1);
         p.add(cbDapAnLuyenNgheDung,1,2);       
         p.add(btnLuu, 1, 3);
-        Scene scene = new Scene(p,1000,500);
+        Scene scene = new Scene(p,525,200);
         s.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
         s.setTitle("Chỉnh sửa câu hỏi nghe photo");
         s.setScene(scene);
@@ -175,7 +180,8 @@ public class QuanLyNghePhotoController implements Initializable {
         try{
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
         Stage stage = new Stage();
-        Scene scene = new Scene(root);  
+        Scene scene = new Scene(root); 
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -205,7 +211,6 @@ public class QuanLyNghePhotoController implements Initializable {
     @FXML
     private void onReturn(){       
         closeCurrentStage(); 
-        showStage("/View/ManHinhChinh.fxml");
     }
     @FXML
     private void onRefreshList(){

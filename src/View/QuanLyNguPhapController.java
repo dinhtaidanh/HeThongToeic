@@ -37,7 +37,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.HTMLEditor;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -132,6 +134,8 @@ public class QuanLyNguPhapController implements Initializable {
         //Text text = new Text(tbvListCauHoi.getSelectionModel().getSelectedItem().getCauHoi());
         cauDuocChon = tbvListCauHoi.getSelectionModel().getSelectedItem();
         Stage s = new Stage();
+        s.initModality(Modality.APPLICATION_MODAL);
+        s.setResizable(false);
         GridPane p = new GridPane();
         p.setPadding(new Insets(20));
         p.setVgap(20);
@@ -162,7 +166,8 @@ public class QuanLyNguPhapController implements Initializable {
             session.update(nguPhap);
             trans.commit();
             session.close();
-            
+            Stage currentStage = (Stage) btnLuu.getScene().getWindow();
+            currentStage.close();
         });
         p.add(new Label("Câu hỏi: "),0,0);
         p.add(new Label("Đáp án A: "),0,1);
@@ -177,7 +182,7 @@ public class QuanLyNguPhapController implements Initializable {
         p.add(txtDapAn4,1,4);
         p.add(cbDapAnNguPhapDung,1,5);
         p.add(btnLuu, 1, 6);
-        Scene scene = new Scene(p,1000,500);
+        Scene scene = new Scene(p,950,500);
         s.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
         s.setTitle("Chỉnh sửa câu hỏi ngữ pháp");
         s.setScene(scene);
@@ -188,7 +193,8 @@ public class QuanLyNguPhapController implements Initializable {
         try{
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
         Stage stage = new Stage();
-        Scene scene = new Scene(root); 
+        Scene scene = new Scene(root);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -225,7 +231,6 @@ public class QuanLyNguPhapController implements Initializable {
     @FXML
     private void onReturn(){       
         closeCurrentStage(); 
-        showStage("/View/ManHinhChinh.fxml");
     }
     @FXML
     private void onRefreshList(){

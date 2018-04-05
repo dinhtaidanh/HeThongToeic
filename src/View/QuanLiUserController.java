@@ -7,6 +7,7 @@ package View;
 
 import Controller.HienCuaSo;
 import Model.HibernateUtilUser;
+import Model.MaHoaPass;
 import Model.User;
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -68,7 +70,7 @@ public class QuanLiUserController implements Initializable {
     @FXML
     private RadioButton radQuyen2;
     @FXML
-    private TextField txtMatKhau;
+    private PasswordField txtMatKhau;
     @FXML
     private Button btCapNhat;
     @FXML
@@ -79,7 +81,7 @@ public class QuanLiUserController implements Initializable {
     String gioiTinh = "";
     @FXML
     private TableView<User> tbvListUser;
-    private ArrayList<User> arrUser = new ArrayList<User>();
+    private ArrayList<User> arrUser = new ArrayList<>();
 
     @FXML
     private void capNhat(ActionEvent event) {
@@ -115,13 +117,13 @@ public class QuanLiUserController implements Initializable {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         User user = new User();
-        user.setId(Integer.parseInt(lbId.getText()));
-        user.setUsername(txtTenDangNhap.getText());
-        user.setPassword(txtMatKhau.getText());
+        user.setId(Integer.parseInt(lbId.getText().trim()));
+        user.setUsername(txtTenDangNhap.getText().trim());
+        user.setPassword(MaHoaPass.maHoa(txtMatKhau.getText().trim()));
         user.setQuyen(quyen);
-        user.setHoTen(txtHoTen.getText());
-        user.setEmail(txtEmail.getText());
-        user.setDiaChi(txtDiaChi.getText());
+        user.setHoTen(txtHoTen.getText().trim());
+        user.setEmail(txtEmail.getText().trim());
+        user.setDiaChi(txtDiaChi.getText().trim());
         user.setGioiTinh(gioiTinh);
         session.update(user);
         transaction.commit();
@@ -201,7 +203,7 @@ public class QuanLiUserController implements Initializable {
                     txtHoTen.setText(hoTen);
                     txtEmail.setText(email);
                     txtDiaChi.setText(diaChi);
-                    txtMatKhau.setText(matKhau);
+                    txtMatKhau.setText(MaHoaPass.giaiMa(matKhau));
                     lbId.setText(id);
 
                     if (gioiTinh.equals("Nam")) {
@@ -288,13 +290,7 @@ public class QuanLiUserController implements Initializable {
         return matcher.find();
     }
     @FXML
-    public void quayVe() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ManHinhChinh.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.show();
+    public void quayVe() throws IOException {      
         Stage currentStage = (Stage) btCapNhat.getScene().getWindow();
         currentStage.close();
     }

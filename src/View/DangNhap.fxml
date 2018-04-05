@@ -7,11 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<<<<<<< HEAD
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="228.0" prefWidth="387.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
-=======
 <AnchorPane id="AnchorPane" prefHeight="228.0" prefWidth="387.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DangNhapController">
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
     <children>
         <Button fx:id="btnDangNhap" layoutX="161.0" layoutY="161.0" onAction="#login" styleClass="success" text="Đăng nhập">
          <font>
@@ -47,9 +43,8 @@
             <Font size="15.0" />
          </font>
       </Button>
-<<<<<<< HEAD
-=======
+
+
       <Hyperlink fx:id="hpQuenMatKhau" layoutX="28.0" layoutY="192.0" onAction="#quenMatKhau" styleClass="font-menu-button" text="Quên mật khẩu ?" textFill="#1891f5" />
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
     </children>
 </AnchorPane>

@@ -6,6 +6,7 @@
 package View;
 
 import Model.HibernateUtilUser;
+import Model.MaHoaPass;
 import Model.User;
 import java.io.IOException;
 import java.net.URL;
@@ -109,7 +110,7 @@ public class DangKiController implements Initializable {
             Transaction trans = session.beginTransaction();
             User user = new User();
             user.setUsername(txtTenDangNhap.getText().trim());
-            user.setPassword(txtMatKhau.getText().trim());
+            user.setPassword(MaHoaPass.maHoa(txtMatKhau.getText().trim()));
             user.setQuyen("khach");
             user.setHoTen(txtHoTen.getText().trim());
             user.setDiaChi(txtDiaChi.getText().trim());

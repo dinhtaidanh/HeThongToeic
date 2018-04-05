@@ -5,15 +5,10 @@
  */
 package View;
 
-import Model.ConnectionUtils;
 import Model.HibernateUtilLuyenNghe;
 import Model.LuyenNghe;
 import java.io.File;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -65,24 +60,17 @@ public class ThemCauHoiPhotoController implements Initializable {
     private RadioButton rdD;
     @FXML
     private ToggleGroup radioGroup;
+    FileChooser fileChooserPhoto = new FileChooser();
+    FileChooser fileChooserMedia = new FileChooser(); 
     private static String dapAn = "";
     @FXML
-    private void audio(ActionEvent event) throws NullPointerException {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("MP3 Files", "*.mp3"));
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("AIFF Files", "*.aiff"));
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("WAV Files", "*.wav"));
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("MPEG-4 Files", "*.mpeg-4"));
-        File selectedFile = fileChooser.showOpenDialog(null);
+    private void audio(ActionEvent event) throws NullPointerException {              
+        File selectedFile = fileChooserMedia.showOpenDialog(null);
         txtAudio.setText(selectedFile.getAbsolutePath().replace("\\", "/"));
     }
     @FXML
-    private void photo(ActionEvent event) throws NullPointerException{
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("JPG Files", "*.jpg"));
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("GIF Files", "*.gif"));
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("PNG Files", "*.png"));
-        File selectedFile = fileChooser.showOpenDialog(null);
+    private void photo(ActionEvent event) throws NullPointerException{       
+        File selectedFile = fileChooserPhoto.showOpenDialog(null);
         txtPhoto.setText(selectedFile.getAbsolutePath().replace("\\", "/"));
     }
     @FXML
@@ -111,6 +99,8 @@ public class ThemCauHoiPhotoController implements Initializable {
             a.setContentText("Thêm câu hỏi thất bại");
             a.show();
         }
+        Stage currentStage = (Stage) btAudio.getScene().getWindow();
+        currentStage.close();
     }  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -126,6 +116,17 @@ public class ThemCauHoiPhotoController implements Initializable {
                }                         
            }
        });
+        File file = new File("C:\\Users\\Danh\\Desktop\\HeThongToeic\\src\\media");
+        fileChooserPhoto.setInitialDirectory(file);
+        fileChooserPhoto.getExtensionFilters().add(new ExtensionFilter("JPG Files", "*.jpg"));
+        fileChooserPhoto.getExtensionFilters().add(new ExtensionFilter("GIF Files", "*.gif"));
+        fileChooserPhoto.getExtensionFilters().add(new ExtensionFilter("PNG Files", "*.png"));
+        
+        fileChooserMedia.setInitialDirectory(file);
+        fileChooserMedia.getExtensionFilters().add(new ExtensionFilter("MP3 Files", "*.mp3"));
+        fileChooserMedia.getExtensionFilters().add(new ExtensionFilter("AIFF Files", "*.aiff"));
+        fileChooserMedia.getExtensionFilters().add(new ExtensionFilter("WAV Files", "*.wav"));
+        fileChooserMedia.getExtensionFilters().add(new ExtensionFilter("MPEG-4 Files", "*.mpeg-4"));
     }    
     
 }

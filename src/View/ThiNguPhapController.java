@@ -151,12 +151,7 @@ public class ThiNguPhapController implements Initializable  {
     }
     @FXML
     public void quayVe() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ManHinhChinh.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.show();
+        cauHienTai=0;      
         Stage currentStage = (Stage) lblCauSo.getScene().getWindow();
         currentStage.close();
     }

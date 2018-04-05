@@ -12,162 +12,152 @@
 <?import javafx.scene.layout.*?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="774.0" spacing="10.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LuyenNgheController">
-   <children>
-      <ImageView fitHeight="92.0" fitWidth="774.0" pickOnBounds="true" smooth="false">
-         <image>
-            <Image url="@../Images/top_banner_listen.png" />
-         </image>
-      </ImageView>
-      <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="NGHE HIỂU PHOTO" underline="true">
-         <font>
-            <Font name="Gloucester MT Extra Condensed" size="26.0" />
-         </font>
-      </Text>
-      <HBox prefHeight="370.0" prefWidth="774.0">
-         <children>
-            <VBox prefHeight="395.0" prefWidth="412.0" spacing="20.0">
-               <children>
-                  <Text fx:id="txtCauSo" fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Question xx" wrappingWidth="113.0">
-                     <font>
-                        <Font name="Tahoma Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn đáp án mô tả bức tranh bạn thấy gần đúng nhất.">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Text>
-                  <RadioButton fx:id="rdA" mnemonicParsing="false" text="A" />
-                  <RadioButton fx:id="rdB" mnemonicParsing="false" text="B" />
-                  <RadioButton fx:id="rdC" mnemonicParsing="false" text="C" />
-                  <RadioButton fx:id="rdD" mnemonicParsing="false" text="D" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
-                     <children>
-<<<<<<< HEAD
-                        <Button fx:id="btnPreviousQuestion" mnemonicParsing="false" onAction="#previousQuestion" prefHeight="35.0" styleClass="success" text="Câu trước " textFill="WHITE">
-=======
-                        <Button fx:id="btnPreviousQuestion" mnemonicParsing="false" onAction="#previousQuestion" prefHeight="35.0" styleClass="action-btn" text="Câu trước " textFill="WHITE">
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../Images/Prev_32x32.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-<<<<<<< HEAD
-                        <Button fx:id="btnNextQuestion" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="35.0" styleClass="success" text="Câu tiếp theo" textFill="WHITE">
-=======
-                        <Button fx:id="btnNextQuestion" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="35.0" styleClass="action-btn" text="Câu tiếp theo" textFill="WHITE">
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/Next_32x32.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </VBox>
-            <VBox alignment="CENTER" focusTraversable="true" prefHeight="376.0" prefWidth="328.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="388.0" spacing="10.0">
-                     <children>
-<<<<<<< HEAD
-                        <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playAudio" prefHeight="32.0" prefWidth="87.0" styleClass="warning" text="PLAY" textFill="WHITE">
-=======
-                        <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playAudio" prefHeight="35.0" prefWidth="97.0" styleClass="warning" text="PLAY" textFill="WHITE">
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhấn để nghe đoạn audio">
-                           <font>
-                              <Font name="System Italic" size="16.0" />
-                           </font>
+    <children>
+        <ImageView fitHeight="92.0" fitWidth="774.0" pickOnBounds="true" smooth="false">
+            <image>
+                <Image url="@../Images/top_banner_listen.png" />
+            </image>
+        </ImageView>
+        <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="NGHE HIỂU PHOTO" underline="true">
+            <font>
+                <Font name="Gloucester MT Extra Condensed" size="26.0" />
+            </font>
+        </Text>
+        <HBox prefHeight="370.0" prefWidth="774.0">
+            <children>
+                <VBox prefHeight="395.0" prefWidth="412.0" spacing="20.0">
+                    <children>
+                        <Text fx:id="txtCauSo" fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Question xx" wrappingWidth="162.0">
+                            <font>
+                                <Font name="Tahoma Bold" size="18.0" />
+                            </font>
                         </Text>
-                        <MediaView fx:id="mdvAudio" fitHeight="10.0" fitWidth="10.0" />
-                     </children>
-                     <padding>
+                        <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn đáp án mô tả bức tranh bạn thấy gần đúng nhất.">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Text>
+                        <RadioButton fx:id="rdA" mnemonicParsing="false" text="A" />
+                        <RadioButton fx:id="rdB" mnemonicParsing="false" text="B" />
+                        <RadioButton fx:id="rdC" mnemonicParsing="false" text="C" />
+                        <RadioButton fx:id="rdD" mnemonicParsing="false" text="D" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+                            <children>
+
+                                <Button fx:id="btnPreviousQuestion" mnemonicParsing="false" onAction="#previousQuestion" prefHeight="35.0" styleClass="success" text="Câu trước " textFill="WHITE">
+                        
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true">
+                                            <image>
+                                                <Image url="@../Images/Prev_32x32.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                           
+                                </Button>
+
+                                <Button fx:id="btnNextQuestion" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="35.0" styleClass="success" text="Câu tiếp theo" textFill="WHITE">
+
+                     
+
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Images/Next_32x32.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                           
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                  </HBox>
-                  <ImageView fx:id="imvPhoto" fitHeight="246.0" fitWidth="279.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../media/1.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="52.0" prefWidth="774.0">
-         <children>
-<<<<<<< HEAD
-            <Button fx:id="btnReturn" onAction="#quayVe" prefHeight="39.0" prefWidth="93.0" styleClass="primary" text="Quay về" textFill="WHITE">
-=======
-            <Button fx:id="btnReturn" onAction="#quayVe" prefHeight="35.0" styleClass="primary" text="Quay về" textFill="WHITE">
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
-               <font>
-                  <Font name="Tahoma Bold" size="15.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/DoublePrev_32x32.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <HBox.margin>
-                  <Insets left="23.0" />
-               </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-<<<<<<< HEAD
-            <Button fx:id="btnTinhDiem" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tinhDiem" prefHeight="38.0" prefWidth="111.0" styleClass="danger" text="TÍNH ĐIỂM" textFill="WHITE">
-=======
-            <Button fx:id="btnTinhDiem" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tinhDiem" prefHeight="35.0" styleClass="success" text="TÍNH ĐIỂM" textFill="WHITE">
->>>>>>> 4ed9330fb4fb99596a930fdb3ecac3e933f99ef9
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/CalculateNow_32x32.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <HBox.margin>
-                  <Insets left="500.0" />
-               </HBox.margin>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </children>
+                    </padding>
+                </VBox>
+                <VBox alignment="CENTER" focusTraversable="true" prefHeight="376.0" prefWidth="328.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="388.0" spacing="10.0">
+                            <children>
+
+                                <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#playAudio" prefHeight="32.0" prefWidth="87.0" styleClass="warning" text="PLAY" textFill="WHITE">
+
+                        
+
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Button>
+                                <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhấn để nghe đoạn audio">
+                                    <font>
+                                        <Font name="System Italic" size="16.0" />
+                                    </font>
+                                </Text>
+                                <MediaView fx:id="mdvAudio" fitHeight="10.0" fitWidth="10.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                        </HBox>
+                        <ImageView fx:id="imvPhoto" fitHeight="246.0" fitWidth="279.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@../media/1.jpg" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="774.0">
+            <children>
+
+                <Button fx:id="btnReturn" onAction="#quayVe" prefHeight="39.0" prefWidth="93.0" styleClass="primary" text="Quay về" textFill="WHITE">
+
+         
+                    <font>
+                        <Font name="Tahoma Bold" size="15.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/DoublePrev_32x32.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <HBox.margin>
+                        <Insets left="23.0" />
+                    </HBox.margin>
+              
+                </Button>
+
+                <Button fx:id="btnTinhDiem" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tinhDiem" prefHeight="38.0" prefWidth="111.0" styleClass="danger" text="TÍNH ĐIỂM" textFill="WHITE">
+
+
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/CalculateNow_32x32.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <HBox.margin>
+                        <Insets left="500.0" />
+                    </HBox.margin>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </children>
 </VBox>

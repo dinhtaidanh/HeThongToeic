@@ -5,8 +5,10 @@ package View;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import Model.MaHoaPass;
 import Model.User;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -64,7 +66,7 @@ public class DangNhapController implements Initializable {
     }
 
     @FXML
-    private void login(ActionEvent event) {
+    private void login(ActionEvent event) throws UnsupportedEncodingException {
         Configuration config = new Configuration();
         config.configure("hibernate.cfg.xml");
         config.addAnnotatedClass(User.class);
@@ -74,8 +76,8 @@ public class DangNhapController implements Initializable {
         Session session = factory.openSession();
         //Transaction trans = session.beginTransaction();
         Criteria criteria = session.createCriteria(User.class);
-        criteria.add(Restrictions.eq("username", txtUserName.getText()));
-        criteria.add(Restrictions.eq("password", txtPassword.getText()));
+        criteria.add(Restrictions.eq("username", txtUserName.getText().trim()));
+        criteria.add(Restrictions.eq("password", MaHoaPass.maHoa(txtPassword.getText().trim())));    
         List result = criteria.list();      
         Iterator iterator = result.iterator();
         if(iterator.hasNext()){

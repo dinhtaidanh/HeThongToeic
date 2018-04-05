@@ -37,6 +37,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.HTMLEditor;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -132,6 +133,8 @@ public class QuanLyDienKhuyetController implements Initializable {
         //Text text = new Text(tbvListCauHoi.getSelectionModel().getSelectedItem().getCauHoi());
         cauDuocChon = tbvListCauHoi.getSelectionModel().getSelectedItem();
         Stage s = new Stage();
+        s.initModality(Modality.APPLICATION_MODAL);
+        s.setResizable(false);
         GridPane p = new GridPane();
         p.setPadding(new Insets(20));
         p.setVgap(20);
@@ -139,7 +142,8 @@ public class QuanLyDienKhuyetController implements Initializable {
         TextField txtDapAn1 = new TextField(cauDuocChon.getDapAn1());
         TextField txtDapAn2 = new TextField(cauDuocChon.getDapAn2());
         TextField txtDapAn3 = new TextField(cauDuocChon.getDapAn3());
-        TextField txtDapAn4 = new TextField(cauDuocChon.getDapAn4());     
+        TextField txtDapAn4 = new TextField(cauDuocChon.getDapAn4());
+        txtCauHoi.setMinWidth(500);
         ComboBox cbDapAnDienKhuyetDung = new ComboBox();
         cbDapAnDienKhuyetDung.getItems().addAll("A", "B", "C","D");
         cbDapAnDienKhuyetDung.setValue(cauDuocChon.getDapAnDung());
@@ -160,7 +164,8 @@ public class QuanLyDienKhuyetController implements Initializable {
             session.update(nguPhap);
             trans.commit();
             session.close();
-            
+            Stage currentStage = (Stage) btnLuu.getScene().getWindow();
+            currentStage.close();
         });
         p.add(new Label("Câu hỏi: "),0,0);
         p.add(new Label("Đáp án A: "),0,1);
@@ -175,7 +180,7 @@ public class QuanLyDienKhuyetController implements Initializable {
         p.add(txtDapAn4,1,4);
         p.add(cbDapAnDienKhuyetDung,1,5);
         p.add(btnLuu, 1, 6);
-        Scene scene = new Scene(p,1000,500);
+        Scene scene = new Scene(p,650,330);
         s.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
         s.setTitle("Chỉnh sửa câu hỏi điền khuyết");
         s.setScene(scene);
@@ -187,6 +192,7 @@ public class QuanLyDienKhuyetController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
         Stage stage = new Stage();
         Scene scene = new Scene(root);  
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();    
@@ -223,7 +229,6 @@ public class QuanLyDienKhuyetController implements Initializable {
     @FXML
     private void onReturn(){      
         closeCurrentStage();  
-        showStage("/View/ManHinhChinh.fxml");
     }
     @FXML
     private void onRefreshList(){

@@ -51,7 +51,7 @@ public class ManHinhChinhController implements Initializable {
         stage.setResizable(false);
         stage.show();    
         }catch (IOException e) {e.printStackTrace();}
-        closeCurrentStage();
+        closeCurrentStage();      
     }
     @FXML
     private void onLuyenNguPhap(ActionEvent event) {
@@ -59,18 +59,20 @@ public class ManHinhChinhController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("ThiNguPhap.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);  
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
         }catch (IOException e) {e.printStackTrace();}
-        closeCurrentStage();
+        closeCurrentStage();      
     }
     @FXML
     private void onLuyenDienKhuyet(ActionEvent event) {
         try{
-        Parent root = FXMLLoader.load(getClass().getResource(""));
+        Parent root = FXMLLoader.load(getClass().getResource("ThiDienKhuyet.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);  
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -83,6 +85,7 @@ public class ManHinhChinhController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("QuanLyNguPhap.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -95,6 +98,7 @@ public class ManHinhChinhController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("QuanLyDienKhuyet.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);  
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -107,7 +111,8 @@ public class ManHinhChinhController implements Initializable {
         try{
         Parent root = FXMLLoader.load(getClass().getResource("QuanLiUser.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(root);  
+        Scene scene = new Scene(root); 
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -120,7 +125,8 @@ public class ManHinhChinhController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("QuanLyNghePhoto.fxml"));
         Stage stage = new Stage();
         stage.setResizable(false);
-        Scene scene = new Scene(root);  
+        Scene scene = new Scene(root); 
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.show();    
         }catch (IOException e) {e.printStackTrace();}   
@@ -128,7 +134,7 @@ public class ManHinhChinhController implements Initializable {
     }
     private void closeCurrentStage(){
         Stage currentStage = (Stage) btnNguPhap.getScene().getWindow();
-        currentStage.hide();
+        currentStage.toBack();
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
