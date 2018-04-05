@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
@@ -52,7 +53,7 @@ public class ThiDienKhuyetController implements Initializable  {
     @FXML
     private RadioButton rdD;
     @FXML
-    private Text txtCauHoi;
+    private TextArea txtCauHoi;
     private ArrayList<DienKhuyet> listDienKhuyet = new ArrayList<>();
     private static int cauHienTai = 0;
     private String[] listTraLoi;
