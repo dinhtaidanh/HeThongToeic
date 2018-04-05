@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="752.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiDienKhuyetController">
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text fill="#190b72" strokeType="OUTSIDE" strokeWidth="0.0" text="LUYỆN THI ĐIỀN KHUYẾT">
+               <font>
+                  <Font name="Tahoma Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn lỗi sai từ các đáp án A, B, C và D">
+               <font>
+                  <Font name="Tahoma Bold" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="712.0">    
+         <children>
+            <Label fx:id="lblCauSo" text="Câu số ">
+               <font>
+                  <Font name="Tahoma Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefHeight="129.0" prefWidth="712.0">
+         <children>
+            <Text fx:id="txtCauHoi" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <VBox alignment="CENTER_LEFT" prefHeight="162.0" prefWidth="692.0">
+         <children>
+            <RadioButton fx:id="rdA" mnemonicParsing="false" text="A.">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="rdB" mnemonicParsing="false" text="B. ">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="rdC" mnemonicParsing="false" text="C. ">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="rdD" mnemonicParsing="false" text="D. ">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font></RadioButton>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" />
+         </VBox.margin>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="712.0">
+         <children>
+            <Button fx:id="btnTruoc" mnemonicParsing="false" onAction="#onPreviousQuestion" prefHeight="44.0" prefWidth="131.0" styleClass="warning" text="Câu trước" textFill="WHITE">                  
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Prev_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnSau" mnemonicParsing="false" onAction="#onNextQuestion" prefHeight="44.0" prefWidth="143.0" styleClass="warning" text="Câu tiếp theo" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="300.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Next_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="39.0">
+         <children>
+            <Button fx:id="btnQuayVe" mnemonicParsing="false" onAction="#quayVe" prefHeight="44.0" prefWidth="115.0" styleClass="primary" text="Quay về" textFill="WHITE">          
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/DoublePrev_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnTinhDiem" mnemonicParsing="false" onAction="#onTinhDiemDienKhuyet" prefHeight="44.0" prefWidth="121.0" styleClass="danger" text="Tính điểm" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/CalculateNow_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
