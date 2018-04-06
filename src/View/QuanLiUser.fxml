@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuanLiUserController">
+<HBox stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.QuanLiUserController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="714.0" spacing="10.0" stylesheets="@giaodien.css">
          <children>
@@ -17,7 +17,7 @@
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="QUẢN LÝ TÀI KHOẢN">
                      <font>
-                        <Font name="Tahoma Bold" size="24.0" />
+                        <Font name="Tahoma" size="24.0" />
                      </font>
                   </Text>
                </children>
@@ -217,11 +217,15 @@
       </VBox>
       <VBox alignment="CENTER" spacing="10.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DANH SÁCH TÀI KHOẢN">
-               <font>
-                  <Font name="Tahoma Bold" size="24.0" />
-               </font>
-            </Text>
+            <HBox alignment="TOP_CENTER" prefHeight="59.0" prefWidth="500.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DANH SÁCH TÀI KHOẢN">
+                     <font>
+                        <Font name="Tahoma" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
             <TableView fx:id="tbvListUser" prefHeight="549.0" prefWidth="500.0" />
          </children>
          <HBox.margin>

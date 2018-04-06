@@ -39,6 +39,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -133,7 +134,7 @@ public class QuanLyDienKhuyetController implements Initializable {
         //Text text = new Text(tbvListCauHoi.getSelectionModel().getSelectedItem().getCauHoi());
         cauDuocChon = tbvListCauHoi.getSelectionModel().getSelectedItem();
         Stage s = new Stage();
-        s.initModality(Modality.APPLICATION_MODAL);
+        s.initModality(Modality.APPLICATION_MODAL);       
         s.setResizable(false);
         GridPane p = new GridPane();
         p.setPadding(new Insets(20));

@@ -16,6 +16,22 @@
             <Image url="@../Images/banner_toeic_everyday.png" />
          </image>
       </ImageView>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#onLogOut" prefHeight="32.0" prefWidth="122.0" styleClass="danger" text="Đăng xuất">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" onDragDetected="#onLogOut" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Delete_32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" top="5.0" />
+         </padding>
+      </HBox>
       <HBox prefHeight="394.0" prefWidth="673.0">
          <children>
             <VBox alignment="CENTER" prefHeight="394.0" prefWidth="343.0" spacing="30.0">

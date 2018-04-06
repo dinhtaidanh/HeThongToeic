@@ -5,7 +5,6 @@
  */
 package View;
 
-import Controller.HienCuaSo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -47,6 +47,7 @@ public class ManHinhChinhController implements Initializable {
         Stage stage = new Stage();
         Scene scene = new Scene(root);  
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();    
@@ -60,6 +61,7 @@ public class ManHinhChinhController implements Initializable {
         Stage stage = new Stage();
         Scene scene = new Scene(root);  
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -73,6 +75,7 @@ public class ManHinhChinhController implements Initializable {
         Stage stage = new Stage();
         Scene scene = new Scene(root);  
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -86,6 +89,7 @@ public class ManHinhChinhController implements Initializable {
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -99,6 +103,7 @@ public class ManHinhChinhController implements Initializable {
         Stage stage = new Stage();
         Scene scene = new Scene(root);  
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();    
@@ -114,6 +119,7 @@ public class ManHinhChinhController implements Initializable {
         Scene scene = new Scene(root); 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.show();    
         }catch (IOException e) {e.printStackTrace();} 
@@ -125,12 +131,27 @@ public class ManHinhChinhController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("QuanLyNghePhoto.fxml"));
         Stage stage = new Stage();
         stage.setResizable(false);
+        stage.initStyle(StageStyle.TRANSPARENT);
         Scene scene = new Scene(root); 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.show();    
         }catch (IOException e) {e.printStackTrace();}   
         closeCurrentStage();
+    }
+    @FXML
+    private void onLogOut(ActionEvent event){
+        try{
+        Parent root = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        Scene scene = new Scene(root); 
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.show();    
+        }catch (IOException e) {e.printStackTrace();}   
+        Stage currentStage = (Stage) btnNguPhap.getScene().getWindow();
+        currentStage.close();
     }
     private void closeCurrentStage(){
         Stage currentStage = (Stage) btnNguPhap.getScene().getWindow();

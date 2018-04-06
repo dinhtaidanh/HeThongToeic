@@ -17,18 +17,13 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -77,19 +72,16 @@ public class ThiDienKhuyetController implements Initializable  {
             listTraLoi[i] = "";
         }
         fillData();      
-        radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-           @Override
-           public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-               // Có lựa chọn
-               if (radioGroup.getSelectedToggle() != null) {
-                   RadioButton rd = (RadioButton) radioGroup.getSelectedToggle();
-                   if(rd.getText().substring(0,1)!=null){
-                   String traLoi = rd.getText().substring(0,1);  
-                   listTraLoi[cauHienTai]=traLoi;
-                   }
-               }                         
-           }
-       });
+        radioGroup.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) -> {
+            // Có lựa chọn
+            if (radioGroup.getSelectedToggle() != null) {
+                RadioButton rd = (RadioButton) radioGroup.getSelectedToggle();
+                if(rd.getText().substring(0,1)!=null){
+                    String traLoi = rd.getText().substring(0,1);
+                    listTraLoi[cauHienTai]=traLoi;
+                }
+            }
+        });
                 
         // TODO
     }   

@@ -26,6 +26,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -88,6 +89,7 @@ public class DangNhapController implements Initializable {
             Stage stage = new Stage();
             Scene scene = new Scene(root);  
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
@@ -102,6 +104,7 @@ public class DangNhapController implements Initializable {
             Scene scene = new Scene(root);  
             stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
             stage.show();
             Stage currentStage = (Stage) btnRegister.getScene().getWindow();
