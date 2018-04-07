@@ -5,30 +5,29 @@
  */
 package View;
 
-import Controller.HienCuaSo;
 import Model.HibernateUtilNguPhap;
 import Model.NguPhap;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -54,6 +53,9 @@ public class ThiNguPhapController implements Initializable  {
     private RadioButton rdD;
     @FXML
     private WebView cauHoi;
+    @FXML
+    private Button btnTinhDiem;
+    private MediaPlayer mediaPlayer;
     private ArrayList<NguPhap> listNguPhap = new ArrayList<>();
     private static int cauHienTai = 0;
     private String[] listTraLoi;
@@ -63,6 +65,7 @@ public class ThiNguPhapController implements Initializable  {
         rdB.setToggleGroup(radioGroup);
         rdC.setToggleGroup(radioGroup);
         rdD.setToggleGroup(radioGroup);
+        btnTinhDiem.setVisible(false);
         SessionFactory factory = HibernateUtilNguPhap.getSessionFactory();
         Session session = factory.openSession();
         Criteria criteria = session.createCriteria(NguPhap.class);
@@ -77,19 +80,16 @@ public class ThiNguPhapController implements Initializable  {
             listTraLoi[i] = "";
         }
         fillData();      
-        radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-           @Override
-           public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-               // Có lựa chọn
-               if (radioGroup.getSelectedToggle() != null) {
-                   RadioButton rd = (RadioButton) radioGroup.getSelectedToggle();
-                   if(rd.getText().substring(0,1)!=null){
-                   String traLoi = rd.getText().substring(0,1);  
-                   listTraLoi[cauHienTai]=traLoi;
-                   }
-               }                         
-           }
-       });
+        radioGroup.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) -> {
+            // Có lựa chọn
+            if (radioGroup.getSelectedToggle() != null) {
+                RadioButton rd = (RadioButton) radioGroup.getSelectedToggle();
+                if(rd.getText().substring(0,1)!=null){
+                    String traLoi = rd.getText().substring(0,1);
+                    listTraLoi[cauHienTai]=traLoi;
+                }
+            }
+        });
                 
         // TODO
     }   
@@ -129,25 +129,44 @@ public class ThiNguPhapController implements Initializable  {
     }
     @FXML
     private void onNextQuestion(){
-        if(cauHienTai <= listNguPhap.size()-2){
+        if(cauHienTai == listNguPhap.size()-1)
+            btnTinhDiem.setVisible(true);
+        if(cauHienTai <= listNguPhap.size()-2 && radioGroup.getSelectedToggle() != null){
         cauHienTai+=1;
         fillData();
         setCurrent();
         }
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Lưu ý");
+            alert.setHeaderText("Vui lòng chọn đáp án!");
+            alert.setContentText("Bạn chưa chọn đáp án hoặc số câu hỏi đã hết!");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
+            alert.show();
+        }
     }
     @FXML
     private void onTinhDiemNguPhap() throws IOException{
-        int soCauDung = 0;
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION.INFORMATION);
+        int score = 0;
         for(int i=0;i<listTraLoi.length;i++){
             if(listTraLoi[i].equals(listNguPhap.get(i).getDapAnDung()))
-                soCauDung+=1;
-        }    
-        alert.setTitle("Kết quả thi thử");
-        alert.setHeaderText("Số câu đúng: " + soCauDung + "/" + listNguPhap.size());
-        alert.showAndWait(); 
-        HienCuaSo w = new HienCuaSo();
-        w.showWindow("/View/KetQua.fxml");
+                score++;
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Kết quả");
+        alert.setHeaderText("Kết quả thi của bạn");
+        String thongbao = "Bạn đã hoàn thành bài thi với số điểm là: "+score ;
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
+        alert.setContentText(thongbao);
+        alert.setOnShown(e -> {
+            File file = new File("C:/Users/Danh/Desktop/HeThongToeic/src/media/congratulation.mp3");
+            Media media = new Media(file.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
+        });
+        alert.showAndWait();
     }
     @FXML
     public void quayVe() throws IOException {

@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="752.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiNguPhapController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="752.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ThiNguPhapController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -27,22 +27,31 @@
                <font>
                   <Font name="Tahoma Bold" size="15.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
             </Text>
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="712.0">    
          <children>
-            <Label fx:id="lblCauSo" text="Câu số ">
+            <Label fx:id="lblCauSo" text="Câu số " textFill="#c30e0e">
                <font>
                   <Font name="Tahoma Bold" size="16.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="129.0" prefWidth="712.0">
+      <HBox alignment="CENTER" prefHeight="163.0" prefWidth="712.0">
          <children>
-            <WebView fx:id="cauHoi" pickOnBounds="true" prefHeight="86.0" prefWidth="714.0" />
+            <WebView fx:id="cauHoi" pickOnBounds="true" prefHeight="114.0" prefWidth="672.0" />
          </children>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
       </HBox>
       <VBox alignment="CENTER_LEFT" prefHeight="162.0" prefWidth="692.0">
          <children>
@@ -52,28 +61,40 @@
                </padding>
                <font>
                   <Font size="14.0" />
-               </font></RadioButton>
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin></RadioButton>
             <RadioButton fx:id="rdB" mnemonicParsing="false" text="B. ">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <font>
                   <Font size="14.0" />
-               </font></RadioButton>
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin></RadioButton>
             <RadioButton fx:id="rdC" mnemonicParsing="false" text="C. ">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <font>
                   <Font size="14.0" />
-               </font></RadioButton>
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin></RadioButton>
             <RadioButton fx:id="rdD" mnemonicParsing="false" text="D. ">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <font>
                   <Font size="14.0" />
-               </font></RadioButton>
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin></RadioButton>
          </children>
          <VBox.margin>
             <Insets left="20.0" />
@@ -89,7 +110,7 @@
                   <Font name="Tahoma Bold" size="12.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/Prev_32x32.png" />
                      </image>
@@ -104,7 +125,7 @@
                   <Font name="Tahoma Bold" size="12.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/Next_32x32.png" />
                      </image>

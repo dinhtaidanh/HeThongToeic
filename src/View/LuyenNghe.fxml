@@ -11,11 +11,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="774.0" spacing="10.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LuyenNgheController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="774.0" spacing="10.0" stylesheets="@giaodien.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LuyenNgheController">
     <children>
-        <ImageView fitHeight="92.0" fitWidth="774.0" pickOnBounds="true" smooth="false">
+        <ImageView fitHeight="92.0" fitWidth="753.0" pickOnBounds="true" smooth="false">
             <image>
-                <Image url="@../Images/top_banner_listen.png" />
+                <Image url="@../Images/topbanner.jpg" />
             </image>
         </ImageView>
         <Text fill="#100668" strokeType="OUTSIDE" strokeWidth="0.0" text="NGHE HIỂU PHOTO" underline="true">
@@ -137,7 +137,7 @@
               
                 </Button>
 
-                <Button fx:id="btnTinhDiem" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tinhDiem" prefHeight="38.0" prefWidth="111.0" styleClass="danger" text="TÍNH ĐIỂM" textFill="WHITE">
+                <Button fx:id="btnTinhDiem" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tinhDiem" prefHeight="36.0" prefWidth="111.0" styleClass="danger" text="Tính điểm" textFill="WHITE">
 
 
                     <font>
@@ -160,4 +160,7 @@
             </children>
         </HBox>
     </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>

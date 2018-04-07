@@ -14,14 +14,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -31,9 +27,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import static javafx.scene.media.MediaPlayer.INDEFINITE;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -167,11 +163,20 @@ public class LuyenNgheController implements Initializable {
             cauHienTai++;
             getCurrent();
             loadMedia();
-        }  
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Lưu ý");
+            alert.setHeaderText("Vui lòng chọn đáp án!");
+            alert.setContentText("Bạn chưa chọn đáp án hoặc số câu hỏi đã hết!");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
+            alert.show();
+        }
     } 
     @FXML
     private void previousQuestion(){
-        if(cauHienTai > 0 && radioGroup.getSelectedToggle() != null){
+        if(cauHienTai > 0){
             cauHienTai--;
             getCurrent();
             loadMedia();
@@ -179,15 +184,30 @@ public class LuyenNgheController implements Initializable {
     }
     @FXML
     private void tinhDiem() {
+        int score = 0;
+        for(int i=0;i<listTraLoi.length;i++){
+            if(listTraLoi[i].equals(listLuyenNghe.get(i).getDapAn()))
+                score++;
+        }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        String thongbao = "Bạn đã hoàn thành bài thi với số điểm là: " ;
+        alert.setTitle("Kết quả");
+        alert.setHeaderText("Kết quả thi của bạn");
+        String thongbao = "Bạn đã hoàn thành bài thi với số điểm là: "+score ;
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
         alert.setContentText(thongbao);
+        alert.setOnShown(e -> {
+            File file = new File("C:/Users/Danh/Desktop/HeThongToeic/src/media/congratulation.mp3");
+            Media media = new Media(file.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
+        });
         alert.showAndWait();
     }
     @FXML
-    public void quayVe() throws IOException {        
+    public void quayVe() throws IOException {  
+        mediaPlayer.stop();
         Stage currentStage = (Stage) btnTinhDiem.getScene().getWindow();
-        currentStage.close();
+        currentStage.close();      
     }
 }

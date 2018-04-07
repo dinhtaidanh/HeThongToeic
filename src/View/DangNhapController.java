@@ -41,30 +41,11 @@ import org.hibernate.criterion.Restrictions;
 public class DangNhapController implements Initializable {
 
     @FXML
-    private Hyperlink hpQuenMatKhau;
-    @FXML
     private TextField txtUserName;
     @FXML
     private PasswordField txtPassword;
     @FXML
     private Button btnRegister;
-
-    @FXML
-    private void quenMatKhau(ActionEvent event) {
-        try {
-
-            Parent root = FXMLLoader.load(getClass().getResource("QuenMatKhau.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-            Stage currentStage = (Stage) btnRegister.getScene().getWindow();
-            currentStage.close();
-        } catch (IOException e) {
-        }
-    }
 
     @FXML
     private void login(ActionEvent event) throws UnsupportedEncodingException {
