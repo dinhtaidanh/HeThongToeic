@@ -51,6 +51,22 @@ public class ManHinhUserController implements Initializable {
     private Button btnQuanLyNghePhoto = new Button();
     private MediaPlayer mediaPlayer;
     @FXML
+    private ImageView imgVolume;
+    @FXML
+    private Button btnVolume;
+    @FXML
+    private void volumeOnOff(ActionEvent event) {
+        if (btnVolume.getText().equals("Off")) {
+            mediaPlayer.pause();
+            imgVolume.setImage(new Image(getClass().getResourceAsStream("/Images/on.png")));
+            btnVolume.setText("On");
+        } else {
+            mediaPlayer.play();
+            imgVolume.setImage(new Image(getClass().getResourceAsStream("/Images/off.png")));
+            btnVolume.setText("Off");
+        }
+    }
+    @FXML
     private void onLuyenNghePhoto(ActionEvent event) {     
         try{
         Parent root = FXMLLoader.load(getClass().getResource("LuyenNghe.fxml"));
@@ -130,8 +146,10 @@ public class ManHinhUserController implements Initializable {
         stage.setResizable(false);
         Scene scene = new Scene(root); 
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
         stage.setScene(scene);
         stage.show();    
+        mediaPlayer.stop();
         }catch (IOException e) {e.printStackTrace();}   
         Stage currentStage = (Stage) btnNguPhap.getScene().getWindow();
         currentStage.close();

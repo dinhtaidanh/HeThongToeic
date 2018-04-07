@@ -208,8 +208,10 @@ public class ManHinhChinhController implements Initializable {
             stage.setResizable(false);
             Scene scene = new Scene(root);
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Toeic.png")));
             stage.setScene(scene);
             stage.show();
+            mediaPlayer.stop();
         } catch (IOException e) {
             e.printStackTrace();
         }

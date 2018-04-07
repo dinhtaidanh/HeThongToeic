@@ -3,37 +3,38 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemNguPhapController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/NguPhap.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemCauHoiPhoto.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemDienKhuyet.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiDienKhuyetController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNguPhapController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/DangNhapController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ManHinhChinhController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/DangKi.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/LuyenNghe.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiDienKhuyet.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/LuyenNgheController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNghePhotoController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Controller/Main.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/giaodien.css</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNghePhoto.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLiUserController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyDienKhuyet.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/LuyenNghe.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemDienKhuyetController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/DangNhap.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/LuyenNgheController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiDienKhuyetController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/giaodien.css</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiNguPhapController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNguPhap.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Controller/HienCuaSo.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/LuyenNghe.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNghePhoto.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyDienKhuyetController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemNguPhap.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiNguPhap.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemDienKhuyet.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ManHinhUserController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNghePhotoController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLiUserController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemCauHoiPhoto.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyDienKhuyet.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiDienKhuyet.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ManHinhChinh.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemNguPhapController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/MaHoaPass.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Controller/Main.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/DangKi.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNguPhapController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemCauHoiPhotoController.java</file>
             <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/DangKiController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Controller/HienCuaSo.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiNguPhapController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemNguPhap.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/MaHoaPass.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyNguPhap.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/QuanLyDienKhuyetController.java</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThiNguPhap.fxml</file>
-            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ManHinhChinh.fxml</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/DangNhapController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/LuyenNghe.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/Model/NguPhap.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ThemDienKhuyetController.java</file>
+            <file>file:/C:/Users/Danh/Desktop/HeThongToeic/src/View/ManHinhChinhController.java</file>
         </group>
     </open-files>
 </project-private>

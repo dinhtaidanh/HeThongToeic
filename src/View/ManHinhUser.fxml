@@ -18,6 +18,18 @@
       </ImageView>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
+            <Button fx:id="btnVolume" mnemonicParsing="false" onAction="#volumeOnOff" text="Off">
+               <graphic>
+                  <ImageView fx:id="imgVolume" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/off.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
             <Button mnemonicParsing="false" onAction="#onLogOut" prefHeight="32.0" prefWidth="122.0" styleClass="danger" text="Đăng xuất">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="24.0" onDragDetected="#onLogOut" pickOnBounds="true" preserveRatio="true">
